@@ -72,26 +72,23 @@ proxies:
 
   - name: "谷歌云美国-vmess"
     type: vmess
-    server: 35.212.231.224
-    port: 56287
-    uuid: 83e55013-de5f-4585-954d-e7c842626fc0
+    server: 35.212.183.9
+    port: 31532
+    uuid: 6a890372-cffe-42ee-b40d-cb77c3946495
     alterId: 0
     cipher: auto
-    network: tcp
+    udp: true
     tls: false
-    servername: ""
-    udp: false
+    network: tcp
 
   - name: "谷歌云美国-vless"
     type: vless
-    server: 35.212.231.224
-    port: 38447
-    uuid: c8d026a0-f158-4c8c-8ba3-c3e7a86635b3
-    encryption: none
+    server: 35.212.183.9
+    port: 30004
+    uuid: ec0920c6-3e38-4569-8567-525cfa2f40b9
     network: tcp
     tls: false
-    servername: ""
-    udp: false
+    udp: true
 
 
   - name: 爪云-JP-WS
@@ -182,6 +179,7 @@ proxy-groups:
 rules:
  - DOMAIN-KEYWORD,openai.com,AI
  - DOMAIN-KEYWORD,gemini,AI
+ - DOMAIN-KEYWORD,aistudio,AI
  - DOMAIN-KEYWORD,chatgpt.com,AI
  - DOMAIN-KEYWORD,speedtest,PROXY
  - IP-CIDR,1.1.1.1/32,PROXY,no-resolve

@@ -43,17 +43,16 @@ dns:
 
 # 代理节点配置（统一缩进+修复语法错误）
 proxies:
-
+  - { name: '🇸🇬 SG02', type: trojan, server: q2v8m1r5t9c4k7xp-sg.nod3.org, port: 24104, password: 8c2fbe88-f8fd-4cd2-801e-73688c1d32c7, udp: true, sni: cas.baidu.com, skip-cert-verify: true }
+  - {"name":"日本 05 SoftBank","type":"vmess","server":"select-jp.kunlunddns.com","port":9034,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
+  - {"name":"日本 02 SoftBank","type":"vmess","server":"select-jp.kunlunddns.com","port":9031,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
+  - {"name":"新加坡 04 Singtel","type":"vmess","server":"select-sg.kunlunddns.com","port":9041,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
+  - {"name":"新加坡 05 Singtel","type":"vmess","server":"select-sg.kunlunddns.com","port":9042,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
+  - { name: '🇭🇰 HK04', type: trojan, server: z1r9n4c7b2q8m5lk-hk.nod3.org, port: 22109, password: 8c2fbe88-f8fd-4cd2-801e-73688c1d32c7, udp: true, sni: cas.baidu.com, skip-cert-verify: true }
+  - { name: '🇭🇰 HK05', type: trojan, server: z1r9n4c7b2q8m5lk-hk.nod3.org, port: 22110, password: 8c2fbe88-f8fd-4cd2-801e-73688c1d32c7, udp: true, sni: cas.baidu.com, skip-cert-verify: true }
   - { name: 🇭🇰香港高速01|良心云, type: vless, server: aws-link1.liangxin1.xyz, port: 35248, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, tls: true, skip-cert-verify: false, flow: xtls-rprx-vision, client-fingerprint: chrome, servername: www.lamer.com.hk, reality-opts: { public-key: IGsSxC0wgn7wLy0NM0QN_yOREDKT_814Y_3_rbgDoTc, short-id: c8c0f951 } }
   - { name: 🇭🇰香港高速02|良心云, type: vless, server: aws-link2.liangxin1.xyz, port: 38725, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, tls: true, skip-cert-verify: false, flow: xtls-rprx-vision, client-fingerprint: chrome, servername: www.lamer.com.hk, reality-opts: { public-key: HvwnLBMMKsmvghGX5yVPq3J2HWxwr1GGQB2WIvbPvAY, short-id: 8f6ca378 } }
-  - name: '🇭🇰香港高速03'
-    type: trojan
-    server: line-cn-2cdra.nod3.org
-    port: 22118
-    password: 8c2fbe88-f8fd-4cd2-801e-73688c1d32c7
-    udp: true
-    sni: cas.baidu.com
-    skip-cert-verify: true
+
 
   - name: 搬瓦工日本
     type: vless
@@ -105,7 +104,6 @@ proxies:
       headers: {}  # 修复null为空对象，符合Clash规范
       Host: pwctqbvswnne.ap-northeast-1.clawcloudrun.com
 
-  - { name: 新加坡02aws, server: vsg05.344233.cc, port: 8080, udp: true, skip-cert-verify: false, sni: vsg05.344233.cc, type: hysteria2, password: 9e509c63-5233-444f-87ca-778274566331 }
 
   - name: 老家hy
     type: hysteria2
@@ -131,12 +129,17 @@ proxy-groups:
       - DIRECT
       - 谷歌云美国-vless
       - 谷歌云美国-vmess
-      - 新加坡02aws
       - 搬瓦工日本
       - 爪云-JP-WS
       - 🇭🇰香港高速01|良心云
       - 🇭🇰香港高速02|良心云
-      - 🇭🇰香港高速03
+      - 🇭🇰 HK04
+      - 🇭🇰 HK05
+      - 新加坡 04 Singtel
+      - 新加坡 05 Singtel
+      - 日本 02 SoftBank
+      - 日本 05 SoftBank
+      - 🇸🇬 SG02
 
   - name: AI
     type: select
@@ -144,18 +147,25 @@ proxy-groups:
       - 非香港自动
       - 谷歌云美国-vless
       - 谷歌云美国-vmess
-      - 新加坡02aws
       - 搬瓦工日本
       - 爪云-JP-WS
-
+      - 新加坡 04 Singtel
+      - 新加坡 05 Singtel
+      - 日本 02 SoftBank
+      - 日本 05 SoftBank
+      - 🇸🇬 SG02
   - name: 非香港自动
     type: url-test
     proxies:
       - 谷歌云美国-vless
       - 谷歌云美国-vmess
-      - 新加坡02aws
       - 搬瓦工日本
       - 爪云-JP-WS
+      - 新加坡 04 Singtel
+      - 新加坡 05 Singtel
+      - 日本 02 SoftBank
+      - 日本 05 SoftBank
+      - 🇸🇬 SG02
     url: http://www.gstatic.com/generate_204  # 测速URL（谷歌204，稳定）
     interval: 300  # 测速间隔（秒），5分钟测一次
     timeout: 5000  # 超时时间（毫秒），5秒没响应算超时
@@ -166,11 +176,17 @@ proxy-groups:
     proxies:
       - 谷歌云美国-vless
       - 谷歌云美国-vmess
-      - 新加坡02aws
       - 搬瓦工日本
       - 爪云-JP-WS
       - 🇭🇰香港高速01|良心云
       - 🇭🇰香港高速02|良心云
+      - 🇭🇰 HK04
+      - 🇭🇰 HK05
+      - 新加坡 04 Singtel
+      - 新加坡 05 Singtel
+      - 日本 02 SoftBank
+      - 日本 05 SoftBank
+      - 🇸🇬 SG02
     url: http://www.gstatic.com/generate_204  # 测速URL（谷歌204，稳定）
     interval: 300  # 测速间隔（秒），5分钟测一次
     timeout: 5000  # 超时时间（毫秒），5秒没响应算超时

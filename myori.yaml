@@ -52,6 +52,9 @@ proxies:
   - { name: '🇭🇰 HK05', type: trojan, server: z1r9n4c7b2q8m5lk-hk.nod3.org, port: 22110, password: 8c2fbe88-f8fd-4cd2-801e-73688c1d32c7, udp: true, sni: cas.baidu.com, skip-cert-verify: true }
   - { name: 🇭🇰香港高速01|良心云, type: vless, server: aws-link1.liangxin1.xyz, port: 35248, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, tls: true, skip-cert-verify: false, flow: xtls-rprx-vision, client-fingerprint: chrome, servername: www.lamer.com.hk, reality-opts: { public-key: IGsSxC0wgn7wLy0NM0QN_yOREDKT_814Y_3_rbgDoTc, short-id: c8c0f951 } }
   - { name: 🇭🇰香港高速02|良心云, type: vless, server: aws-link2.liangxin1.xyz, port: 38725, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, tls: true, skip-cert-verify: false, flow: xtls-rprx-vision, client-fingerprint: chrome, servername: www.lamer.com.hk, reality-opts: { public-key: HvwnLBMMKsmvghGX5yVPq3J2HWxwr1GGQB2WIvbPvAY, short-id: 8f6ca378 } }
+  - {"name":"[IPLC]新加坡","type":"vmess","server":"select-sg.ddnskunlun.com","port":9039,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
+  - {"name":"[IPLC]日本","type":"vmess","server":"select-jp.ddnskunlun.com","port":9032,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
+  - {"name":"[IPLC]韩国","type":"vmess","server":"select-kr.ddnskunlun.com","port":9057,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
 
 
   - name: 搬瓦工日本
@@ -140,6 +143,9 @@ proxy-groups:
       - 日本 02 SoftBank
       - 日本 05 SoftBank
       - 🇸🇬 SG02
+      - "[IPLC]新加坡"
+      - "[IPLC]日本"
+      - "[IPLC]韩国"
 
   - name: AI
     type: select
@@ -154,6 +160,9 @@ proxy-groups:
       - 日本 02 SoftBank
       - 日本 05 SoftBank
       - 🇸🇬 SG02
+      - "[IPLC]新加坡"
+      - "[IPLC]日本"
+      - "[IPLC]韩国"
   - name: 非香港自动
     type: url-test
     proxies:
@@ -166,6 +175,9 @@ proxy-groups:
       - 日本 02 SoftBank
       - 日本 05 SoftBank
       - 🇸🇬 SG02
+      - "[IPLC]新加坡"
+      - "[IPLC]日本"
+      - "[IPLC]韩国"
     url: http://www.gstatic.com/generate_204  # 测速URL（谷歌204，稳定）
     interval: 300  # 测速间隔（秒），5分钟测一次
     timeout: 5000  # 超时时间（毫秒），5秒没响应算超时
@@ -187,6 +199,9 @@ proxy-groups:
       - 日本 02 SoftBank
       - 日本 05 SoftBank
       - 🇸🇬 SG02
+      - "[IPLC]新加坡"
+      - "[IPLC]日本"
+      - "[IPLC]韩国"
     url: http://www.gstatic.com/generate_204  # 测速URL（谷歌204，稳定）
     interval: 300  # 测速间隔（秒），5分钟测一次
     timeout: 5000  # 超时时间（毫秒），5秒没响应算超时

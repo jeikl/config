@@ -8,38 +8,18 @@ external-controller: 127.0.0.1:9090
 unified-delay: true
 tcp-concurrent: true
 dns:
-  enable: true
-  ipv6: true
-  default-nameserver:
-    - 223.5.5.5
-    - 119.29.29.29
-    - 114.114.114.114
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  use-hosts: true
-  respect-rules: true
-  proxy-server-nameserver:
-    - 223.5.5.5
-    - 119.29.29.29
-    - 114.114.114.114
-  nameserver:
-    - 223.5.5.5
-    - 119.29.29.29
-    - 114.114.114.114
-  fallback:
-    - 1.1.1.1
-    - 8.8.8.8
-  fallback-filter:
-    geoip: true
-    geoip-code: CN
-    geosite:
-      - gfw
-    ipcidr:
-      - 240.0.0.0/4
-    domain:
-      - +.google.com
-      - +.facebook.com
-      - +.youtube.com
+    enable: true
+    ipv6: true
+    respect-rules: true
+    default-nameserver: [119.29.29.29, 114.114.114.114]
+    proxy-server-nameserver: ['https://dns.alidns.com/dns-query', 'https://doh.pub/dns-query', 'tls://dot.pub']
+    enhanced-mode: fake-ip
+    fake-ip-range: 198.18.0.1/16
+    fake-ip-filter: ['*.lan', localhost.ptlogin2.qq.com]
+    use-hosts: true
+    nameserver: ['https://doh.pub/dns-query', 'tls://dot.pub', 'https://223.5.5.5/dns-query', 'https://223.6.6.6/dns-query', 'tls://dns.alidns.com', 'tls://223.5.5.5:853', 'tls://223.6.6.6:853']
+    fallback: ['https://doh.pub/dns-query', 'tls://dot.pub', 'https://223.5.5.5/dns-query', 'https://223.6.6.6/dns-query', 'tls://dns.alidns.com', 'tls://223.5.5.5:853', 'tls://223.6.6.6:853']
+    fallback-filter: { geoip: true, ipcidr: [240.0.0.0/4, 0.0.0.0/32] }
 
 # 代理节点配置（统一缩进+修复语法错误）
 proxies:
@@ -225,7 +205,7 @@ proxy-groups:
       - 香港 02 HKIX
       - 🇸🇬新加坡高速01|良心云
     url: http://www.gstatic.com/generate_204  # 测速URL（谷歌204，稳定）
-    interval: 300  # 测速间隔（秒），5分钟测一次
+    interval: 100  # 测速间隔（秒），5分钟测一次
     timeout: 5000  # 超时时间（毫秒），5秒没响应算超时
     tolerance: 50  # 容差（毫秒），延迟差小于50ms不切换，避免频繁跳动
 

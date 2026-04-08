@@ -482,11 +482,13 @@ proxy-groups:
 
 
 rules:
+ - DOMAIN-KEYWORD,gemini,AI
+ - DOMAIN-KEYWORD,googleapi,AI
+ - DOMAIN-KEYWORD,openai.com,AI
+ - DOMAIN-KEYWORD,mtalk.google,AI
  - DOMAIN-KEYWORD,api.cloudflare.com,DIRECT
  - DOMAIN-KEYWORD,claude,AI
  - DOMAIN-KEYWORD,anthropic,AI
- - DOMAIN-KEYWORD,openai.com,AI
- - DOMAIN-KEYWORD,gemini,AI
  - DOMAIN-KEYWORD,aistudio,AI
  - DOMAIN-KEYWORD,chatgpt.com,AI
  - DOMAIN-KEYWORD,speedtest,PROXY

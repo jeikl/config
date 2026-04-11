@@ -488,7 +488,7 @@ rules:
  - DOMAIN-KEYWORD,gstatic,AI
  - DOMAIN-KEYWORD,googletagmanager,AI
  - DOMAIN-KEYWORD,clients6.google,AI
-  - DOMAIN-KEYWORD,gemini,AI
+ - DOMAIN-KEYWORD,gemini,AI
  - DOMAIN-KEYWORD,aistudio,AI
  - DOMAIN-KEYWORD,play.google.com,AI
  - DOMAIN-KEYWORD,mtalk.google,AI

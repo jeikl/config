@@ -13,6 +13,7 @@ dns:
     respect-rules: true
     default-nameserver: [119.29.29.29, 114.114.114.114]
     proxy-server-nameserver: ['https://dns.alidns.com/dns-query', 'https://doh.pub/dns-query', 'tls://dot.pub']
+    enhanced-mode: fake-ip
     fake-ip-range: 198.18.0.1/16
     fake-ip-filter: ['*.lan', localhost.ptlogin2.qq.com]
     use-hosts: true
@@ -31,9 +32,6 @@ proxies:
   - {"name":"新加坡 05 Singtel","type":"vmess","server":"select-sg.kunlunddns.com","port":9042,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
   - { name: '🇭🇰 HK04', type: trojan, server: z1r9n4c7b2q8m5lk-hk.nod3.org, port: 22109, password: 8c2fbe88-f8fd-4cd2-801e-73688c1d32c7, udp: true, sni: cas.baidu.com, skip-cert-verify: true }
   - { name: '🇭🇰 HK05', type: trojan, server: z1r9n4c7b2q8m5lk-hk.nod3.org, port: 22110, password: 8c2fbe88-f8fd-4cd2-801e-73688c1d32c7, udp: true, sni: cas.baidu.com, skip-cert-verify: true }
-  - { name: 🇭🇰香港专线01|BGP|流媒体, server: aws-linkhy1.liangxin1.xyz, port: 60000, ports: 60000-65530, mport: 60000-65530, udp: true, skip-cert-verify: true, sni: iosapps.itunes.apple.com, type: hysteria2, password: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b }
-  - { name: 🇭🇰香港专线02|BGP|流媒体, server: aws-linkhy2.liangxin1.xyz, port: 60000, ports: 60000-65530, mport: 60000-65530, udp: true, skip-cert-verify: true, sni: iosapps.itunes.apple.com, type: hysteria2, password: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b }
-  - { name: 🇭🇰香港高速03|良心云, type: vless, server: aws-link3.liangxin1.xyz, port: 27758, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, tls: true, skip-cert-verify: false, flow: xtls-rprx-vision, client-fingerprint: chrome, servername: www.lamer.com.hk, reality-opts: { public-key: EYa4ic3GAxqznV61U-OOww-WKsu5wuQQptyS3fw7czM, short-id: c50db39f } }
   - {"name":"[IPLC]新加坡","type":"vmess","server":"select-sg.ddnskunlun.com","port":9039,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
   - {"name":"[IPLC]日本","type":"vmess","server":"select-jp.ddnskunlun.com","port":9032,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
   - {"name":"★自动选择|香港最优★","type":"vmess","server":"auto-hk.ddnskunlun.com","port":9000,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
@@ -229,6 +227,41 @@ proxies:
   - {"name":"[IPLC]斯洛文尼亚 02 克拉尼","type":"vmess","server":"board-02.ddnskunlun.com","port":11870,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
   - {"name":"[IPLC]沙特阿拉伯 01 利雅得","type":"vmess","server":"board-01.ddnskunlun.com","port":11910,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
   - {"name":"[IPLC]沙特阿拉伯 02 利雅得","type":"vmess","server":"board-02.ddnskunlun.com","port":11871,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
+  - { name: '剩余流量：500 GB', type: vless, server: 127.0.0.1, port: 35248, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, flow: xtls-rprx-vision, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: www.lamer.com.hk, reality-opts: { public-key: IGsSxC0wgn7wLy0NM0QN_yOREDKT_814Y_3_rbgDoTc, short-id: c8c0f951 } }
+  - { name: 套餐到期：2026-05-23, type: vless, server: 127.0.0.1, port: 35248, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, flow: xtls-rprx-vision, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: www.lamer.com.hk, reality-opts: { public-key: IGsSxC0wgn7wLy0NM0QN_yOREDKT_814Y_3_rbgDoTc, short-id: c8c0f951 } }
+  - { name: 🇭🇰香港高速01|BGP|流媒体, type: vless, server: aws-link1.liangxin1.xyz, port: 35248, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, flow: xtls-rprx-vision, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: www.lamer.com.hk, reality-opts: { public-key: IGsSxC0wgn7wLy0NM0QN_yOREDKT_814Y_3_rbgDoTc, short-id: c8c0f951 } }
+  - { name: 🇭🇰香港高速02|BGP|流媒体, type: vless, server: aws-link2.liangxin1.xyz, port: 38725, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, flow: xtls-rprx-vision, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: www.lamer.com.hk, reality-opts: { public-key: HvwnLBMMKsmvghGX5yVPq3J2HWxwr1GGQB2WIvbPvAY, short-id: 8f6ca378 } }
+  - { name: 🇭🇰香港高速03|BGP|流媒体, type: vless, server: aws-link3.liangxin1.xyz, port: 27758, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, flow: xtls-rprx-vision, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: www.lamer.com.hk, reality-opts: { public-key: EYa4ic3GAxqznV61U-OOww-WKsu5wuQQptyS3fw7czM, short-id: c50db39f } }
+  - { name: 🇭🇰香港高速04|BGP|流媒体, type: vless, server: aws-link4.liangxin1.xyz, port: 443, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, flow: xtls-rprx-vision, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: www.lamer.com.hk, reality-opts: { public-key: 3FPGTaxkfOM3nEUWUyCiqkH5oJGsOx-WxPJfADi1QWY, short-id: 7f369e14 } }
+  - { name: 🇭🇰香港专线01|BGP|流媒体, server: aws-linkhy1.liangxin1.xyz, port: 60000, ports: 60000-65530, mport: 60000-65530, udp: true, skip-cert-verify: true, sni: iosapps.itunes.apple.com, type: hysteria2, password: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b }
+  - { name: 🇭🇰香港专线02|BGP|流媒体, server: aws-linkhy2.liangxin1.xyz, port: 60000, ports: 60000-65530, mport: 60000-65530, udp: true, skip-cert-verify: true, sni: iosapps.itunes.apple.com, type: hysteria2, password: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b }
+  - { name: 🇭🇰香港专线03|BGP|流媒体, server: aws-linkhy3.liangxin1.xyz, port: 60000, ports: 60000-65530, mport: 60000-65530, udp: true, skip-cert-verify: true, sni: iosapps.itunes.apple.com, type: hysteria2, password: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b }
+  - { name: 🇸🇬新加坡高速01|BGP|流媒体, type: vless, server: aws-link7.liangxin1.xyz, port: 48574, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, flow: xtls-rprx-vision, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: www.lamer.com.sg, reality-opts: { public-key: lmxSayN8tUg2Dag2MPXrdqZ2SQK9K3OjlaKk8wVCRnc, short-id: f8f18902 } }
+  - { name: 🇸🇬新加坡高速02|BGP|流媒体, type: vless, server: aws-link8.liangxin1.xyz, port: 39645, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, flow: xtls-rprx-vision, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: iosapps.itunes.apple.com, reality-opts: { public-key: x7VqpFP7_PrY4ebNw8hi8Ec5Tm5Upmt5JOdrN1M9VnQ, short-id: 2b3b0b93 } }
+  - { name: 🇸🇬新加坡高速03|BGP|流媒体, type: vless, server: aws-link9.liangxin1.xyz, port: 23587, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, flow: xtls-rprx-vision, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: iosapps.itunes.apple.com, reality-opts: { public-key: H66PLLf6HkZwHk4oFqisfTawIvw2cxkEwk8Ue8sHZgA, short-id: 19b580ae } }
+  - { name: 🇸🇬新加坡高速04|BGP|流媒体, type: vless, server: aws-link10.liangxin1.xyz, port: 443, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, flow: xtls-rprx-vision, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: www.lamer.com.sg, reality-opts: { public-key: xQO7CBh6ymSW9qfw9OGHykh7PLTzWQZjxDT-H4ul2AE, short-id: 2bb6da88 } }
+  - { name: 🇸🇬新加坡高速05|BGP|流媒体, type: vless, server: aws-link11.liangxin1.xyz, port: 443, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, flow: xtls-rprx-vision, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: www.lamer.com.sg, reality-opts: { public-key: 7DC8gg_Ui9i3tScu-60AxeniPPW3h3VWvvQjblOrwEs, short-id: 18180d97 } }
+  - { name: 🇸🇬新加坡专线02|BGP|流媒体, server: aws-linkhy10.liangxin1.xyz, port: 60000, ports: 60000-65530, mport: 60000-65530, udp: true, skip-cert-verify: true, sni: iosapps.itunes.apple.com, type: hysteria2, password: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b }
+  - { name: 🇸🇬新加坡专线03|BGP|流媒体, server: aws-linkhy11.liangxin1.xyz, port: 60000, ports: 60000-65530, mport: 60000-65530, udp: true, skip-cert-verify: true, sni: iosapps.itunes.apple.com, type: hysteria2, password: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b }
+  - { name: 🇯🇵日本专线01|BGP|流媒体, server: aws-linkhy15.liangxin1.xyz, port: 60000, ports: 60000-65530, mport: 60000-65530, udp: true, skip-cert-verify: true, sni: bilibili-jp.biliimg.com, type: hysteria2, password: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b }
+  - { name: 🇯🇵日本专线02|BGP|流媒体, server: aws-linkhy16.liangxin1.xyz, port: 60000, ports: 60000-65530, mport: 60000-65530, udp: true, skip-cert-verify: true, sni: bilibili-jp2.biliimg.com, type: hysteria2, password: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b }
+  - { name: 🇯🇵日本专线03|BGP|流媒体, server: aws-linkhy17.liangxin1.xyz, port: 60000, ports: 60000-65530, mport: 60000-65530, udp: true, skip-cert-verify: true, sni: bilibili-jp3.biliimg.com, type: hysteria2, password: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b }
+  - { name: 🇯🇵日本高速01|BGP|流媒体, type: vless, server: aws-link13.liangxin1.xyz, port: 36574, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, flow: xtls-rprx-vision, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: www.apple.com.cn, reality-opts: { public-key: sDG-KQk1BF7V83-xnmrWDouXxpPd_ZSxKcHrJJzbols, short-id: 32a3650d } }
+  - { name: 🇯🇵日本高速02|BGP|流媒体, type: vless, server: aws-link14.liangxin1.xyz, port: 25485, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, flow: xtls-rprx-vision, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: www.apple.com.cn, reality-opts: { public-key: VOFSjjWT0wIH3Q0ntyEZd8WwksrIAb5gPt_3PBnEASg, short-id: 9c5b8c53 } }
+  - { name: 🇯🇵日本高速03|BGP|流媒体, type: vless, server: aws-link15.liangxin1.xyz, port: 35457, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, flow: xtls-rprx-vision, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: www.apple.com.cn, reality-opts: { public-key: 3gb-aG6qLCJpEOFrEPZ9qKqLvVPA_ovlu0X1PvjcE0k, short-id: 05288db3 } }
+  - { name: 🇯🇵日本高速04|BGP|流媒体, type: vless, server: cfyes.lxy1015.top, port: 443, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: lxs1jp.lxy1015.top, network: ws, ws-opts: { path: /liangxin/jp1, headers: { Host: lx-1jp.lxy1015.top } } }
+  - { name: 🇯🇵日本高速05|BGP|流媒体, type: vless, server: cfyes.lxy1015.top, port: 443, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: lxs1jp.lxy1015.top, network: ws, ws-opts: { path: /liangxin/jp1, headers: { Host: lx-1jp.lxy1015.top } } }
+  - { name: 🇯🇵日本高速06|BGP|流媒体, type: vless, server: cfyes.lxy1015.top, port: 443, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: lxs1jp.lxy1015.top, network: ws, ws-opts: { path: /liangxin/jp1, headers: { Host: lx-1jp.lxy1015.top } } }
+  - { name: 🇺🇸美国高速01|流媒体, type: vless, server: aws-link19.liangxin1.xyz, port: 443, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, flow: xtls-rprx-vision, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: download-porter.hoyoverse.com, reality-opts: { public-key: QE5l0RUqs4OsH3j3u_xHm06-4NlILmQivZUJqiEx11o, short-id: '6314e825' } }
+  - { name: 🇺🇸美国高速03|流媒体, type: vless, server: cfyes.lxy1015.top, port: 443, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: lx-us1.lxy1015.top, network: ws, ws-opts: { path: /liangxin/us, headers: { Host: lx-us1.lxy1015.top } } }
+  - { name: 🇺🇸美国高速04|流媒体, type: vless, server: cfyes.lxy1015.top, port: 443, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: lx-us1.lxy1015.top, network: ws, ws-opts: { path: /liangxin/us, headers: { Host: lx-us1.lxy1015.top } } }
+  - { name: 🇺🇸美国01|流媒体, server: 203.10.97.121, port: 60000, ports: 60000-65530, mport: 60000-65530, udp: true, skip-cert-verify: true, sni: www.apple.com, type: hysteria2, password: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b }
+  - { name: 🇺🇸美国02|流媒体, server: aws-linkhy27.liangxin1.xyz, port: 60000, ports: 60000-65530, mport: 60000-65530, udp: true, skip-cert-verify: true, sni: www.apple.com, type: hysteria2, password: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b }
+  - { name: 🇨🇳台湾专线01|BGP|流媒体, server: aws-linkhy23.liangxin1.xyz, port: 60000, ports: 60000-65530, mport: 60000-65530, udp: true, skip-cert-verify: true, sni: bilibili-tw.biliimg.com, type: hysteria2, password: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b }
+  - { name: 🇨🇳台湾高速01|BGP|流媒体, type: vless, server: aws-link27.liangxin1.xyz, port: 443, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, flow: xtls-rprx-vision, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: download-porter.hoyoverse.com, reality-opts: { public-key: a9I2uA3NNZA6uBAe3Tui9vZ8CG5MrMaYOifWrAdc0zg, short-id: a8609be8 } }
+  - { name: 🇰🇷韩国专线01|BGP|流媒体, server: aws-linkhy21.liangxin1.xyz, port: 60000, ports: 60000-65530, mport: 60000-65530, udp: true, skip-cert-verify: true, sni: bilibili-kr.biliimg.com, type: hysteria2, password: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b }
+  - { name: 🇰🇷韩国高速01|BGP|流媒体, type: vless, server: aws-link25.liangxin1.xyz, port: 34578, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, flow: xtls-rprx-vision, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: download-porter.hoyoverse.com, reality-opts: { public-key: PSn2s5TN4e7n0LkzPunu2IA1hSmOoPYFu3d_psl2Nmc, short-id: e534c8be } }
+
 
 
   - name: 搬瓦工日本
@@ -310,9 +343,6 @@ proxy-groups:
       - 香港自动
       - 香港 01 HKIX
       - 香港 02 HKIX
-      - 🇭🇰香港专线01|BGP|流媒体
-      - 🇭🇰香港专线02|BGP|流媒体
-      - 🇭🇰香港高速03|良心云
       - 🇭🇰 HK04
       - 🇭🇰 HK05
       - 香港转谷歌
@@ -326,6 +356,7 @@ proxy-groups:
       - 🇸🇬 SG02
       - "[IPLC]新加坡"
       - "[IPLC]日本"
+      - 良心云
 
 
 
@@ -344,6 +375,10 @@ proxy-groups:
       - 🇸🇬 SG02
       - "[IPLC]新加坡"
       - "[IPLC]日本"
+      - 良心云
+
+  - { name: 良心云, type: select, proxies: [🇭🇰香港高速01|BGP|流媒体, 🇭🇰香港高速02|BGP|流媒体, 🇭🇰香港高速03|BGP|流媒体, 🇭🇰香港高速04|BGP|流媒体, 🇸🇬新加坡高速01|BGP|流媒体, 🇸🇬新加坡高速02|BGP|流媒体, 🇸🇬新加坡高速03|BGP|流媒体, 🇸🇬新加坡高速04|BGP|流媒体, 🇸🇬新加坡高速05|BGP|流媒体, 🇯🇵日本高速01|BGP|流媒体, 🇯🇵日本高速02|BGP|流媒体, 🇯🇵日本高速03|BGP|流媒体, 🇯🇵日本高速04|BGP|流媒体, 🇯🇵日本高速05|BGP|流媒体, 🇯🇵日本高速06|BGP|流媒体, 🇺🇸美国高速01|流媒体, 🇺🇸美国高速03|流媒体, 🇺🇸美国高速04|流媒体, 🇰🇷韩国高速01|BGP|流媒体, 🇨🇳台湾高速01|BGP|流媒体, 🇭🇰香港专线01|BGP|流媒体, 🇭🇰香港专线02|BGP|流媒体, 🇭🇰香港专线03|BGP|流媒体, 🇸🇬新加坡专线02|BGP|流媒体, 🇸🇬新加坡专线03|BGP|流媒体, 🇯🇵日本专线01|BGP|流媒体, 🇯🇵日本专线02|BGP|流媒体, 🇯🇵日本专线03|BGP|流媒体, 🇰🇷韩国专线01|BGP|流媒体, 🇨🇳台湾专线01|BGP|流媒体, 🇺🇸美国01|流媒体, 🇺🇸美国02|流媒体] }
+
 
   - name: 小火箭
     type: select
@@ -401,22 +436,44 @@ proxy-groups:
   - name: 非香港自动
     type: url-test
     proxies:
-      - 谷歌云美国-vmess
       - 香港转谷歌
+      - 谷歌云美国-vmess
       - 搬瓦工日本
       - 爪云-JP-WS
+
+      # 新加坡
       - 新加坡 04 Singtel
       - 新加坡 05 Singtel
+      - 🇸🇬 SG02
+      - "[IPLC]新加坡"
+
+      # 日本
       - 日本 02 SoftBank
       - 日本 05 SoftBank
-      - "[IPLC]新加坡"
       - "[IPLC]日本"
 
+      # 良心云非香港
+      - 🇸🇬新加坡高速01|BGP|流媒体
+      - 🇸🇬新加坡高速02|BGP|流媒体
+      - 🇸🇬新加坡高速03|BGP|流媒体
+      - 🇸🇬新加坡高速04|BGP|流媒体
+      - 🇸🇬新加坡高速05|BGP|流媒体
 
-    url: http://www.gstatic.com/generate_204  # 测速URL（谷歌204，稳定）
-    interval: 300  # 测速间隔（秒），5分钟测一次
-    timeout: 5000  # 超时时间（毫秒），5秒没响应算超时
-    tolerance: 50  # 容差（毫秒），延迟差小于50ms不切换，避免频繁跳动
+      - 🇯🇵日本高速01|BGP|流媒体
+      - 🇯🇵日本高速02|BGP|流媒体
+      - 🇯🇵日本高速03|BGP|流媒体
+      - 🇯🇵日本高速04|BGP|流媒体
+      - 🇯🇵日本高速05|BGP|流媒体
+      - 🇯🇵日本高速06|BGP|流媒体
+
+      - 🇺🇸美国高速01|流媒体
+      - 🇺🇸美国高速03|流媒体
+      - 🇺🇸美国高速04|流媒体
+
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    timeout: 5000
+    tolerance: 50
 
   - name: 自动选择
     type: url-test
@@ -426,9 +483,6 @@ proxy-groups:
       - 香港转谷歌
       - 搬瓦工日本
       - 爪云-JP-WS
-      - 🇭🇰香港专线01|BGP|流媒体
-      - 🇭🇰香港专线02|BGP|流媒体
-      - 🇭🇰香港高速03|良心云
       - 🇭🇰 HK04
       - 🇭🇰 HK05
       - 新加坡 04 Singtel
@@ -440,6 +494,7 @@ proxy-groups:
       - "[IPLC]日本"
       - 香港 01 HKIX
       - 香港 02 HKIX
+      - 良心云
 
     url: http://www.gstatic.com/generate_204  # 测速URL（谷歌204，稳定）
     interval: 100  # 测速间隔（秒），5分钟测一次
@@ -454,10 +509,32 @@ proxy-groups:
       - 🇭🇰 HK05
       - 香港 01 HKIX
       - 香港 02 HKIX
-      - 🇭🇰香港高速03|良心云
+
+      # 良心云香港
+      - 🇭🇰香港高速01|BGP|流媒体
+      - 🇭🇰香港高速02|BGP|流媒体
+      - 🇭🇰香港高速03|BGP|流媒体
+      - 🇭🇰香港高速04|BGP|流媒体
       - 🇭🇰香港专线01|BGP|流媒体
       - 🇭🇰香港专线02|BGP|流媒体
+      - 🇭🇰香港专线03|BGP|流媒体
 
+      # IPLC香港
+      - "[IPLC]香港 01 HKIX"
+      - "[IPLC]香港 02 HKIX"
+      - "[IPLC]香港 03 HKIX"
+      - "[IPLC]香港 04 HKIX"
+      - "[IPLC]香港 05 HKIX"
+      - "[IPLC]香港 06 VERTEX"
+      - "[IPLC]香港 07 VERTEX"
+      - "[IPLC]香港 08 VERTEX"
+      - "[IPLC]香港 09 VERTEX"
+      - "[IPLC]香港 10 VERTEX"
+      - "[IPLC]香港 11 HKT&HOME"
+      - "[IPLC]香港 12 HKT&HOME"
+      - "[IPLC]香港 13 HKT&HOME"
+      - "[IPLC]香港 14 HKT&HOME"
+      - "[IPLC]香港 15 HKT&HOME"
     url: http://www.gstatic.com/generate_204  # 测速URL（谷歌204，稳定）
     interval: 300  # 测速间隔（秒），5分钟测一次
     timeout: 5000  # 超时时间（毫秒），5秒没响应算超时
@@ -480,23 +557,19 @@ proxy-groups:
 
 
 rules:
- - DOMAIN-KEYWORD,api.cloudflare.com,DIRECT #匹配域名关键字(交由Proxy代理服务器组)
- - DOMAIN-KEYWORD,claude,AI #匹配域名关键字(交由Proxy代理服务器组)
- - DOMAIN-KEYWORD,anthropic,AI #匹配域名关键字(交由Proxy代理服务器组)
- - DOMAIN-KEYWORD,googleapi,AI
- - DOMAIN-KEYWORD,googleusercontent,AI
- - DOMAIN-KEYWORD,gstatic,AI
- - DOMAIN-KEYWORD,googletagmanager,AI
- - DOMAIN-KEYWORD,clients6.google,AI
- - DOMAIN-KEYWORD,gemini,AI
- - DOMAIN-KEYWORD,aistudio,AI
- - DOMAIN-KEYWORD,play.google.com,AI
- - DOMAIN-KEYWORD,mtalk.google,AI
- - DOMAIN-KEYWORD,openai.com,AI
- - DOMAIN-KEYWORD,chatgpt.com,AI
- - DOMAIN-KEYWORD,speedtest,PROXY
  - IP-CIDR,1.1.1.1/32,PROXY,no-resolve
  - IP-CIDR,8.8.8.8/32,PROXY,no-resolve
+ - DOMAIN-KEYWORD,gemini,AI
+ - DOMAIN-KEYWORD,googleapi,AI
+ - DOMAIN-KEYWORD,openai.com,AI
+ - DOMAIN-KEYWORD,mtalk.google,AI
+ - DOMAIN-KEYWORD,api.cloudflare.com,DIRECT
+ - DOMAIN-KEYWORD,erp.edaying.com,DIRECT
+ - DOMAIN-KEYWORD,claude,AI
+ - DOMAIN-KEYWORD,anthropic,AI
+ - DOMAIN-KEYWORD,aistudio,AI
+ - DOMAIN-KEYWORD,chatgpt.com,AI
+ - DOMAIN-KEYWORD,speedtest,PROXY
  - DOMAIN-SUFFIX,services.googleapis.cn,PROXY
  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,PROXY
  - DOMAIN,safebrowsing.urlsec.qq.com,DIRECT

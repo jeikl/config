@@ -45,11 +45,9 @@ proxies:
   # ── 香港 ──────────────────────────────
   - { name: "香港 01 HKIX", type: vmess, server: select-hk.ddnskunlun.com, port: 9002, uuid: c814cdaa-3fd1-32a3-b1af-852a4fb5c634, alterId: 0, cipher: auto, udp: true }
   - { name: "香港 02 HKIX", type: vmess, server: select-hk.ddnskunlun.com, port: 9003, uuid: c814cdaa-3fd1-32a3-b1af-852a4fb5c634, alterId: 0, cipher: auto, udp: true }
-  - { name: "🇭🇰 HK04",     type: trojan, server: z1r9n4c7b2q8m5lk-hk.nod3.org, port: 22109, password: 8c2fbe88-f8fd-4cd2-801e-73688c1d32c7, udp: true, sni: cas.baidu.com, skip-cert-verify: true }
-  - { name: "🇭🇰 HK05",     type: trojan, server: z1r9n4c7b2q8m5lk-hk.nod3.org, port: 22110, password: 8c2fbe88-f8fd-4cd2-801e-73688c1d32c7, udp: true, sni: cas.baidu.com, skip-cert-verify: true }
   - name: "香港转谷歌"         # 通过中转组落地，用于访问谷歌系服务
     type: vmess
-    server: 35.212.177.67
+    server: us.junv.top
     port: 40029
     uuid: e8ab37c7-2b1d-4776-c062-2cac8fc066e1
     alterId: 0
@@ -76,12 +74,11 @@ proxies:
   # ── 新加坡 ────────────────────────────
   - { name: "新加坡 04 Singtel", type: vmess, server: select-sg.kunlunddns.com, port: 9041, uuid: c814cdaa-3fd1-32a3-b1af-852a4fb5c634, alterId: 0, cipher: auto, udp: true }
   - { name: "新加坡 05 Singtel", type: vmess, server: select-sg.kunlunddns.com, port: 9042, uuid: c814cdaa-3fd1-32a3-b1af-852a4fb5c634, alterId: 0, cipher: auto, udp: true }
-  - { name: "🇸🇬 SG02",          type: trojan, server: q2v8m1r5t9c4k7xp-sg.nod3.org, port: 24104, password: 8c2fbe88-f8fd-4cd2-801e-73688c1d32c7, udp: true, sni: cas.baidu.com, skip-cert-verify: true }
 
   # ── 美国 ──────────────────────────────
   - name: "谷歌云美国"
     type: vmess
-    server: 35.212.177.67
+    server: us.junv.top
     port: 40029
     uuid: e8ab37c7-2b1d-4776-c062-2cac8fc066e1
     alterId: 0
@@ -129,6 +126,17 @@ proxy-providers:
       url: http://www.gstatic.com/generate_204
       interval: 30
 
+  小火箭:
+    type: http
+    url: "https://config.sub-bpa8xsvb-huojian.top/link/gVezRZ9DhnQg0ICd?clash=1"
+    interval: 86400
+    path: ./providers/huojian.yaml
+    filter: "^(?!.*(剩余|到期|套餐|流量|官网|平台|最新网址|续费网址|遵循|禁止|审计))"
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 30
+
 
 # ╔══════════════════════════════════════╗
 # ║             代理组                   ║
@@ -149,8 +157,6 @@ proxy-groups:
       # 手动节点（香港）
       - 香港 01 HKIX
       - 香港 02 HKIX
-      - 🇭🇰 HK04
-      - 🇭🇰 HK05
       - 香港转谷歌
       # 手动节点（日本）
       - 日本 02 SoftBank
@@ -159,19 +165,20 @@ proxy-groups:
       # 手动节点（新加坡）
       - 新加坡 04 Singtel
       - 新加坡 05 Singtel
-      - 🇸🇬 SG02
       # 手动节点（美国）
       - 谷歌云美国
       # 其他
       - 老家hy
-      # 订阅节点组（原生手动）
+      # 订阅节点组
       - 良心云
-      - 飞鸟云
-      # 订阅节点组（按地区自动）
       - 良心云-香港
       - 良心云-非香港
+      - 飞鸟云
       - 飞鸟云-香港
       - 飞鸟云-非香港
+      - 小火箭
+      - 小火箭-香港
+      - 小火箭-非香港
 
   - name: AI                   # AI 服务专用：避开香港（OpenAI 封锁 HK）
     type: select
@@ -179,12 +186,12 @@ proxy-groups:
       - 非香港自动
       - 良心云-非香港
       - 飞鸟云-非香港
+      - 小火箭-非香港
       - 日本 02 SoftBank
       - 日本 05 SoftBank
       - 爪云-JP-WS
       - 新加坡 04 Singtel
       - 新加坡 05 Singtel
-      - 🇸🇬 SG02
       - 谷歌云美国
       - 香港转谷歌
 
@@ -197,10 +204,9 @@ proxy-groups:
     proxies:
       - 香港 01 HKIX
       - 香港 02 HKIX
-      - 🇭🇰 HK04
-      - 🇭🇰 HK05
       - 良心云-香港
       - 飞鸟云-香港
+      - 小火箭-香港
     url: http://www.gstatic.com/generate_204
     interval: 3      # 3s 测一次，故障最多 3s 内发现
     timeout: 1500     # HK延迟低，1.5s无响应必然故障，快速切走
@@ -214,10 +220,10 @@ proxy-groups:
       - 爪云-JP-WS
       - 新加坡 04 Singtel
       - 新加坡 05 Singtel
-      - 🇸🇬 SG02
       - 谷歌云美国
       - 良心云-非香港
       - 飞鸟云-非香港
+      - 小火箭-非香港
     url: http://www.gstatic.com/generate_204
     interval: 3      # 3s 测一次，AI/coding 工具故障快速感知
     timeout: 2500     # 海外节点延迟本身偏高，3s 超时避免误判
@@ -284,6 +290,32 @@ proxy-groups:
     interval: 3
     timeout: 2500
     tolerance: 80
+
+  # ┌─────────────────────────────────────
+  # │  小火箭（原生 / 香港 / 非香港）
+  # └─────────────────────────────────────
+
+  - name: 小火箭                # 全量节点，手动选择
+    type: select
+    use: [小火箭]
+
+  - name: 小火箭-香港
+    type: url-test
+    use: [小火箭]
+    filter: "(?i)港|hk|hongkong|hong.kong"
+    url: http://www.gstatic.com/generate_204
+    interval: 3
+    timeout: 1500
+    tolerance: 60
+
+  - name: 小火箭-非香港
+    type: url-test
+    use: [小火箭]
+    filter: "(?i)日|jp|japan|新加坡|sg|singapore|美|us|united.states|韩|kr|korea|台|tw|taiwan"
+    url: http://www.gstatic.com/generate_204
+    interval: 3
+    timeout: 2500
+    tolerance: 80
   # ┌─────────────────────────────────────
   # │  功能性组
   # └─────────────────────────────────────
@@ -291,10 +323,12 @@ proxy-groups:
   - name: 中转                 # 供「香港转谷歌」节点使用的跳板
     type: url-test
     proxies:
-      - 🇭🇰 HK04
-      - 🇭🇰 HK05
+      # 手动香港节点
       - 香港 01 HKIX
       - 香港 02 HKIX
+      # 订阅香港节点
+      - 飞鸟云-香港
+      - 小火箭-香港
     url: http://www.gstatic.com/generate_204
     interval: 3
     timeout: 1500     # 跳板节点1.5s无响应即切，保证香港转谷歌稳定

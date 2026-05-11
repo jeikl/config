@@ -17,6 +17,7 @@ dns:
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
     - tls://dot.pub
+  enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter: ['*.lan', localhost.ptlogin2.qq.com]
   use-hosts: true
@@ -130,7 +131,7 @@ proxy-providers:
     url: "https://config.sub-bpa8xsvb-huojian.top/link/gVezRZ9DhnQg0ICd?clash=1"
     interval: 86400
     path: ./providers/huojian.yaml
-    filter: "^(?!.*(v6|剩余|到期|套餐|流量|官网|平台|最新网址|续费网址|遵循|禁止|审计))"
+    filter: "^(?!.*(剩余|到期|套餐|流量|官网|平台|最新网址|续费网址|遵循|禁止|审计))"
     health-check:
       enable: true
       url: http://www.gstatic.com/generate_204
@@ -301,7 +302,8 @@ proxy-groups:
   - name: 小火箭-香港
     type: url-test
     use: [小火箭]
-    filter: "(?i)港|hk|hongkong|hong.kong"
+    # 香港节点 + 过滤V6/v6
+    filter: "(?i)^(?!.*V6)(?!.*v6).*(港|hk|hongkong|hong.kong)"
     url: http://www.gstatic.com/generate_204
     interval: 3
     timeout: 1500
@@ -310,7 +312,8 @@ proxy-groups:
   - name: 小火箭-非香港
     type: url-test
     use: [小火箭]
-    filter: "(?i)日|jp|japan|新加坡|sg|singapore|美|us|united.states|韩|kr|korea|台|tw|taiwan"
+    # 非香港节点 + 过滤V6/v6
+    filter: "(?i)^(?!.*V6)(?!.*v6).*(日|jp|japan|新加坡|sg|singapore|美|us|united.states|韩|kr|korea|台|tw|taiwan)"
     url: http://www.gstatic.com/generate_204
     interval: 3
     timeout: 2500

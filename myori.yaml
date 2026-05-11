@@ -7,280 +7,47 @@ log-level: info
 external-controller: 127.0.0.1:9090
 unified-delay: true
 tcp-concurrent: true
+
 dns:
-    enable: true
-    ipv6: true
-    respect-rules: true
-    default-nameserver: [119.29.29.29, 114.114.114.114]
-    proxy-server-nameserver: ['https://dns.alidns.com/dns-query', 'https://doh.pub/dns-query', 'tls://dot.pub']
-    enhanced-mode: fake-ip
-    fake-ip-range: 198.18.0.1/16
-    fake-ip-filter: ['*.lan', localhost.ptlogin2.qq.com]
-    use-hosts: true
-    nameserver: ['https://doh.pub/dns-query', 'tls://dot.pub', 'https://223.5.5.5/dns-query', 'https://223.6.6.6/dns-query', 'tls://dns.alidns.com', 'tls://223.5.5.5:853', 'tls://223.6.6.6:853']
-    fallback: ['https://doh.pub/dns-query', 'tls://dot.pub', 'https://223.5.5.5/dns-query', 'https://223.6.6.6/dns-query', 'tls://dns.alidns.com', 'tls://223.5.5.5:853', 'tls://223.6.6.6:853']
-    fallback-filter: { geoip: true, ipcidr: [240.0.0.0/4, 0.0.0.0/32] }
+  enable: true
+  ipv6: true
+  respect-rules: true
+  default-nameserver: [119.29.29.29, 114.114.114.114]
+  proxy-server-nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+    - tls://dot.pub
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter: ['*.lan', localhost.ptlogin2.qq.com]
+  use-hosts: true
+  nameserver:
+    - https://doh.pub/dns-query
+    - tls://dot.pub
+    - https://223.5.5.5/dns-query
+    - https://223.6.6.6/dns-query
+    - tls://dns.alidns.com
+  fallback:
+    - https://doh.pub/dns-query
+    - tls://dot.pub
+    - https://223.5.5.5/dns-query
+    - https://223.6.6.6/dns-query
+    - tls://dns.alidns.com
+  fallback-filter:
+    geoip: true
+    ipcidr: [240.0.0.0/4, 0.0.0.0/32]
 
-# 代理节点配置（统一缩进+修复语法错误）
+# ╔══════════════════════════════════════╗
+# ║           手动代理节点                ║
+# ╚══════════════════════════════════════╝
 proxies:
-  - {"name":"香港 01 HKIX","type":"vmess","server":"select-hk.ddnskunlun.com","port":9002,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"香港 02 HKIX","type":"vmess","server":"select-hk.ddnskunlun.com","port":9003,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - { name: '🇸🇬 SG02', type: trojan, server: q2v8m1r5t9c4k7xp-sg.nod3.org, port: 24104, password: 8c2fbe88-f8fd-4cd2-801e-73688c1d32c7, udp: true, sni: cas.baidu.com, skip-cert-verify: true }
-  - {"name":"日本 05 SoftBank","type":"vmess","server":"select-jp.kunlunddns.com","port":9034,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"日本 02 SoftBank","type":"vmess","server":"select-jp.kunlunddns.com","port":9031,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"新加坡 04 Singtel","type":"vmess","server":"select-sg.kunlunddns.com","port":9041,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"新加坡 05 Singtel","type":"vmess","server":"select-sg.kunlunddns.com","port":9042,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - { name: '🇭🇰 HK04', type: trojan, server: z1r9n4c7b2q8m5lk-hk.nod3.org, port: 22109, password: 8c2fbe88-f8fd-4cd2-801e-73688c1d32c7, udp: true, sni: cas.baidu.com, skip-cert-verify: true }
-  - { name: '🇭🇰 HK05', type: trojan, server: z1r9n4c7b2q8m5lk-hk.nod3.org, port: 22110, password: 8c2fbe88-f8fd-4cd2-801e-73688c1d32c7, udp: true, sni: cas.baidu.com, skip-cert-verify: true }
-  - {"name":"[IPLC]新加坡","type":"vmess","server":"select-sg.ddnskunlun.com","port":9039,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]日本","type":"vmess","server":"select-jp.ddnskunlun.com","port":9032,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"★自动选择|香港最优★","type":"vmess","server":"auto-hk.ddnskunlun.com","port":9000,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"★自动选择|美国最优★","type":"vmess","server":"auto-us.ddnskunlun.com","port":9001,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPV6]网络支持IPV6可用 台湾01","type":"vmess","server":"ipv6-tw01.cnddns.com","port":16811,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPV6]网络支持IPV6可用 台湾02","type":"vmess","server":"ipv6-tw02.cnddns.com","port":16811,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPV6]网络支持IPV6可用 台湾03","type":"vmess","server":"ipv6-tw03.cnddns.com","port":16811,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPV6]网络支持IPV6可用 台湾04","type":"vmess","server":"ipv6-tw04.cnddns.com","port":16811,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]香港 01 HKIX","type":"vmess","server":"select-hk.ddnskunlun.com","port":9002,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]香港 02 HKIX","type":"vmess","server":"select-hk.ddnskunlun.com","port":9003,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]香港 03 HKIX","type":"vmess","server":"select-hk.ddnskunlun.com","port":9004,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]香港 04 HKIX","type":"vmess","server":"select-hk.ddnskunlun.com","port":9005,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]香港 05 HKIX","type":"vmess","server":"select-hk.ddnskunlun.com","port":9006,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]香港 06 VERTEX","type":"vmess","server":"select-hk.ddnskunlun.com","port":9007,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]香港 07 VERTEX","type":"vmess","server":"select-hk.ddnskunlun.com","port":9008,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]香港 08 VERTEX","type":"vmess","server":"select-hk.ddnskunlun.com","port":9009,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]香港 09 VERTEX","type":"vmess","server":"select-hk.ddnskunlun.com","port":9010,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]香港 10 VERTEX","type":"vmess","server":"select-hk.ddnskunlun.com","port":9011,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]香港 11 HKT&HOME","type":"vmess","server":"select-hk.ddnskunlun.com","port":9020,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]香港 12 HKT&HOME","type":"vmess","server":"select-hk.ddnskunlun.com","port":9021,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]香港 13 HKT&HOME","type":"vmess","server":"select-hk.ddnskunlun.com","port":9046,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]香港 14 HKT&HOME","type":"vmess","server":"select-hk.ddnskunlun.com","port":9047,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]香港 15 HKT&HOME","type":"vmess","server":"select-hk.ddnskunlun.com","port":9048,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]美国 01 AT&SANJOSE","type":"vmess","server":"select-us.ddnskunlun.com","port":9022,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]美国 02 AT&SANJOSE","type":"vmess","server":"select-us.ddnskunlun.com","port":9023,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]美国 03 AT&SANJOSE","type":"vmess","server":"select-us.ddnskunlun.com","port":9024,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]美国 04 AT&SANJOSE","type":"vmess","server":"select-us.ddnskunlun.com","port":9025,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]美国 05 AT&SANJOSE","type":"vmess","server":"select-us.ddnskunlun.com","port":9026,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]美国 06 IDC&VERTEX","type":"vmess","server":"select-us.ddnskunlun.com","port":9027,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]美国 07 IDC&VERTEX","type":"vmess","server":"select-us.ddnskunlun.com","port":9028,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]美国 08 IDC&VERTEX","type":"vmess","server":"select-us.ddnskunlun.com","port":9029,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]美国 09 IDC&VERTEX","type":"vmess","server":"select-us.ddnskunlun.com","port":9051,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]美国 10 IDC&VERTEX","type":"vmess","server":"select-us.ddnskunlun.com","port":9052,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]台湾 01 中華電信","type":"vmess","server":"select-tw.ddnskunlun.com","port":9012,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]台湾 02 中華電信","type":"vmess","server":"select-tw.ddnskunlun.com","port":9013,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]台湾 03 中華電信","type":"vmess","server":"select-tw.ddnskunlun.com","port":9014,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]台湾 04 中華電信","type":"vmess","server":"select-tw.ddnskunlun.com","port":9015,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]台湾 05 中華電信","type":"vmess","server":"select-tw.ddnskunlun.com","port":9016,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]台湾 06 中華電信","type":"vmess","server":"select-tw.ddnskunlun.com","port":9017,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]台湾 07 中華電信","type":"vmess","server":"select-tw.ddnskunlun.com","port":9018,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]台湾 08 中華電信","type":"vmess","server":"select-tw.ddnskunlun.com","port":9019,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]日本 01 NTTドコモ","type":"vmess","server":"select-jp.ddnskunlun.com","port":9030,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]日本 02 NTTドコモ","type":"vmess","server":"select-jp.ddnskunlun.com","port":9031,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]日本 03 NTTドコモ","type":"vmess","server":"select-jp.ddnskunlun.com","port":9032,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]日本 04 NTTドコモ","type":"vmess","server":"select-jp.ddnskunlun.com","port":9033,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]日本 05 SKYSPARK","type":"vmess","server":"select-jp.ddnskunlun.com","port":9034,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]日本 06 SKYSPARK","type":"vmess","server":"select-jp.ddnskunlun.com","port":9035,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]日本 07 SKYSPARK","type":"vmess","server":"select-jp.ddnskunlun.com","port":9036,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]日本 08 SKYSPARK","type":"vmess","server":"select-jp.ddnskunlun.com","port":9037,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]韩国 01 SK텔레콤","type":"vmess","server":"select-kr.ddnskunlun.com","port":9057,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]韩国 02 SK텔레콤","type":"vmess","server":"select-kr.ddnskunlun.com","port":9058,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]韩国 03 SK텔레콤","type":"vmess","server":"select-kr.ddnskunlun.com","port":9059,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]韩国 04 SK텔레콤","type":"vmess","server":"select-kr.ddnskunlun.com","port":9060,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]韩国 05 SK텔레콤","type":"vmess","server":"select-kr.ddnskunlun.com","port":9061,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]韩国 06 SK텔레콤","type":"vmess","server":"select-kr.ddnskunlun.com","port":9062,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]韩国 07 SK텔레콤","type":"vmess","server":"select-kr.ddnskunlun.com","port":9063,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]韩国 08 SK텔레콤","type":"vmess","server":"select-kr.ddnskunlun.com","port":9064,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]新加坡 01 Singtel","type":"vmess","server":"select-sg.ddnskunlun.com","port":9038,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]新加坡 02 Singtel","type":"vmess","server":"select-sg.ddnskunlun.com","port":9039,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]新加坡 03 Singtel","type":"vmess","server":"select-sg.ddnskunlun.com","port":9040,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]新加坡 04 Singtel","type":"vmess","server":"select-sg.ddnskunlun.com","port":9041,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]新加坡 05 Singtel","type":"vmess","server":"select-sg.ddnskunlun.com","port":9042,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]新加坡 06 Singtel","type":"vmess","server":"select-sg.ddnskunlun.com","port":9043,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]新加坡 07 Singtel","type":"vmess","server":"select-sg.ddnskunlun.com","port":9044,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]新加坡 08 Singtel","type":"vmess","server":"select-sg.ddnskunlun.com","port":9045,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]印度尼西亚 01 IDC&ALIYUN","type":"vmess","server":"select-id.ddnskunlun.com","port":11936,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]印度尼西亚 02 IDC&ALIYUN","type":"vmess","server":"select-id.ddnskunlun.com","port":11945,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]印度尼西亚 03 IDC&ALIYUN","type":"vmess","server":"select-id.ddnskunlun.com","port":11949,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]印度尼西亚 04 IDC&ALIYUN","type":"vmess","server":"select-id.ddnskunlun.com","port":11950,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]印度尼西亚 05 IDC&CFWARP","type":"vmess","server":"select-id.ddnskunlun.com","port":11951,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]印度尼西亚 06 IDC&CFWARP","type":"vmess","server":"select-id.ddnskunlun.com","port":11952,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]印度尼西亚 07 IDC&CFWARP","type":"vmess","server":"select-id.ddnskunlun.com","port":11953,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]印度尼西亚 08 IDC&CFWARP","type":"vmess","server":"select-id.ddnskunlun.com","port":11954,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]丹麦 01 巴勒鲁普","type":"vmess","server":"board-01.ddnskunlun.com","port":11931,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]丹麦 02 巴勒鲁普","type":"vmess","server":"board-02.ddnskunlun.com","port":11959,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]南非 01 约翰内斯堡","type":"vmess","server":"board-01.ddnskunlun.com","port":11909,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]南非 02 约翰内斯堡","type":"vmess","server":"board-02.ddnskunlun.com","port":11963,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]印度 01 新德里","type":"vmess","server":"board-01.ddnskunlun.com","port":11929,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]印度 02 新德里","type":"vmess","server":"board-02.ddnskunlun.com","port":11971,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]印度 03 新德里","type":"vmess","server":"board-03.ddnskunlun.com","port":11972,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]印度 04 新德里","type":"vmess","server":"board-04.ddnskunlun.com","port":11973,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]巴林 01 麦纳麦","type":"vmess","server":"board-01.ddnskunlun.com","port":11935,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]巴林 02 麦纳麦","type":"vmess","server":"board-02.ddnskunlun.com","port":11978,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]巴西 01 圣保罗","type":"vmess","server":"board-01.ddnskunlun.com","port":11940,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]巴西 02 圣保罗","type":"vmess","server":"board-02.ddnskunlun.com","port":11975,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]希腊 01 雅典","type":"vmess","server":"board-01.ddnskunlun.com","port":11928,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]希腊 02 雅典","type":"vmess","server":"board-02.ddnskunlun.com","port":11970,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]德国 01 法兰克福","type":"vmess","server":"board-01.ddnskunlun.com","port":11903,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]德国 02 法兰克福","type":"vmess","server":"board-02.ddnskunlun.com","port":11958,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]挪威 01 奥斯陆","type":"vmess","server":"board-01.ddnskunlun.com","port":11912,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]挪威 02 奥斯陆","type":"vmess","server":"board-02.ddnskunlun.com","port":11979,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]智利 01 圣地亚哥","type":"vmess","server":"board-01.ddnskunlun.com","port":11938,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]智利 02 圣地亚哥","type":"vmess","server":"board-02.ddnskunlun.com","port":11984,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]法国 01 巴黎","type":"vmess","server":"board-01.ddnskunlun.com","port":11932,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]法国 02 巴黎","type":"vmess","server":"board-02.ddnskunlun.com","port":11981,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]法国 03 巴黎","type":"vmess","server":"board-03.ddnskunlun.com","port":11982,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]法国 04 巴黎","type":"vmess","server":"board-04.ddnskunlun.com","port":11983,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]波兰 01 华沙","type":"vmess","server":"board-01.ddnskunlun.com","port":11914,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]波兰 02 华沙","type":"vmess","server":"board-02.ddnskunlun.com","port":11964,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]泰国 01 曼谷","type":"vmess","server":"board-01.ddnskunlun.com","port":11898,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]泰国 02 曼谷","type":"vmess","server":"board-02.ddnskunlun.com","port":11967,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]泰国 03 曼谷","type":"vmess","server":"board-03.ddnskunlun.com","port":11968,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]泰国 04 曼谷","type":"vmess","server":"board-04.ddnskunlun.com","port":11969,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]瑞典 01 斯德哥尔摩","type":"vmess","server":"board-01.ddnskunlun.com","port":11920,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]瑞典 02 斯德哥尔摩","type":"vmess","server":"board-02.ddnskunlun.com","port":11980,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]瑞士 01 日内瓦","type":"vmess","server":"board-01.ddnskunlun.com","port":11918,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]瑞士 02 日内瓦","type":"vmess","server":"board-02.ddnskunlun.com","port":11966,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]秘鲁 01 利马","type":"vmess","server":"board-01.ddnskunlun.com","port":11948,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]秘鲁 02 利马","type":"vmess","server":"board-02.ddnskunlun.com","port":11976,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]芬兰 01 图苏拉","type":"vmess","server":"board-01.ddnskunlun.com","port":11933,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]芬兰 02 图苏拉","type":"vmess","server":"board-02.ddnskunlun.com","port":11977,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]英国 01 伦敦","type":"vmess","server":"board-01.ddnskunlun.com","port":11901,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]英国 02 伦敦","type":"vmess","server":"board-02.ddnskunlun.com","port":11955,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]英国 03 伦敦","type":"vmess","server":"board-03.ddnskunlun.com","port":11956,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]英国 04 伦敦","type":"vmess","server":"board-04.ddnskunlun.com","port":11957,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]荷兰 01 阿姆斯特丹","type":"vmess","server":"board-01.ddnskunlun.com","port":11915,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]荷兰 02 阿姆斯特丹","type":"vmess","server":"board-02.ddnskunlun.com","port":11965,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]越南 01 河内","type":"vmess","server":"board-01.ddnskunlun.com","port":11904,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]越南 02 河内","type":"vmess","server":"board-02.ddnskunlun.com","port":11960,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]越南 03 河内","type":"vmess","server":"board-03.ddnskunlun.com","port":11961,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]越南 04 河内","type":"vmess","server":"board-04.ddnskunlun.com","port":11962,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]阿曼 01 马斯喀特","type":"vmess","server":"board-01.ddnskunlun.com","port":11930,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]阿曼 02 马斯喀特","type":"vmess","server":"board-02.ddnskunlun.com","port":11974,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]乌克兰 01 基辅","type":"vmess","server":"board-01.ddnskunlun.com","port":11919,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]乌克兰 02 基辅","type":"vmess","server":"board-02.ddnskunlun.com","port":11894,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]以色列 01 特拉维夫","type":"vmess","server":"board-01.ddnskunlun.com","port":11923,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]以色列 02 特拉维夫","type":"vmess","server":"board-01.ddnskunlun.com","port":11887,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]俄罗斯 01 莫斯科","type":"vmess","server":"board-01.ddnskunlun.com","port":11911,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]俄罗斯 02 莫斯科","type":"vmess","server":"board-02.ddnskunlun.com","port":11995,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]俄罗斯 03 莫斯科","type":"vmess","server":"board-03.ddnskunlun.com","port":11996,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]俄罗斯 04 莫斯科","type":"vmess","server":"board-04.ddnskunlun.com","port":11997,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]加拿大 01 多伦多","type":"vmess","server":"board-01.ddnskunlun.com","port":11902,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]加拿大 02 多伦多","type":"vmess","server":"board-02.ddnskunlun.com","port":11985,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]土耳其 01 伊斯坦布尔","type":"vmess","server":"board-01.ddnskunlun.com","port":11899,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]土耳其 02 伊斯坦布尔","type":"vmess","server":"board-02.ddnskunlun.com","port":11998,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]墨西哥 01 克雷塔罗","type":"vmess","server":"board-01.ddnskunlun.com","port":11939,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]墨西哥 02 克雷塔罗","type":"vmess","server":"board-01.ddnskunlun.com","port":11886,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]奥地利 01 维也纳","type":"vmess","server":"board-01.ddnskunlun.com","port":11927,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]奥地利 02 维也纳","type":"vmess","server":"board-02.ddnskunlun.com","port":11889,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]意大利 01 巴勒莫","type":"vmess","server":"board-01.ddnskunlun.com","port":11924,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]意大利 02 巴勒莫","type":"vmess","server":"board-02.ddnskunlun.com","port":11888,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]捷克国 01 布拉格","type":"vmess","server":"board-01.ddnskunlun.com","port":11916,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]捷克国 02 布拉格","type":"vmess","server":"board-02.ddnskunlun.com","port":11897,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]柬埔寨 01 金边","type":"vmess","server":"board-01.ddnskunlun.com","port":11907,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]柬埔寨 02 金边","type":"vmess","server":"board-02.ddnskunlun.com","port":11992,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]柬埔寨 03 金边","type":"vmess","server":"board-03.ddnskunlun.com","port":11993,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]柬埔寨 04 金边","type":"vmess","server":"board-04.ddnskunlun.com","port":11994,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]比利时 01 布鲁塞尔","type":"vmess","server":"board-01.ddnskunlun.com","port":11941,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]比利时 02 布鲁塞尔","type":"vmess","server":"board-02.ddnskunlun.com","port":11986,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]爱尔兰 01 都柏林郡","type":"vmess","server":"board-01.ddnskunlun.com","port":11942,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]爱尔兰 02 都柏林郡","type":"vmess","server":"board-02.ddnskunlun.com","port":11988,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]立陶宛 01 维尔纽斯县","type":"vmess","server":"board-01.ddnskunlun.com","port":11944,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]立陶宛 02 维尔纽斯县","type":"vmess","server":"board-02.ddnskunlun.com","port":11999,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]菲律宾 01 马尼拉","type":"vmess","server":"board-01.ddnskunlun.com","port":11906,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]菲律宾 02 马尼拉","type":"vmess","server":"board-02.ddnskunlun.com","port":11989,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]菲律宾 03 马尼拉","type":"vmess","server":"board-03.ddnskunlun.com","port":11990,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]菲律宾 04 马尼拉","type":"vmess","server":"board-04.ddnskunlun.com","port":11991,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]葡萄牙 01 波尔图","type":"vmess","server":"board-01.ddnskunlun.com","port":11946,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]葡萄牙 02 波尔图","type":"vmess","server":"board-02.ddnskunlun.com","port":11895,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]西班牙 01 马德里","type":"vmess","server":"board-01.ddnskunlun.com","port":11926,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]西班牙 02 马德里","type":"vmess","server":"board-02.ddnskunlun.com","port":11890,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]阿根廷 01 布宜诺斯","type":"vmess","server":"board-01.ddnskunlun.com","port":11921,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]阿根廷 02 布宜诺斯","type":"vmess","server":"board-02.ddnskunlun.com","port":11893,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]阿根廷 03 布宜诺斯","type":"vmess","server":"board-03.ddnskunlun.com","port":11892,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]阿根廷 04 布宜诺斯","type":"vmess","server":"board-04.ddnskunlun.com","port":11891,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]阿联酋 01 迪拜","type":"vmess","server":"board-01.ddnskunlun.com","port":11905,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]阿联酋 02 迪拜","type":"vmess","server":"board-02.ddnskunlun.com","port":11987,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]保加利亚 01 索菲亚","type":"vmess","server":"board-01.ddnskunlun.com","port":11913,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]保加利亚 02 索非亚","type":"vmess","server":"board-02.ddnskunlun.com","port":11883,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]克罗地亚 01 萨格勒布","type":"vmess","server":"board-01.ddnskunlun.com","port":11943,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]克罗地亚 02 萨格勒布","type":"vmess","server":"board-02.ddnskunlun.com","port":11884,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]哥伦比亚 01 波哥大","type":"vmess","server":"board-01.ddnskunlun.com","port":11922,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]哥伦比亚 02 波哥大","type":"vmess","server":"board-02.ddnskunlun.com","port":11881,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]孟加拉国 01 达卡","type":"vmess","server":"board-01.ddnskunlun.com","port":11900,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]孟加拉国 02 达卡","type":"vmess","server":"board-02.ddnskunlun.com","port":11885,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]巴基斯坦 01 卡拉奇","type":"vmess","server":"board-01.ddnskunlun.com","port":11896,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]巴基斯坦 02 卡拉奇","type":"vmess","server":"board-02.ddnskunlun.com","port":11877,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]拉脱维亚 01 里加","type":"vmess","server":"board-01.ddnskunlun.com","port":11917,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]拉脱维亚 02 里加","type":"vmess","server":"board-02.ddnskunlun.com","port":11882,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]澳大利亚 01 悉尼","type":"vmess","server":"board-01.ddnskunlun.com","port":11925,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]澳大利亚 02 悉尼","type":"vmess","server":"board-02.ddnskunlun.com","port":11880,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]澳大利亚 03 悉尼","type":"vmess","server":"board-03.ddnskunlun.com","port":11879,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]澳大利亚 04 悉尼","type":"vmess","server":"board-04.ddnskunlun.com","port":11878,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]罗马尼亚 01 布加勒斯特","type":"vmess","server":"board-01.ddnskunlun.com","port":11937,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]罗马尼亚 02 布加勒斯特","type":"vmess","server":"board-02.ddnskunlun.com","port":11872,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]阿塞拜疆 01 巴库","type":"vmess","server":"board-01.ddnskunlun.com","port":11908,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]阿塞拜疆 02 巴库","type":"vmess","server":"board-02.ddnskunlun.com","port":11873,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]马来西亚 01 吉隆坡","type":"vmess","server":"board-01.ddnskunlun.com","port":11934,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]马来西亚 02 吉隆坡","type":"vmess","server":"board-02.ddnskunlun.com","port":11876,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]马来西亚 03 吉隆坡","type":"vmess","server":"board-03.ddnskunlun.com","port":11875,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]马来西亚 04 吉隆坡","type":"vmess","server":"board-04.ddnskunlun.com","port":11874,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]斯洛文尼亚 01 克拉尼","type":"vmess","server":"board-01.ddnskunlun.com","port":11947,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]斯洛文尼亚 02 克拉尼","type":"vmess","server":"board-02.ddnskunlun.com","port":11870,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]沙特阿拉伯 01 利雅得","type":"vmess","server":"board-01.ddnskunlun.com","port":11910,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - {"name":"[IPLC]沙特阿拉伯 02 利雅得","type":"vmess","server":"board-02.ddnskunlun.com","port":11871,"uuid":"c814cdaa-3fd1-32a3-b1af-852a4fb5c634","alterId":0,"cipher":"auto","udp":true}
-  - { name: '剩余流量：500 GB', type: vless, server: 127.0.0.1, port: 35248, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, flow: xtls-rprx-vision, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: www.lamer.com.hk, reality-opts: { public-key: IGsSxC0wgn7wLy0NM0QN_yOREDKT_814Y_3_rbgDoTc, short-id: c8c0f951 } }
-  - { name: 套餐到期：2026-05-23, type: vless, server: 127.0.0.1, port: 35248, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, flow: xtls-rprx-vision, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: www.lamer.com.hk, reality-opts: { public-key: IGsSxC0wgn7wLy0NM0QN_yOREDKT_814Y_3_rbgDoTc, short-id: c8c0f951 } }
-  - { name: 🇭🇰香港高速01|BGP|流媒体, type: vless, server: aws-link1.liangxin1.xyz, port: 35248, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, flow: xtls-rprx-vision, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: www.lamer.com.hk, reality-opts: { public-key: IGsSxC0wgn7wLy0NM0QN_yOREDKT_814Y_3_rbgDoTc, short-id: c8c0f951 } }
-  - { name: 🇭🇰香港高速02|BGP|流媒体, type: vless, server: aws-link2.liangxin1.xyz, port: 38725, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, flow: xtls-rprx-vision, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: www.lamer.com.hk, reality-opts: { public-key: HvwnLBMMKsmvghGX5yVPq3J2HWxwr1GGQB2WIvbPvAY, short-id: 8f6ca378 } }
-  - { name: 🇭🇰香港高速03|BGP|流媒体, type: vless, server: aws-link3.liangxin1.xyz, port: 27758, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, flow: xtls-rprx-vision, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: www.lamer.com.hk, reality-opts: { public-key: EYa4ic3GAxqznV61U-OOww-WKsu5wuQQptyS3fw7czM, short-id: c50db39f } }
-  - { name: 🇭🇰香港高速04|BGP|流媒体, type: vless, server: aws-link4.liangxin1.xyz, port: 443, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, flow: xtls-rprx-vision, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: www.lamer.com.hk, reality-opts: { public-key: 3FPGTaxkfOM3nEUWUyCiqkH5oJGsOx-WxPJfADi1QWY, short-id: 7f369e14 } }
-  - { name: 🇭🇰香港专线01|BGP|流媒体, server: aws-linkhy1.liangxin1.xyz, port: 60000, ports: 60000-65530, mport: 60000-65530, udp: true, skip-cert-verify: true, sni: iosapps.itunes.apple.com, type: hysteria2, password: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b }
-  - { name: 🇭🇰香港专线02|BGP|流媒体, server: aws-linkhy2.liangxin1.xyz, port: 60000, ports: 60000-65530, mport: 60000-65530, udp: true, skip-cert-verify: true, sni: iosapps.itunes.apple.com, type: hysteria2, password: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b }
-  - { name: 🇭🇰香港专线03|BGP|流媒体, server: aws-linkhy3.liangxin1.xyz, port: 60000, ports: 60000-65530, mport: 60000-65530, udp: true, skip-cert-verify: true, sni: iosapps.itunes.apple.com, type: hysteria2, password: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b }
-  - { name: 🇸🇬新加坡高速01|BGP|流媒体, type: vless, server: aws-link7.liangxin1.xyz, port: 48574, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, flow: xtls-rprx-vision, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: www.lamer.com.sg, reality-opts: { public-key: lmxSayN8tUg2Dag2MPXrdqZ2SQK9K3OjlaKk8wVCRnc, short-id: f8f18902 } }
-  - { name: 🇸🇬新加坡高速02|BGP|流媒体, type: vless, server: aws-link8.liangxin1.xyz, port: 39645, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, flow: xtls-rprx-vision, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: iosapps.itunes.apple.com, reality-opts: { public-key: x7VqpFP7_PrY4ebNw8hi8Ec5Tm5Upmt5JOdrN1M9VnQ, short-id: 2b3b0b93 } }
-  - { name: 🇸🇬新加坡高速03|BGP|流媒体, type: vless, server: aws-link9.liangxin1.xyz, port: 23587, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, flow: xtls-rprx-vision, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: iosapps.itunes.apple.com, reality-opts: { public-key: H66PLLf6HkZwHk4oFqisfTawIvw2cxkEwk8Ue8sHZgA, short-id: 19b580ae } }
-  - { name: 🇸🇬新加坡高速04|BGP|流媒体, type: vless, server: aws-link10.liangxin1.xyz, port: 443, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, flow: xtls-rprx-vision, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: www.lamer.com.sg, reality-opts: { public-key: xQO7CBh6ymSW9qfw9OGHykh7PLTzWQZjxDT-H4ul2AE, short-id: 2bb6da88 } }
-  - { name: 🇸🇬新加坡高速05|BGP|流媒体, type: vless, server: aws-link11.liangxin1.xyz, port: 443, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, flow: xtls-rprx-vision, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: www.lamer.com.sg, reality-opts: { public-key: 7DC8gg_Ui9i3tScu-60AxeniPPW3h3VWvvQjblOrwEs, short-id: 18180d97 } }
-  - { name: 🇸🇬新加坡专线02|BGP|流媒体, server: aws-linkhy10.liangxin1.xyz, port: 60000, ports: 60000-65530, mport: 60000-65530, udp: true, skip-cert-verify: true, sni: iosapps.itunes.apple.com, type: hysteria2, password: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b }
-  - { name: 🇸🇬新加坡专线03|BGP|流媒体, server: aws-linkhy11.liangxin1.xyz, port: 60000, ports: 60000-65530, mport: 60000-65530, udp: true, skip-cert-verify: true, sni: iosapps.itunes.apple.com, type: hysteria2, password: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b }
-  - { name: 🇯🇵日本专线01|BGP|流媒体, server: aws-linkhy15.liangxin1.xyz, port: 60000, ports: 60000-65530, mport: 60000-65530, udp: true, skip-cert-verify: true, sni: bilibili-jp.biliimg.com, type: hysteria2, password: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b }
-  - { name: 🇯🇵日本专线02|BGP|流媒体, server: aws-linkhy16.liangxin1.xyz, port: 60000, ports: 60000-65530, mport: 60000-65530, udp: true, skip-cert-verify: true, sni: bilibili-jp2.biliimg.com, type: hysteria2, password: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b }
-  - { name: 🇯🇵日本专线03|BGP|流媒体, server: aws-linkhy17.liangxin1.xyz, port: 60000, ports: 60000-65530, mport: 60000-65530, udp: true, skip-cert-verify: true, sni: bilibili-jp3.biliimg.com, type: hysteria2, password: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b }
-  - { name: 🇯🇵日本高速01|BGP|流媒体, type: vless, server: aws-link13.liangxin1.xyz, port: 36574, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, flow: xtls-rprx-vision, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: www.apple.com.cn, reality-opts: { public-key: sDG-KQk1BF7V83-xnmrWDouXxpPd_ZSxKcHrJJzbols, short-id: 32a3650d } }
-  - { name: 🇯🇵日本高速02|BGP|流媒体, type: vless, server: aws-link14.liangxin1.xyz, port: 25485, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, flow: xtls-rprx-vision, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: www.apple.com.cn, reality-opts: { public-key: VOFSjjWT0wIH3Q0ntyEZd8WwksrIAb5gPt_3PBnEASg, short-id: 9c5b8c53 } }
-  - { name: 🇯🇵日本高速03|BGP|流媒体, type: vless, server: aws-link15.liangxin1.xyz, port: 35457, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, flow: xtls-rprx-vision, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: www.apple.com.cn, reality-opts: { public-key: 3gb-aG6qLCJpEOFrEPZ9qKqLvVPA_ovlu0X1PvjcE0k, short-id: 05288db3 } }
-  - { name: 🇯🇵日本高速04|BGP|流媒体, type: vless, server: cfyes.lxy1015.top, port: 443, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: lxs1jp.lxy1015.top, network: ws, ws-opts: { path: /liangxin/jp1, headers: { Host: lx-1jp.lxy1015.top } } }
-  - { name: 🇯🇵日本高速05|BGP|流媒体, type: vless, server: cfyes.lxy1015.top, port: 443, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: lxs1jp.lxy1015.top, network: ws, ws-opts: { path: /liangxin/jp1, headers: { Host: lx-1jp.lxy1015.top } } }
-  - { name: 🇯🇵日本高速06|BGP|流媒体, type: vless, server: cfyes.lxy1015.top, port: 443, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: lxs1jp.lxy1015.top, network: ws, ws-opts: { path: /liangxin/jp1, headers: { Host: lx-1jp.lxy1015.top } } }
-  - { name: 🇺🇸美国高速01|流媒体, type: vless, server: aws-link19.liangxin1.xyz, port: 443, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, flow: xtls-rprx-vision, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: download-porter.hoyoverse.com, reality-opts: { public-key: QE5l0RUqs4OsH3j3u_xHm06-4NlILmQivZUJqiEx11o, short-id: '6314e825' } }
-  - { name: 🇺🇸美国高速03|流媒体, type: vless, server: cfyes.lxy1015.top, port: 443, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: lx-us1.lxy1015.top, network: ws, ws-opts: { path: /liangxin/us, headers: { Host: lx-us1.lxy1015.top } } }
-  - { name: 🇺🇸美国高速04|流媒体, type: vless, server: cfyes.lxy1015.top, port: 443, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: lx-us1.lxy1015.top, network: ws, ws-opts: { path: /liangxin/us, headers: { Host: lx-us1.lxy1015.top } } }
-  - { name: 🇺🇸美国01|流媒体, server: 203.10.97.121, port: 60000, ports: 60000-65530, mport: 60000-65530, udp: true, skip-cert-verify: true, sni: www.apple.com, type: hysteria2, password: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b }
-  - { name: 🇺🇸美国02|流媒体, server: aws-linkhy27.liangxin1.xyz, port: 60000, ports: 60000-65530, mport: 60000-65530, udp: true, skip-cert-verify: true, sni: www.apple.com, type: hysteria2, password: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b }
-  - { name: 🇨🇳台湾专线01|BGP|流媒体, server: aws-linkhy23.liangxin1.xyz, port: 60000, ports: 60000-65530, mport: 60000-65530, udp: true, skip-cert-verify: true, sni: bilibili-tw.biliimg.com, type: hysteria2, password: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b }
-  - { name: 🇨🇳台湾高速01|BGP|流媒体, type: vless, server: aws-link27.liangxin1.xyz, port: 443, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, flow: xtls-rprx-vision, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: download-porter.hoyoverse.com, reality-opts: { public-key: a9I2uA3NNZA6uBAe3Tui9vZ8CG5MrMaYOifWrAdc0zg, short-id: a8609be8 } }
-  - { name: 🇰🇷韩国专线01|BGP|流媒体, server: aws-linkhy21.liangxin1.xyz, port: 60000, ports: 60000-65530, mport: 60000-65530, udp: true, skip-cert-verify: true, sni: bilibili-kr.biliimg.com, type: hysteria2, password: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b }
-  - { name: 🇰🇷韩国高速01|BGP|流媒体, type: vless, server: aws-link25.liangxin1.xyz, port: 34578, uuid: 6ad8f548-3baf-403f-86a1-9ecebf3a5d3b, udp: true, flow: xtls-rprx-vision, tls: true, skip-cert-verify: false, client-fingerprint: chrome, servername: download-porter.hoyoverse.com, reality-opts: { public-key: PSn2s5TN4e7n0LkzPunu2IA1hSmOoPYFu3d_psl2Nmc, short-id: e534c8be } }
 
-
-
-  - name: 搬瓦工日本
-    type: vless
-    server: 23.106.143.127
-    port: 23873
-    uuid: 1697e1be-0c37-4d6b-a8bf-1835e5dfb0a3
-    encryption: none
-    alpn:
-      - h3
-      - h2
-      - http/1.1
-    flow: xtls-rprx-vision
-    servername: www.mozilla.org
-    skip-cert-verify: true
-    tls: true
-
-
-  - name: "谷歌云美国-vmess"
+  # ── 香港 ──────────────────────────────
+  - { name: "香港 01 HKIX", type: vmess, server: select-hk.ddnskunlun.com, port: 9002, uuid: c814cdaa-3fd1-32a3-b1af-852a4fb5c634, alterId: 0, cipher: auto, udp: true }
+  - { name: "香港 02 HKIX", type: vmess, server: select-hk.ddnskunlun.com, port: 9003, uuid: c814cdaa-3fd1-32a3-b1af-852a4fb5c634, alterId: 0, cipher: auto, udp: true }
+  - { name: "🇭🇰 HK04",     type: trojan, server: z1r9n4c7b2q8m5lk-hk.nod3.org, port: 22109, password: 8c2fbe88-f8fd-4cd2-801e-73688c1d32c7, udp: true, sni: cas.baidu.com, skip-cert-verify: true }
+  - { name: "🇭🇰 HK05",     type: trojan, server: z1r9n4c7b2q8m5lk-hk.nod3.org, port: 22110, password: 8c2fbe88-f8fd-4cd2-801e-73688c1d32c7, udp: true, sni: cas.baidu.com, skip-cert-verify: true }
+  - name: "香港转谷歌"         # 通过中转组落地，用于访问谷歌系服务
     type: vmess
     server: 35.212.177.67
     port: 40029
@@ -288,21 +55,12 @@ proxies:
     alterId: 0
     cipher: auto
     udp: true
+    dialer-proxy: 中转          # 先走中转组再出口
 
-
-
-
-  - name: "香港转谷歌"
-    type: vmess
-    server: 35.212.177.67
-    port: 40029
-    uuid: e8ab37c7-2b1d-4776-c062-2cac8fc066e1
-    alterId: 0
-    cipher: auto
-    udp: true
-    dialer-proxy: 中转
-
-  - name: 爪云-JP-WS
+  # ── 日本 ──────────────────────────────
+  - { name: "日本 02 SoftBank", type: vmess, server: select-jp.kunlunddns.com, port: 9031, uuid: c814cdaa-3fd1-32a3-b1af-852a4fb5c634, alterId: 0, cipher: auto, udp: true }
+  - { name: "日本 05 SoftBank", type: vmess, server: select-jp.kunlunddns.com, port: 9034, uuid: c814cdaa-3fd1-32a3-b1af-852a4fb5c634, alterId: 0, cipher: auto, udp: true }
+  - name: "爪云-JP-WS"
     type: vless
     server: pwctqbvswnne.ap-northeast-1.clawcloudrun.com
     port: 443
@@ -313,11 +71,25 @@ proxies:
     servername: pwctqbvswnne.ap-northeast-1.clawcloudrun.com
     ws-opts:
       path: /
-      headers: {}  # 修复null为空对象，符合Clash规范
-      Host: pwctqbvswnne.ap-northeast-1.clawcloudrun.com
+      headers: {}
 
+  # ── 新加坡 ────────────────────────────
+  - { name: "新加坡 04 Singtel", type: vmess, server: select-sg.kunlunddns.com, port: 9041, uuid: c814cdaa-3fd1-32a3-b1af-852a4fb5c634, alterId: 0, cipher: auto, udp: true }
+  - { name: "新加坡 05 Singtel", type: vmess, server: select-sg.kunlunddns.com, port: 9042, uuid: c814cdaa-3fd1-32a3-b1af-852a4fb5c634, alterId: 0, cipher: auto, udp: true }
+  - { name: "🇸🇬 SG02",          type: trojan, server: q2v8m1r5t9c4k7xp-sg.nod3.org, port: 24104, password: 8c2fbe88-f8fd-4cd2-801e-73688c1d32c7, udp: true, sni: cas.baidu.com, skip-cert-verify: true }
 
-  - name: 老家hy
+  # ── 美国 ──────────────────────────────
+  - name: "谷歌云美国"
+    type: vmess
+    server: 35.212.177.67
+    port: 40029
+    uuid: e8ab37c7-2b1d-4776-c062-2cac8fc066e1
+    alterId: 0
+    cipher: auto
+    udp: true
+
+  # ── 其他 ──────────────────────────────
+  - name: "老家hy"
     type: hysteria2
     server: pan.juns.top
     port: 51376
@@ -325,763 +97,542 @@ proxies:
     tls: true
     servername: ts2.tc.mm.bing.net
     skip-cert-verify: true
-    up: 1000  # 单位：Mbps（hysteria2 带宽限制）
+    up: 1000
     down: 1000
-    alpn:
-      - h3
-      - h2
-      - http/1.1
+    alpn: [h3, h2, http/1.1]
 
-# 代理组配置（统一缩进+规范格式）
+
+# ╔══════════════════════════════════════╗
+# ║           订阅节点来源                ║
+# ╚══════════════════════════════════════╝
+proxy-providers:
+
+  良心云:
+    type: http
+    url: "https://liangxin.xyz/api/v1/liangxin?OwO=6531c37e0afe4044ad8623c2c4230555"
+    interval: 86400
+    path: ./providers/liangxin.yaml
+    filter: "^(?!.*(剩余|到期|套餐|流量|官网|平台))"   # 过滤掉信息节点
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 30
+
+  飞鸟云:
+    type: http
+    url: "https://sf.342242.icu/api/v1/client/subscribe?token=84280e4dde33f78a4b5f21fa7e28fd61"
+    interval: 86400
+    path: ./providers/feiniao.yaml
+    filter: "^(?!.*(剩余|到期|套餐|流量|官网|平台))"
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 30
+
+
+# ╔══════════════════════════════════════╗
+# ║             代理组                   ║
+# ╚══════════════════════════════════════╝
 proxy-groups:
+
+  # ┌─────────────────────────────────────
+  # │  顶层选择组（手动切换入口）
+  # └─────────────────────────────────────
+
   - name: PROXY
     type: select
     proxies:
       - 自动选择
-      - DIRECT
-      - 小火箭
       - 香港自动
+      - 非香港自动
+      - DIRECT
+      # 手动节点（香港）
       - 香港 01 HKIX
       - 香港 02 HKIX
       - 🇭🇰 HK04
       - 🇭🇰 HK05
       - 香港转谷歌
-      - 谷歌云美国-vmess
-      - 搬瓦工日本
-      - 爪云-JP-WS
-      - 新加坡 04 Singtel
-      - 新加坡 05 Singtel
+      # 手动节点（日本）
       - 日本 02 SoftBank
       - 日本 05 SoftBank
+      - 爪云-JP-WS
+      # 手动节点（新加坡）
+      - 新加坡 04 Singtel
+      - 新加坡 05 Singtel
       - 🇸🇬 SG02
-      - "[IPLC]新加坡"
-      - "[IPLC]日本"
+      # 手动节点（美国）
+      - 谷歌云美国
+      # 其他
+      - 老家hy
+      # 订阅节点组（原生手动）
       - 良心云
+      - 飞鸟云
+      # 订阅节点组（按地区自动）
+      - 良心云-香港
+      - 良心云-非香港
+      - 飞鸟云-香港
+      - 飞鸟云-非香港
 
-
-
-  - name: AI
+  - name: AI                   # AI 服务专用：避开香港（OpenAI 封锁 HK）
     type: select
     proxies:
       - 非香港自动
-      - 香港转谷歌
-      - 谷歌云美国-vmess
-      - 搬瓦工日本
+      - 良心云-非香港
+      - 飞鸟云-非香港
+      - 日本 02 SoftBank
+      - 日本 05 SoftBank
       - 爪云-JP-WS
       - 新加坡 04 Singtel
       - 新加坡 05 Singtel
-      - 日本 02 SoftBank
-      - 日本 05 SoftBank
       - 🇸🇬 SG02
-      - "[IPLC]新加坡"
-      - "[IPLC]日本"
-      - 良心云
-
-  - { name: 良心云, type: select, proxies: [🇭🇰香港高速01|BGP|流媒体, 🇭🇰香港高速02|BGP|流媒体, 🇭🇰香港高速03|BGP|流媒体, 🇭🇰香港高速04|BGP|流媒体, 🇸🇬新加坡高速01|BGP|流媒体, 🇸🇬新加坡高速02|BGP|流媒体, 🇸🇬新加坡高速03|BGP|流媒体, 🇸🇬新加坡高速04|BGP|流媒体, 🇸🇬新加坡高速05|BGP|流媒体, 🇯🇵日本高速01|BGP|流媒体, 🇯🇵日本高速02|BGP|流媒体, 🇯🇵日本高速03|BGP|流媒体, 🇯🇵日本高速04|BGP|流媒体, 🇯🇵日本高速05|BGP|流媒体, 🇯🇵日本高速06|BGP|流媒体, 🇺🇸美国高速01|流媒体, 🇺🇸美国高速03|流媒体, 🇺🇸美国高速04|流媒体, 🇰🇷韩国高速01|BGP|流媒体, 🇨🇳台湾高速01|BGP|流媒体, 🇭🇰香港专线01|BGP|流媒体, 🇭🇰香港专线02|BGP|流媒体, 🇭🇰香港专线03|BGP|流媒体, 🇸🇬新加坡专线02|BGP|流媒体, 🇸🇬新加坡专线03|BGP|流媒体, 🇯🇵日本专线01|BGP|流媒体, 🇯🇵日本专线02|BGP|流媒体, 🇯🇵日本专线03|BGP|流媒体, 🇰🇷韩国专线01|BGP|流媒体, 🇨🇳台湾专线01|BGP|流媒体, 🇺🇸美国01|流媒体, 🇺🇸美国02|流媒体] }
-
-
-  - name: 小火箭
-    type: select
-    proxies:
-      - ★自动选择|香港最优★
-      - ★自动选择|美国最优★
-      - "[IPV6]网络支持IPV6可用 台湾01"
-      - "[IPV6]网络支持IPV6可用 台湾02"
-      - "[IPV6]网络支持IPV6可用 台湾03"
-      - "[IPV6]网络支持IPV6可用 台湾04"
-      - "[IPLC]香港 01 HKIX"
-      - "[IPLC]香港 02 HKIX"
-      - "[IPLC]香港 03 HKIX"
-      - "[IPLC]香港 04 HKIX"
-      - "[IPLC]香港 05 HKIX"
-      - "[IPLC]香港 06 VERTEX"
-      - "[IPLC]香港 07 VERTEX"
-      - "[IPLC]香港 08 VERTEX"
-      - "[IPLC]香港 09 VERTEX"
-      - "[IPLC]香港 10 VERTEX"
-      - "[IPLC]香港 11 HKT&HOME"
-      - "[IPLC]香港 12 HKT&HOME"
-      - "[IPLC]香港 13 HKT&HOME"
-      - "[IPLC]香港 14 HKT&HOME"
-      - "[IPLC]香港 15 HKT&HOME"
-      - "[IPLC]美国 01 AT&SANJOSE"
-      - "[IPLC]美国 02 AT&SANJOSE"
-      - "[IPLC]美国 03 AT&SANJOSE"
-      - "[IPLC]美国 04 AT&SANJOSE"
-      - "[IPLC]美国 05 AT&SANJOSE"
-      - "[IPLC]美国 06 IDC&VERTEX"
-      - "[IPLC]美国 07 IDC&VERTEX"
-      - "[IPLC]美国 08 IDC&VERTEX"
-      - "[IPLC]美国 09 IDC&VERTEX"
-      - "[IPLC]美国 10 IDC&VERTEX"
-      - "[IPLC]台湾 01 中華電信"
-      - "[IPLC]台湾 02 中華電信"
-      - "[IPLC]台湾 03 中華電信"
-      - "[IPLC]台湾 04 中華電信"
-      - "[IPLC]台湾 05 中華電信"
-      - "[IPLC]台湾 06 中華電信"
-      - "[IPLC]台湾 07 中華電信"
-      - "[IPLC]台湾 08 中華電信"
-      - "[IPLC]日本 01 NTTドコモ"
-      - "[IPLC]日本 02 NTTドコモ"
-      - "[IPLC]日本 03 NTTドコモ"
-      - "[IPLC]日本 04 NTTドコモ"
-      - "[IPLC]日本 05 SKYSPARK"
-      - "[IPLC]日本 06 SKYSPARK"
-      - "[IPLC]日本 07 SKYSPARK"
-      - "[IPLC]日本 08 SKYSPARK"
-
-
-
-  - name: 非香港自动
-    type: url-test
-    proxies:
+      - 谷歌云美国
       - 香港转谷歌
-      - 谷歌云美国-vmess
-      - 搬瓦工日本
-      - 爪云-JP-WS
 
-      # 新加坡
-      - 新加坡 04 Singtel
-      - 新加坡 05 Singtel
-      - 🇸🇬 SG02
-      - "[IPLC]新加坡"
-
-      # 日本
-      - 日本 02 SoftBank
-      - 日本 05 SoftBank
-      - "[IPLC]日本"
-
-      # 良心云非香港
-      - 🇸🇬新加坡高速01|BGP|流媒体
-      - 🇸🇬新加坡高速02|BGP|流媒体
-      - 🇸🇬新加坡高速03|BGP|流媒体
-      - 🇸🇬新加坡高速04|BGP|流媒体
-      - 🇸🇬新加坡高速05|BGP|流媒体
-
-      - 🇯🇵日本高速01|BGP|流媒体
-      - 🇯🇵日本高速02|BGP|流媒体
-      - 🇯🇵日本高速03|BGP|流媒体
-      - 🇯🇵日本高速04|BGP|流媒体
-      - 🇯🇵日本高速05|BGP|流媒体
-      - 🇯🇵日本高速06|BGP|流媒体
-
-      - 🇺🇸美国高速01|流媒体
-      - 🇺🇸美国高速03|流媒体
-      - 🇺🇸美国高速04|流媒体
-
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    timeout: 5000
-    tolerance: 50
-
-  - name: 自动选择
-    type: url-test
-    proxies:
-      - 小火箭
-      - 谷歌云美国-vmess
-      - 香港转谷歌
-      - 搬瓦工日本
-      - 爪云-JP-WS
-      - 🇭🇰 HK04
-      - 🇭🇰 HK05
-      - 新加坡 04 Singtel
-      - 新加坡 05 Singtel
-      - 日本 02 SoftBank
-      - 日本 05 SoftBank
-      - 🇸🇬 SG02
-      - "[IPLC]新加坡"
-      - "[IPLC]日本"
-      - 香港 01 HKIX
-      - 香港 02 HKIX
-      - 良心云
-
-    url: http://www.gstatic.com/generate_204  # 测速URL（谷歌204，稳定）
-    interval: 100  # 测速间隔（秒），5分钟测一次
-    timeout: 5000  # 超时时间（毫秒），5秒没响应算超时
-    tolerance: 50  # 容差（毫秒），延迟差小于50ms不切换，避免频繁跳动
-
+  # ┌─────────────────────────────────────
+  # │  聚合自动组（香港 / 非香港）
+  # └─────────────────────────────────────
 
   - name: 香港自动
     type: url-test
     proxies:
-      - 🇭🇰 HK04
-      - 🇭🇰 HK05
       - 香港 01 HKIX
       - 香港 02 HKIX
+      - 🇭🇰 HK04
+      - 🇭🇰 HK05
+      - 良心云-香港
+      - 飞鸟云-香港
+    url: http://www.gstatic.com/generate_204
+    interval: 3      # 3s 测一次，故障最多 3s 内发现
+    timeout: 1500     # HK延迟低，1.5s无响应必然故障，快速切走
+    tolerance: 60     # 健康节点间需快60ms才切，防止下载中断
 
-      # 良心云香港
-      - 🇭🇰香港高速01|BGP|流媒体
-      - 🇭🇰香港高速02|BGP|流媒体
-      - 🇭🇰香港高速03|BGP|流媒体
-      - 🇭🇰香港高速04|BGP|流媒体
-      - 🇭🇰香港专线01|BGP|流媒体
-      - 🇭🇰香港专线02|BGP|流媒体
-      - 🇭🇰香港专线03|BGP|流媒体
+  - name: 非香港自动
+    type: url-test
+    proxies:
+      - 日本 02 SoftBank
+      - 日本 05 SoftBank
+      - 爪云-JP-WS
+      - 新加坡 04 Singtel
+      - 新加坡 05 Singtel
+      - 🇸🇬 SG02
+      - 谷歌云美国
+      - 良心云-非香港
+      - 飞鸟云-非香港
+    url: http://www.gstatic.com/generate_204
+    interval: 3      # 3s 测一次，AI/coding 工具故障快速感知
+    timeout: 2500     # 海外节点延迟本身偏高，3s 超时避免误判
+    tolerance: 50     # 跨国抖动大，50ms 内差异不切，保持 coding 会话稳定
 
-      # IPLC香港
-      - "[IPLC]香港 01 HKIX"
-      - "[IPLC]香港 02 HKIX"
-      - "[IPLC]香港 03 HKIX"
-      - "[IPLC]香港 04 HKIX"
-      - "[IPLC]香港 05 HKIX"
-      - "[IPLC]香港 06 VERTEX"
-      - "[IPLC]香港 07 VERTEX"
-      - "[IPLC]香港 08 VERTEX"
-      - "[IPLC]香港 09 VERTEX"
-      - "[IPLC]香港 10 VERTEX"
-      - "[IPLC]香港 11 HKT&HOME"
-      - "[IPLC]香港 12 HKT&HOME"
-      - "[IPLC]香港 13 HKT&HOME"
-      - "[IPLC]香港 14 HKT&HOME"
-      - "[IPLC]香港 15 HKT&HOME"
-    url: http://www.gstatic.com/generate_204  # 测速URL（谷歌204，稳定）
-    interval: 300  # 测速间隔（秒），5分钟测一次
-    timeout: 5000  # 超时时间（毫秒），5秒没响应算超时
-    tolerance: 40  # 容差（毫秒），延迟差小于50ms不切换，避免频繁跳动
+  - name: 自动选择
+    type: url-test
+    proxies:
+      - 香港自动
+      - 非香港自动
+    url: http://www.gstatic.com/generate_204
+    interval: 3
+    timeout: 2000
+    tolerance: 50
 
+  # ┌─────────────────────────────────────
+  # │  良心云（原生 / 香港 / 非香港）
+  # └─────────────────────────────────────
 
-  - name: 中转
+  - name: 良心云                # 全量节点，手动选择
+    type: select
+    use: [良心云]
+
+  - name: 良心云-香港
+    type: url-test
+    use: [良心云]
+    filter: "(?i)港|hk|hongkong|hong.kong"
+    url: http://www.gstatic.com/generate_204
+    interval: 3
+    timeout: 1500
+    tolerance: 60
+
+  - name: 良心云-非香港
+    type: url-test
+    use: [良心云]
+    filter: "(?i)日|jp|japan|新加坡|sg|singapore|美|us|united.states|韩|kr|korea|台|tw|taiwan"
+    url: http://www.gstatic.com/generate_204
+    interval: 3
+    timeout: 2500
+    tolerance: 80
+
+  # ┌─────────────────────────────────────
+  # │  飞鸟云（原生 / 香港 / 非香港）
+  # └─────────────────────────────────────
+
+  - name: 飞鸟云                # 全量节点，手动选择
+    type: select
+    use: [飞鸟云]
+
+  - name: 飞鸟云-香港
+    type: url-test
+    use: [飞鸟云]
+    filter: "(?i)港|hk|hongkong|hong.kong"
+    url: http://www.gstatic.com/generate_204
+    interval: 3
+    timeout: 1500
+    tolerance: 60
+
+  - name: 飞鸟云-非香港
+    type: url-test
+    use: [飞鸟云]
+    filter: "(?i)日|jp|japan|新加坡|sg|singapore|美|us|united.states|韩|kr|korea|台|tw|taiwan"
+    url: http://www.gstatic.com/generate_204
+    interval: 3
+    timeout: 2500
+    tolerance: 80
+  # ┌─────────────────────────────────────
+  # │  功能性组
+  # └─────────────────────────────────────
+
+  - name: 中转                 # 供「香港转谷歌」节点使用的跳板
     type: url-test
     proxies:
       - 🇭🇰 HK04
       - 🇭🇰 HK05
       - 香港 01 HKIX
       - 香港 02 HKIX
-      - 小火箭
-
-    url: http://www.gstatic.com/generate_204  # 测速URL（谷歌204，稳定）
-    interval: 300  # 测速间隔（秒），5分钟测一次
-    timeout: 5000  # 超时时间（毫秒），5秒没响应算超时
-    tolerance: 40  # 容差（毫秒），延迟差小于50ms不切换，避免频繁跳动
+    url: http://www.gstatic.com/generate_204
+    interval: 3
+    timeout: 1500     # 跳板节点1.5s无响应即切，保证香港转谷歌稳定
+    tolerance: 25     # 跳板容差最严，25ms内才切，保持连接稳定
 
 
+# ╔══════════════════════════════════════╗
+# ║               规则                   ║
+# ╚══════════════════════════════════════╝
 rules:
- - IP-CIDR,1.1.1.1/32,PROXY,no-resolve
- - IP-CIDR,8.8.8.8/32,PROXY,no-resolve
- - DOMAIN-KEYWORD,gemini,AI
- - DOMAIN-KEYWORD,googleapi,AI
- - DOMAIN-KEYWORD,openai.com,AI
- - DOMAIN-KEYWORD,mtalk.google,AI
- - DOMAIN-KEYWORD,api.cloudflare.com,DIRECT
- - DOMAIN-KEYWORD,erp.edaying.com,DIRECT
- - DOMAIN-KEYWORD,claude,AI
- - DOMAIN-KEYWORD,anthropic,AI
- - DOMAIN-KEYWORD,aistudio,AI
- - DOMAIN-KEYWORD,chatgpt.com,AI
- - DOMAIN-KEYWORD,speedtest,PROXY
- - DOMAIN-SUFFIX,services.googleapis.cn,PROXY
- - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,PROXY
- - DOMAIN,safebrowsing.urlsec.qq.com,DIRECT
- - DOMAIN,safebrowsing.googleapis.com,DIRECT
- - DOMAIN,developer.apple.com,PROXY
- - DOMAIN-SUFFIX,digicert.com,PROXY
- - DOMAIN,ocsp.apple.com,PROXY
- - DOMAIN,ocsp.comodoca.com,PROXY
- - DOMAIN,ocsp.usertrust.com,PROXY
- - DOMAIN,ocsp.sectigo.com,PROXY
- - DOMAIN,ocsp.verisign.net,PROXY
- - DOMAIN-SUFFIX,apple-dns.net,PROXY
- - DOMAIN,testflight.apple.com,PROXY
- - DOMAIN,sandbox.itunes.apple.com,PROXY
- - DOMAIN,itunes.apple.com,PROXY
- - DOMAIN-SUFFIX,apps.apple.com,PROXY
- - DOMAIN-SUFFIX,blobstore.apple.com,PROXY
- - DOMAIN,cvws.icloud-content.com,PROXY
- - DOMAIN-SUFFIX,mzstatic.com,DIRECT
- - DOMAIN-SUFFIX,itunes.apple.com,DIRECT
- - DOMAIN-SUFFIX,icloud.com,DIRECT
- - DOMAIN-SUFFIX,icloud-content.com,DIRECT
- - DOMAIN-SUFFIX,me.com,DIRECT
- - DOMAIN-SUFFIX,aaplimg.com,DIRECT
- - DOMAIN-SUFFIX,cdn20.com,DIRECT
- - DOMAIN-SUFFIX,cdn-apple.com,DIRECT
- - DOMAIN-SUFFIX,akadns.net,DIRECT
- - DOMAIN-SUFFIX,akamaiedge.net,DIRECT
- - DOMAIN-SUFFIX,edgekey.net,DIRECT
- - DOMAIN-SUFFIX,mwcloudcdn.com,DIRECT
- - DOMAIN-SUFFIX,mwcname.com,DIRECT
- - DOMAIN-SUFFIX,apple.com,DIRECT
- - DOMAIN-SUFFIX,apple-cloudkit.com,DIRECT
- - DOMAIN-SUFFIX,apple-mapkit.com,DIRECT
- - DOMAIN,cn.bing.com,DIRECT
- - DOMAIN-SUFFIX,126.com,DIRECT
- - DOMAIN-SUFFIX,126.net,DIRECT
- - DOMAIN-SUFFIX,127.net,DIRECT
- - DOMAIN-SUFFIX,163.com,DIRECT
- - DOMAIN-SUFFIX,360buyimg.com,DIRECT
- - DOMAIN-SUFFIX,36kr.com,DIRECT
- - DOMAIN-SUFFIX,acfun.tv,DIRECT
- - DOMAIN-SUFFIX,air-matters.com,DIRECT
- - DOMAIN-SUFFIX,aixifan.com,DIRECT
- - DOMAIN-KEYWORD,alicdn,DIRECT
- - DOMAIN-KEYWORD,alipay,DIRECT
- - DOMAIN-KEYWORD,taobao,DIRECT
- - DOMAIN-SUFFIX,amap.com,DIRECT
- - DOMAIN-SUFFIX,autonavi.com,DIRECT
- - DOMAIN-KEYWORD,baidu,DIRECT
- - DOMAIN-SUFFIX,bdimg.com,DIRECT
- - DOMAIN-SUFFIX,bdstatic.com,DIRECT
- - DOMAIN-SUFFIX,bilibili.com,DIRECT
- - DOMAIN-SUFFIX,bilivideo.com,DIRECT
- - DOMAIN-SUFFIX,caiyunapp.com,DIRECT
- - DOMAIN-SUFFIX,clouddn.com,DIRECT
- - DOMAIN-SUFFIX,cnbeta.com,DIRECT
- - DOMAIN-SUFFIX,cnbetacdn.com,DIRECT
- - DOMAIN-SUFFIX,cootekservice.com,DIRECT
- - DOMAIN-SUFFIX,csdn.net,DIRECT
- - DOMAIN-SUFFIX,ctrip.com,DIRECT
- - DOMAIN-SUFFIX,dgtle.com,DIRECT
- - DOMAIN-SUFFIX,dianping.com,DIRECT
- - DOMAIN-SUFFIX,douban.com,DIRECT
- - DOMAIN-SUFFIX,doubanio.com,DIRECT
- - DOMAIN-SUFFIX,duokan.com,DIRECT
- - DOMAIN-SUFFIX,easou.com,DIRECT
- - DOMAIN-SUFFIX,ele.me,DIRECT
- - DOMAIN-SUFFIX,feng.com,DIRECT
- - DOMAIN-SUFFIX,fir.im,DIRECT
- - DOMAIN-SUFFIX,frdic.com,DIRECT
- - DOMAIN-SUFFIX,g-cores.com,DIRECT
- - DOMAIN-SUFFIX,godic.net,DIRECT
- - DOMAIN-SUFFIX,gtimg.com,DIRECT
- - DOMAIN,cdn.hockeyapp.net,DIRECT
- - DOMAIN-SUFFIX,hongxiu.com,DIRECT
- - DOMAIN-SUFFIX,hxcdn.net,DIRECT
- - DOMAIN-SUFFIX,iciba.com,DIRECT
- - DOMAIN-SUFFIX,ifeng.com,DIRECT
- - DOMAIN-SUFFIX,ifengimg.com,DIRECT
- - DOMAIN-SUFFIX,ipip.net,DIRECT
- - DOMAIN-SUFFIX,iqiyi.com,DIRECT
- - DOMAIN-SUFFIX,jd.com,DIRECT
- - DOMAIN-SUFFIX,jianshu.com,DIRECT
- - DOMAIN-SUFFIX,knewone.com,DIRECT
- - DOMAIN-SUFFIX,le.com,DIRECT
- - DOMAIN-SUFFIX,lecloud.com,DIRECT
- - DOMAIN-SUFFIX,lemicp.com,DIRECT
- - DOMAIN-SUFFIX,licdn.com,DIRECT
- - DOMAIN-SUFFIX,luoo.net,DIRECT
- - DOMAIN-SUFFIX,meituan.com,DIRECT
- - DOMAIN-SUFFIX,meituan.net,DIRECT
- - DOMAIN-SUFFIX,mi.com,DIRECT
- - DOMAIN-SUFFIX,miaopai.com,DIRECT
- - DOMAIN-SUFFIX,microsoft.com,DIRECT
- - DOMAIN-SUFFIX,microsoftonline.com,DIRECT
- - DOMAIN-SUFFIX,miui.com,DIRECT
- - DOMAIN-SUFFIX,miwifi.com,DIRECT
- - DOMAIN-SUFFIX,mob.com,DIRECT
- - DOMAIN-SUFFIX,netease.com,DIRECT
- - DOMAIN-SUFFIX,office.com,DIRECT
- - DOMAIN-SUFFIX,office365.com,DIRECT
- - DOMAIN-KEYWORD,officecdn,DIRECT
- - DOMAIN-SUFFIX,oschina.net,DIRECT
- - DOMAIN-SUFFIX,ppsimg.com,DIRECT
- - DOMAIN-SUFFIX,pstatp.com,DIRECT
- - DOMAIN-SUFFIX,qcloud.com,DIRECT
- - DOMAIN-SUFFIX,qdaily.com,DIRECT
- - DOMAIN-SUFFIX,qdmm.com,DIRECT
- - DOMAIN-SUFFIX,qhimg.com,DIRECT
- - DOMAIN-SUFFIX,qhres.com,DIRECT
- - DOMAIN-SUFFIX,qidian.com,DIRECT
- - DOMAIN-SUFFIX,qihucdn.com,DIRECT
- - DOMAIN-SUFFIX,qiniu.com,DIRECT
- - DOMAIN-SUFFIX,qiniucdn.com,DIRECT
- - DOMAIN-SUFFIX,qiyipic.com,DIRECT
- - DOMAIN-SUFFIX,qq.com,DIRECT
- - DOMAIN-SUFFIX,qqurl.com,DIRECT
- - DOMAIN-SUFFIX,rarbg.to,DIRECT
- - DOMAIN-SUFFIX,ruguoapp.com,DIRECT
- - DOMAIN-SUFFIX,segmentfault.com,DIRECT
- - DOMAIN-SUFFIX,sinaapp.com,DIRECT
- - DOMAIN-SUFFIX,smzdm.com,DIRECT
- - DOMAIN-SUFFIX,snapdrop.net,DIRECT
- - DOMAIN-SUFFIX,sogou.com,DIRECT
- - DOMAIN-SUFFIX,sogoucdn.com,DIRECT
- - DOMAIN-SUFFIX,sohu.com,DIRECT
- - DOMAIN-SUFFIX,soku.com,DIRECT
- - DOMAIN-SUFFIX,speedtest.net,DIRECT
- - DOMAIN-SUFFIX,sspai.com,DIRECT
- - DOMAIN-SUFFIX,suning.com,DIRECT
- - DOMAIN-SUFFIX,taobao.com,DIRECT
- - DOMAIN-SUFFIX,tencent.com,DIRECT
- - DOMAIN-SUFFIX,tenpay.com,DIRECT
- - DOMAIN-SUFFIX,tianyancha.com,DIRECT
- - DOMAIN-SUFFIX,tmall.com,DIRECT
- - DOMAIN-SUFFIX,tudou.com,DIRECT
- - DOMAIN-SUFFIX,umetrip.com,DIRECT
- - DOMAIN-SUFFIX,upaiyun.com,DIRECT
- - DOMAIN-SUFFIX,upyun.com,DIRECT
- - DOMAIN-SUFFIX,veryzhun.com,DIRECT
- - DOMAIN-SUFFIX,weather.com,DIRECT
- - DOMAIN-SUFFIX,weibo.com,DIRECT
- - DOMAIN-SUFFIX,xiami.com,DIRECT
- - DOMAIN-SUFFIX,xiami.net,DIRECT
- - DOMAIN-SUFFIX,xiaomicp.com,DIRECT
- - DOMAIN-SUFFIX,ximalaya.com,DIRECT
- - DOMAIN-SUFFIX,xmcdn.com,DIRECT
- - DOMAIN-SUFFIX,xunlei.com,DIRECT
- - DOMAIN-SUFFIX,yhd.com,DIRECT
- - DOMAIN-SUFFIX,yihaodianimg.com,DIRECT
- - DOMAIN-SUFFIX,yinxiang.com,DIRECT
- - DOMAIN-SUFFIX,ykimg.com,DIRECT
- - DOMAIN-SUFFIX,youdao.com,DIRECT
- - DOMAIN-SUFFIX,youku.com,DIRECT
- - DOMAIN-SUFFIX,zealer.com,DIRECT
- - DOMAIN-SUFFIX,zhihu.com,DIRECT
- - DOMAIN-SUFFIX,zhimg.com,DIRECT
- - DOMAIN-SUFFIX,zimuzu.tv,DIRECT
- - DOMAIN-SUFFIX,zoho.com,DIRECT
- - DOMAIN-KEYWORD,amazon,PROXY
- - DOMAIN-KEYWORD,google,PROXY
- - DOMAIN-KEYWORD,gmail,PROXY
- - DOMAIN-KEYWORD,youtube,PROXY
- - DOMAIN-KEYWORD,facebook,PROXY
- - DOMAIN-SUFFIX,fb.me,PROXY
- - DOMAIN-SUFFIX,fbcdn.net,PROXY
- - DOMAIN-KEYWORD,twitter,PROXY
- - DOMAIN-KEYWORD,instagram,PROXY
- - DOMAIN-KEYWORD,dropbox,PROXY
- - DOMAIN-SUFFIX,twimg.com,PROXY
- - DOMAIN-KEYWORD,blogspot,PROXY
- - DOMAIN-SUFFIX,youtu.be,PROXY
- - DOMAIN-KEYWORD,whatsapp,PROXY
- - DOMAIN-KEYWORD,admarvel,REJECT
- - DOMAIN-KEYWORD,admaster,REJECT
- - DOMAIN-KEYWORD,adsage,REJECT
- - DOMAIN-KEYWORD,adsmogo,REJECT
- - DOMAIN-KEYWORD,adsrvmedia,REJECT
- - DOMAIN-KEYWORD,adwords,REJECT
- - DOMAIN-KEYWORD,adservice,REJECT
- - DOMAIN-SUFFIX,appsflyer.com,REJECT
- - DOMAIN-KEYWORD,domob,REJECT
- - DOMAIN-SUFFIX,doubleclick.net,REJECT
- - DOMAIN-KEYWORD,duomeng,REJECT
- - DOMAIN-KEYWORD,dwtrack,REJECT
- - DOMAIN-KEYWORD,guanggao,REJECT
- - DOMAIN-KEYWORD,lianmeng,REJECT
- - DOMAIN-SUFFIX,mmstat.com,REJECT
- - DOMAIN-KEYWORD,mopub,REJECT
- - DOMAIN-KEYWORD,omgmta,REJECT
- - DOMAIN-KEYWORD,openx,REJECT
- - DOMAIN-KEYWORD,partnerad,REJECT
- - DOMAIN-KEYWORD,pingfore,REJECT
- - DOMAIN-KEYWORD,supersonicads,REJECT
- - DOMAIN-KEYWORD,uedas,REJECT
- - DOMAIN-KEYWORD,umeng,REJECT
- - DOMAIN-KEYWORD,usage,REJECT
- - DOMAIN-SUFFIX,vungle.com,REJECT
- - DOMAIN-KEYWORD,wlmonitor,REJECT
- - DOMAIN-KEYWORD,zjtoolbar,REJECT
- - DOMAIN-SUFFIX,9to5mac.com,PROXY
- - DOMAIN-SUFFIX,abpchina.org,PROXY
- - DOMAIN-SUFFIX,adblockplus.org,PROXY
- - DOMAIN-SUFFIX,adobe.com,PROXY
- - DOMAIN-SUFFIX,akamaized.net,PROXY
- - DOMAIN-SUFFIX,alfredapp.com,PROXY
- - DOMAIN-SUFFIX,amplitude.com,PROXY
- - DOMAIN-SUFFIX,ampproject.org,PROXY
- - DOMAIN-SUFFIX,android.com,PROXY
- - DOMAIN-SUFFIX,angularjs.org,PROXY
- - DOMAIN-SUFFIX,aolcdn.com,PROXY
- - DOMAIN-SUFFIX,apkpure.com,PROXY
- - DOMAIN-SUFFIX,appledaily.com,PROXY
- - DOMAIN-SUFFIX,appshopper.com,PROXY
- - DOMAIN-SUFFIX,appspot.com,PROXY
- - DOMAIN-SUFFIX,arcgis.com,PROXY
- - DOMAIN-SUFFIX,archive.org,PROXY
- - DOMAIN-SUFFIX,armorgames.com,PROXY
- - DOMAIN-SUFFIX,aspnetcdn.com,PROXY
- - DOMAIN-SUFFIX,att.com,PROXY
- - DOMAIN-SUFFIX,awsstatic.com,PROXY
- - DOMAIN-SUFFIX,azureedge.net,PROXY
- - DOMAIN-SUFFIX,azurewebsites.net,PROXY
- - DOMAIN-SUFFIX,bing.com,PROXY
- - DOMAIN-SUFFIX,bintray.com,PROXY
- - DOMAIN-SUFFIX,bit.com,PROXY
- - DOMAIN-SUFFIX,bit.ly,PROXY
- - DOMAIN-SUFFIX,bitbucket.org,PROXY
- - DOMAIN-SUFFIX,bjango.com,PROXY
- - DOMAIN-SUFFIX,bkrtx.com,PROXY
- - DOMAIN-SUFFIX,blog.com,PROXY
- - DOMAIN-SUFFIX,blogcdn.com,PROXY
- - DOMAIN-SUFFIX,blogger.com,PROXY
- - DOMAIN-SUFFIX,blogsmithmedia.com,PROXY
- - DOMAIN-SUFFIX,blogspot.com,PROXY
- - DOMAIN-SUFFIX,blogspot.hk,PROXY
- - DOMAIN-SUFFIX,bloomberg.com,PROXY
- - DOMAIN-SUFFIX,box.com,PROXY
- - DOMAIN-SUFFIX,box.net,PROXY
- - DOMAIN-SUFFIX,cachefly.net,PROXY
- - DOMAIN-SUFFIX,chromium.org,PROXY
- - DOMAIN-SUFFIX,cl.ly,PROXY
- - DOMAIN-SUFFIX,cloudflare.com,PROXY
- - DOMAIN-SUFFIX,cloudfront.net,PROXY
- - DOMAIN-SUFFIX,cloudmagic.com,PROXY
- - DOMAIN-SUFFIX,cmail19.com,PROXY
- - DOMAIN-SUFFIX,cnet.com,PROXY
- - DOMAIN-SUFFIX,cocoapods.org,PROXY
- - DOMAIN-SUFFIX,comodoca.com,PROXY
- - DOMAIN-SUFFIX,crashlytics.com,PROXY
- - DOMAIN-SUFFIX,culturedcode.com,PROXY
- - DOMAIN-SUFFIX,d.pr,PROXY
- - DOMAIN-SUFFIX,danilo.to,PROXY
- - DOMAIN-SUFFIX,dayone.me,PROXY
- - DOMAIN-SUFFIX,db.tt,PROXY
- - DOMAIN-SUFFIX,deskconnect.com,PROXY
- - DOMAIN-SUFFIX,disq.us,PROXY
- - DOMAIN-SUFFIX,disqus.com,PROXY
- - DOMAIN-SUFFIX,disquscdn.com,PROXY
- - DOMAIN-SUFFIX,dnsimple.com,PROXY
- - DOMAIN-SUFFIX,docker.com,PROXY
- - DOMAIN-SUFFIX,dribbble.com,PROXY
- - DOMAIN-SUFFIX,droplr.com,PROXY
- - DOMAIN-SUFFIX,duckduckgo.com,PROXY
- - DOMAIN-SUFFIX,dueapp.com,PROXY
- - DOMAIN-SUFFIX,dytt8.net,PROXY
- - DOMAIN-SUFFIX,edgecastcdn.net,PROXY
- - DOMAIN-SUFFIX,edgekey.net,PROXY
- - DOMAIN-SUFFIX,edgesuite.net,PROXY
- - DOMAIN-SUFFIX,engadget.com,PROXY
- - DOMAIN-SUFFIX,entrust.net,PROXY
- - DOMAIN-SUFFIX,eurekavpt.com,PROXY
- - DOMAIN-SUFFIX,evernote.com,PROXY
- - DOMAIN-SUFFIX,fabric.io,PROXY
- - DOMAIN-SUFFIX,fast.com,PROXY
- - DOMAIN-SUFFIX,fastly.net,PROXY
- - DOMAIN-SUFFIX,fc2.com,PROXY
- - DOMAIN-SUFFIX,feedburner.com,PROXY
- - DOMAIN-SUFFIX,feedly.com,PROXY
- - DOMAIN-SUFFIX,feedsportal.com,PROXY
- - DOMAIN-SUFFIX,fiftythree.com,PROXY
- - DOMAIN-SUFFIX,firebaseio.com,PROXY
- - DOMAIN-SUFFIX,flexibits.com,PROXY
- - DOMAIN-SUFFIX,flickr.com,PROXY
- - DOMAIN-SUFFIX,flipboard.com,PROXY
- - DOMAIN-SUFFIX,g.co,PROXY
- - DOMAIN-SUFFIX,gabia.net,PROXY
- - DOMAIN-SUFFIX,geni.us,PROXY
- - DOMAIN-SUFFIX,gfx.ms,PROXY
- - DOMAIN-SUFFIX,ggpht.com,PROXY
- - DOMAIN-SUFFIX,ghostnoteapp.com,PROXY
- - DOMAIN-SUFFIX,git.io,PROXY
- - DOMAIN-KEYWORD,github,PROXY
- - DOMAIN-SUFFIX,globalsign.com,PROXY
- - DOMAIN-SUFFIX,gmodules.com,PROXY
- - DOMAIN-SUFFIX,godaddy.com,PROXY
- - DOMAIN-SUFFIX,golang.org,PROXY
- - DOMAIN-SUFFIX,gongm.in,PROXY
- - DOMAIN-SUFFIX,goo.gl,PROXY
- - DOMAIN-SUFFIX,goodreaders.com,PROXY
- - DOMAIN-SUFFIX,goodreads.com,PROXY
- - DOMAIN-SUFFIX,gravatar.com,PROXY
- - DOMAIN-SUFFIX,gstatic.com,PROXY
- - DOMAIN-SUFFIX,gvt0.com,PROXY
- - DOMAIN-SUFFIX,hockeyapp.net,PROXY
- - DOMAIN-SUFFIX,hotmail.com,PROXY
- - DOMAIN-SUFFIX,icons8.com,PROXY
- - DOMAIN-SUFFIX,ifixit.com,PROXY
- - DOMAIN-SUFFIX,ift.tt,PROXY
- - DOMAIN-SUFFIX,ifttt.com,PROXY
- - DOMAIN-SUFFIX,iherb.com,PROXY
- - DOMAIN-SUFFIX,imageshack.us,PROXY
- - DOMAIN-SUFFIX,img.ly,PROXY
- - DOMAIN-SUFFIX,imgur.com,PROXY
- - DOMAIN-SUFFIX,imore.com,PROXY
- - DOMAIN-SUFFIX,instapaper.com,PROXY
- - DOMAIN-SUFFIX,ipn.li,PROXY
- - DOMAIN-SUFFIX,is.gd,PROXY
- - DOMAIN-SUFFIX,issuu.com,PROXY
- - DOMAIN-SUFFIX,itgonglun.com,PROXY
- - DOMAIN-SUFFIX,itun.es,PROXY
- - DOMAIN-SUFFIX,ixquick.com,PROXY
- - DOMAIN-SUFFIX,j.mp,PROXY
- - DOMAIN-SUFFIX,js.revsci.net,PROXY
- - DOMAIN-SUFFIX,jshint.com,PROXY
- - DOMAIN-SUFFIX,jtvnw.net,PROXY
- - DOMAIN-SUFFIX,justgetflux.com,PROXY
- - DOMAIN-SUFFIX,kat.cr,PROXY
- - DOMAIN-SUFFIX,klip.me,PROXY
- - DOMAIN-SUFFIX,libsyn.com,PROXY
- - DOMAIN-SUFFIX,linkedin.com,PROXY
- - DOMAIN-SUFFIX,line-apps.com,PROXY
- - DOMAIN-SUFFIX,linode.com,PROXY
- - DOMAIN-SUFFIX,lithium.com,PROXY
- - DOMAIN-SUFFIX,littlehj.com,PROXY
- - DOMAIN-SUFFIX,live.com,PROXY
- - DOMAIN-SUFFIX,live.net,PROXY
- - DOMAIN-SUFFIX,livefilestore.com,PROXY
- - DOMAIN-SUFFIX,llnwd.net,PROXY
- - DOMAIN-SUFFIX,macid.co,PROXY
- - DOMAIN-SUFFIX,macromedia.com,PROXY
- - DOMAIN-SUFFIX,macrumors.com,PROXY
- - DOMAIN-SUFFIX,mashable.com,PROXY
- - DOMAIN-SUFFIX,mathjax.org,PROXY
- - DOMAIN-SUFFIX,medium.com,PROXY
- - DOMAIN-SUFFIX,mega.co.nz,PROXY
- - DOMAIN-SUFFIX,mega.nz,PROXY
- - DOMAIN-SUFFIX,megaupload.com,PROXY
- - DOMAIN-SUFFIX,microsofttranslator.com,PROXY
- - DOMAIN-SUFFIX,mindnode.com,PROXY
- - DOMAIN-SUFFIX,mobile01.com,PROXY
- - DOMAIN-SUFFIX,modmyi.com,PROXY
- - DOMAIN-SUFFIX,msedge.net,PROXY
- - DOMAIN-SUFFIX,myfontastic.com,PROXY
- - DOMAIN-SUFFIX,name.com,PROXY
- - DOMAIN-SUFFIX,nextmedia.com,PROXY
- - DOMAIN-SUFFIX,nsstatic.net,PROXY
- - DOMAIN-SUFFIX,nssurge.com,PROXY
- - DOMAIN-SUFFIX,nyt.com,PROXY
- - DOMAIN-SUFFIX,nytimes.com,PROXY
- - DOMAIN-SUFFIX,omnigroup.com,PROXY
- - DOMAIN-SUFFIX,onedrive.com,PROXY
- - DOMAIN-SUFFIX,onenote.com,PROXY
- - DOMAIN-SUFFIX,ooyala.com,PROXY
- - DOMAIN-SUFFIX,openvpn.net,PROXY
- - DOMAIN-SUFFIX,openwrt.org,PROXY
- - DOMAIN-SUFFIX,orkut.com,PROXY
- - DOMAIN-SUFFIX,osxdaily.com,PROXY
- - DOMAIN-SUFFIX,outlook.com,PROXY
- - DOMAIN-SUFFIX,ow.ly,PROXY
- - DOMAIN-SUFFIX,paddleapi.com,PROXY
- - DOMAIN-SUFFIX,parallels.com,PROXY
- - DOMAIN-SUFFIX,parse.com,PROXY
- - DOMAIN-SUFFIX,pdfexpert.com,PROXY
- - DOMAIN-SUFFIX,periscope.tv,PROXY
- - DOMAIN-SUFFIX,pinboard.in,PROXY
- - DOMAIN-SUFFIX,pinterest.com,PROXY
- - DOMAIN-SUFFIX,pixelmator.com,PROXY
- - DOMAIN-SUFFIX,pixiv.net,PROXY
- - DOMAIN-SUFFIX,playpcesor.com,PROXY
- - DOMAIN-SUFFIX,playstation.com,PROXY
- - DOMAIN-SUFFIX,playstation.com.hk,PROXY
- - DOMAIN-SUFFIX,playstation.net,PROXY
- - DOMAIN-SUFFIX,playstationnetwork.com,PROXY
- - DOMAIN-SUFFIX,pushwoosh.com,PROXY
- - DOMAIN-SUFFIX,rime.im,PROXY
- - DOMAIN-SUFFIX,servebom.com,PROXY
- - DOMAIN-SUFFIX,sfx.ms,PROXY
- - DOMAIN-SUFFIX,shadowsocks.org,PROXY
- - DOMAIN-SUFFIX,sharethis.com,PROXY
- - DOMAIN-SUFFIX,shazam.com,PROXY
- - DOMAIN-SUFFIX,skype.com,PROXY
- - DOMAIN-SUFFIX,smartdnsPROXY.com,PROXY
- - DOMAIN-SUFFIX,smartmailcloud.com,PROXY
- - DOMAIN-SUFFIX,sndcdn.com,PROXY
- - DOMAIN-SUFFIX,sony.com,PROXY
- - DOMAIN-SUFFIX,soundcloud.com,PROXY
- - DOMAIN-SUFFIX,sourceforge.net,PROXY
- - DOMAIN-SUFFIX,spotify.com,PROXY
- - DOMAIN-SUFFIX,squarespace.com,PROXY
- - DOMAIN-SUFFIX,sstatic.net,PROXY
- - DOMAIN-SUFFIX,st.luluku.pw,PROXY
- - DOMAIN-SUFFIX,stackoverflow.com,PROXY
- - DOMAIN-SUFFIX,startpage.com,PROXY
- - DOMAIN-SUFFIX,staticflickr.com,PROXY
- - DOMAIN-SUFFIX,steamcommunity.com,PROXY
- - DOMAIN-SUFFIX,symauth.com,PROXY
- - DOMAIN-SUFFIX,symcb.com,PROXY
- - DOMAIN-SUFFIX,symcd.com,PROXY
- - DOMAIN-SUFFIX,tapbots.com,PROXY
- - DOMAIN-SUFFIX,tapbots.net,PROXY
- - DOMAIN-SUFFIX,tdesktop.com,PROXY
- - DOMAIN-SUFFIX,techcrunch.com,PROXY
- - DOMAIN-SUFFIX,techsmith.com,PROXY
- - DOMAIN-SUFFIX,thepiratebay.org,PROXY
- - DOMAIN-SUFFIX,theverge.com,PROXY
- - DOMAIN-SUFFIX,time.com,PROXY
- - DOMAIN-SUFFIX,timeinc.net,PROXY
- - DOMAIN-SUFFIX,tiny.cc,PROXY
- - DOMAIN-SUFFIX,tinypic.com,PROXY
- - DOMAIN-SUFFIX,tmblr.co,PROXY
- - DOMAIN-SUFFIX,todoist.com,PROXY
- - DOMAIN-SUFFIX,trello.com,PROXY
- - DOMAIN-SUFFIX,trustasiassl.com,PROXY
- - DOMAIN-SUFFIX,tumblr.co,PROXY
- - DOMAIN-SUFFIX,tumblr.com,PROXY
- - DOMAIN-SUFFIX,tweetdeck.com,PROXY
- - DOMAIN-SUFFIX,tweetmarker.net,PROXY
- - DOMAIN-SUFFIX,twitch.tv,PROXY
- - DOMAIN-SUFFIX,txmblr.com,PROXY
- - DOMAIN-SUFFIX,typekit.net,PROXY
- - DOMAIN-SUFFIX,ubertags.com,PROXY
- - DOMAIN-SUFFIX,ublock.org,PROXY
- - DOMAIN-SUFFIX,ubnt.com,PROXY
- - DOMAIN-SUFFIX,ulyssesapp.com,PROXY
- - DOMAIN-SUFFIX,urchin.com,PROXY
- - DOMAIN-SUFFIX,usertrust.com,PROXY
- - DOMAIN-SUFFIX,v.gd,PROXY
- - DOMAIN-SUFFIX,v2ex.com,PROXY
- - DOMAIN-SUFFIX,vimeo.com,PROXY
- - DOMAIN-SUFFIX,vimeocdn.com,PROXY
- - DOMAIN-SUFFIX,vine.co,PROXY
- - DOMAIN-SUFFIX,vivaldi.com,PROXY
- - DOMAIN-SUFFIX,vox-cdn.com,PROXY
- - DOMAIN-SUFFIX,vsco.co,PROXY
- - DOMAIN-SUFFIX,vultr.com,PROXY
- - DOMAIN-SUFFIX,w.org,PROXY
- - DOMAIN-SUFFIX,w3schools.com,PROXY
- - DOMAIN-SUFFIX,webtype.com,PROXY
- - DOMAIN-SUFFIX,wikiwand.com,PROXY
- - DOMAIN-SUFFIX,wikileaks.org,PROXY
- - DOMAIN-SUFFIX,wikimedia.org,PROXY
- - DOMAIN-SUFFIX,wikipedia.com,PROXY
- - DOMAIN-SUFFIX,wikipedia.org,PROXY
- - DOMAIN-SUFFIX,windows.com,PROXY
- - DOMAIN-SUFFIX,windows.net,PROXY
- - DOMAIN-SUFFIX,wire.com,PROXY
- - DOMAIN-SUFFIX,wordpress.com,PROXY
- - DOMAIN-SUFFIX,workflowy.com,PROXY
- - DOMAIN-SUFFIX,wp.com,PROXY
- - DOMAIN-SUFFIX,wsj.com,PROXY
- - DOMAIN-SUFFIX,wsj.net,PROXY
- - DOMAIN-SUFFIX,xda-developers.com,PROXY
- - DOMAIN-SUFFIX,xeeno.com,PROXY
- - DOMAIN-SUFFIX,xiti.com,PROXY
- - DOMAIN-SUFFIX,yahoo.com,PROXY
- - DOMAIN-SUFFIX,yimg.com,PROXY
- - DOMAIN-SUFFIX,ying.com,PROXY
- - DOMAIN-SUFFIX,yoyo.org,PROXY
- - DOMAIN-SUFFIX,ytimg.com,PROXY
- - DOMAIN-SUFFIX,telegra.ph,PROXY
- - DOMAIN-SUFFIX,telegram.org,PROXY
- - IP-CIDR,91.108.4.0/22,PROXY,no-resolve
- - IP-CIDR,91.108.8.0/21,PROXY,no-resolve
- - IP-CIDR,91.108.16.0/22,PROXY,no-resolve
- - IP-CIDR,91.108.56.0/22,PROXY,no-resolve
- - IP-CIDR,149.154.160.0/20,PROXY,no-resolve
- - IP-CIDR6,2001:67c:4e8::/48,PROXY,no-resolve
- - IP-CIDR6,2001:b28:f23d::/48,PROXY,no-resolve
- - IP-CIDR6,2001:b28:f23f::/48,PROXY,no-resolve
- - IP-CIDR,120.232.181.162/32,PROXY,no-resolve
- - IP-CIDR,120.241.147.226/32,PROXY,no-resolve
- - IP-CIDR,120.253.253.226/32,PROXY,no-resolve
- - IP-CIDR,120.253.255.162/32,PROXY,no-resolve
- - IP-CIDR,120.253.255.34/32,PROXY,no-resolve
- - IP-CIDR,120.253.255.98/32,PROXY,no-resolve
- - IP-CIDR,180.163.150.162/32,PROXY,no-resolve
- - IP-CIDR,180.163.150.34/32,PROXY,no-resolve
- - IP-CIDR,180.163.151.162/32,PROXY,no-resolve
- - IP-CIDR,180.163.151.34/32,PROXY,no-resolve
- - IP-CIDR,203.208.39.0/24,PROXY,no-resolve
- - IP-CIDR,203.208.40.0/24,PROXY,no-resolve
- - IP-CIDR,203.208.41.0/24,PROXY,no-resolve
- - IP-CIDR,203.208.43.0/24,PROXY,no-resolve
- - IP-CIDR,203.208.50.0/24,PROXY,no-resolve
- - IP-CIDR,220.181.174.162/32,PROXY,no-resolve
- - IP-CIDR,220.181.174.226/32,PROXY,no-resolve
- - IP-CIDR,220.181.174.34/32,PROXY,no-resolve
- - DOMAIN,injections.adguard.org,DIRECT
- - DOMAIN,local.adguard.org,DIRECT
- - DOMAIN-SUFFIX,local,DIRECT
- - IP-CIDR,127.0.0.0/8,DIRECT
- - IP-CIDR,172.16.0.0/12,DIRECT
- - IP-CIDR,192.168.0.0/16,DIRECT
- - IP-CIDR,10.0.0.0/8,DIRECT
- - IP-CIDR,17.0.0.0/8,DIRECT
- - IP-CIDR,100.64.0.0/10,DIRECT
- - IP-CIDR,224.0.0.0/4,DIRECT
- - IP-CIDR6,fe80::/10,DIRECT
- - DOMAIN-SUFFIX,cn,DIRECT
- - DOMAIN-KEYWORD,-cn,DIRECT
- - GEOIP,CN,DIRECT
- - MATCH,PROXY
+  # ── DNS 直连 ──────────────────────────
+  - IP-CIDR,1.1.1.1/32,PROXY,no-resolve
+  - IP-CIDR,8.8.8.8/32,PROXY,no-resolve
 
+  # ── AI 服务 ───────────────────────────
+  - DOMAIN-KEYWORD,gemini,AI
+  - DOMAIN-KEYWORD,googleapi,AI
+  - DOMAIN-KEYWORD,openai,AI
+  - DOMAIN-KEYWORD,chatgpt,AI
+  - DOMAIN-KEYWORD,claude,AI
+  - DOMAIN-KEYWORD,anthropic,AI
+  - DOMAIN-KEYWORD,aistudio,AI
+  - DOMAIN-KEYWORD,mtalk.google,AI
+
+  # ── 直连例外 ──────────────────────────
+  - DOMAIN-KEYWORD,api.cloudflare.com,DIRECT
+  - DOMAIN-KEYWORD,erp.edaying.com,DIRECT
+
+  # ── 广告拦截 ──────────────────────────
+  - DOMAIN-KEYWORD,admarvel,REJECT
+  - DOMAIN-KEYWORD,admaster,REJECT
+  - DOMAIN-KEYWORD,adsage,REJECT
+  - DOMAIN-KEYWORD,adsmogo,REJECT
+  - DOMAIN-KEYWORD,adsrvmedia,REJECT
+  - DOMAIN-KEYWORD,adwords,REJECT
+  - DOMAIN-KEYWORD,adservice,REJECT
+  - DOMAIN-SUFFIX,appsflyer.com,REJECT
+  - DOMAIN-KEYWORD,domob,REJECT
+  - DOMAIN-SUFFIX,doubleclick.net,REJECT
+  - DOMAIN-KEYWORD,duomeng,REJECT
+  - DOMAIN-KEYWORD,dwtrack,REJECT
+  - DOMAIN-KEYWORD,guanggao,REJECT
+  - DOMAIN-KEYWORD,lianmeng,REJECT
+  - DOMAIN-SUFFIX,mmstat.com,REJECT
+  - DOMAIN-KEYWORD,mopub,REJECT
+  - DOMAIN-KEYWORD,omgmta,REJECT
+  - DOMAIN-KEYWORD,openx,REJECT
+  - DOMAIN-KEYWORD,partnerad,REJECT
+  - DOMAIN-KEYWORD,pingfore,REJECT
+  - DOMAIN-KEYWORD,supersonicads,REJECT
+  - DOMAIN-KEYWORD,uedas,REJECT
+  - DOMAIN-KEYWORD,umeng,REJECT
+  - DOMAIN-KEYWORD,usage,REJECT
+  - DOMAIN-SUFFIX,vungle.com,REJECT
+  - DOMAIN-KEYWORD,wlmonitor,REJECT
+  - DOMAIN-KEYWORD,zjtoolbar,REJECT
+
+  # ── Apple 服务 ────────────────────────
+  - DOMAIN,developer.apple.com,PROXY
+  - DOMAIN-SUFFIX,digicert.com,PROXY
+  - DOMAIN,ocsp.apple.com,PROXY
+  - DOMAIN,ocsp.comodoca.com,PROXY
+  - DOMAIN,ocsp.usertrust.com,PROXY
+  - DOMAIN,ocsp.sectigo.com,PROXY
+  - DOMAIN,ocsp.verisign.net,PROXY
+  - DOMAIN-SUFFIX,apple-dns.net,PROXY
+  - DOMAIN,testflight.apple.com,PROXY
+  - DOMAIN,sandbox.itunes.apple.com,PROXY
+  - DOMAIN,itunes.apple.com,PROXY
+  - DOMAIN-SUFFIX,apps.apple.com,PROXY
+  - DOMAIN-SUFFIX,blobstore.apple.com,PROXY
+  - DOMAIN,cvws.icloud-content.com,PROXY
+  - DOMAIN-SUFFIX,mzstatic.com,DIRECT
+  - DOMAIN-SUFFIX,itunes.apple.com,DIRECT
+  - DOMAIN-SUFFIX,icloud.com,DIRECT
+  - DOMAIN-SUFFIX,icloud-content.com,DIRECT
+  - DOMAIN-SUFFIX,me.com,DIRECT
+  - DOMAIN-SUFFIX,aaplimg.com,DIRECT
+  - DOMAIN-SUFFIX,cdn20.com,DIRECT
+  - DOMAIN-SUFFIX,cdn-apple.com,DIRECT
+  - DOMAIN-SUFFIX,akadns.net,DIRECT
+  - DOMAIN-SUFFIX,akamaiedge.net,DIRECT
+  - DOMAIN-SUFFIX,edgekey.net,DIRECT
+  - DOMAIN-SUFFIX,mwcloudcdn.com,DIRECT
+  - DOMAIN-SUFFIX,mwcname.com,DIRECT
+  - DOMAIN-SUFFIX,apple.com,DIRECT
+  - DOMAIN-SUFFIX,apple-cloudkit.com,DIRECT
+  - DOMAIN-SUFFIX,apple-mapkit.com,DIRECT
+
+  # ── 国内直连 ──────────────────────────
+  - DOMAIN,cn.bing.com,DIRECT
+  - DOMAIN-SUFFIX,126.com,DIRECT
+  - DOMAIN-SUFFIX,126.net,DIRECT
+  - DOMAIN-SUFFIX,127.net,DIRECT
+  - DOMAIN-SUFFIX,163.com,DIRECT
+  - DOMAIN-SUFFIX,360buyimg.com,DIRECT
+  - DOMAIN-SUFFIX,36kr.com,DIRECT
+  - DOMAIN-SUFFIX,acfun.tv,DIRECT
+  - DOMAIN-SUFFIX,air-matters.com,DIRECT
+  - DOMAIN-SUFFIX,aixifan.com,DIRECT
+  - DOMAIN-KEYWORD,alicdn,DIRECT
+  - DOMAIN-KEYWORD,alipay,DIRECT
+  - DOMAIN-KEYWORD,taobao,DIRECT
+  - DOMAIN-SUFFIX,amap.com,DIRECT
+  - DOMAIN-SUFFIX,autonavi.com,DIRECT
+  - DOMAIN-KEYWORD,baidu,DIRECT
+  - DOMAIN-SUFFIX,bdimg.com,DIRECT
+  - DOMAIN-SUFFIX,bdstatic.com,DIRECT
+  - DOMAIN-SUFFIX,bilibili.com,DIRECT
+  - DOMAIN-SUFFIX,bilivideo.com,DIRECT
+  - DOMAIN-SUFFIX,caiyunapp.com,DIRECT
+  - DOMAIN-SUFFIX,clouddn.com,DIRECT
+  - DOMAIN-SUFFIX,cnbeta.com,DIRECT
+  - DOMAIN-SUFFIX,cnbetacdn.com,DIRECT
+  - DOMAIN-SUFFIX,cootekservice.com,DIRECT
+  - DOMAIN-SUFFIX,csdn.net,DIRECT
+  - DOMAIN-SUFFIX,ctrip.com,DIRECT
+  - DOMAIN-SUFFIX,dgtle.com,DIRECT
+  - DOMAIN-SUFFIX,dianping.com,DIRECT
+  - DOMAIN-SUFFIX,douban.com,DIRECT
+  - DOMAIN-SUFFIX,doubanio.com,DIRECT
+  - DOMAIN-SUFFIX,duokan.com,DIRECT
+  - DOMAIN-SUFFIX,easou.com,DIRECT
+  - DOMAIN-SUFFIX,ele.me,DIRECT
+  - DOMAIN-SUFFIX,feng.com,DIRECT
+  - DOMAIN-SUFFIX,fir.im,DIRECT
+  - DOMAIN-SUFFIX,frdic.com,DIRECT
+  - DOMAIN-SUFFIX,g-cores.com,DIRECT
+  - DOMAIN-SUFFIX,godic.net,DIRECT
+  - DOMAIN-SUFFIX,gtimg.com,DIRECT
+  - DOMAIN,cdn.hockeyapp.net,DIRECT
+  - DOMAIN-SUFFIX,hongxiu.com,DIRECT
+  - DOMAIN-SUFFIX,hxcdn.net,DIRECT
+  - DOMAIN-SUFFIX,iciba.com,DIRECT
+  - DOMAIN-SUFFIX,ifeng.com,DIRECT
+  - DOMAIN-SUFFIX,ifengimg.com,DIRECT
+  - DOMAIN-SUFFIX,ipip.net,DIRECT
+  - DOMAIN-SUFFIX,iqiyi.com,DIRECT
+  - DOMAIN-SUFFIX,jd.com,DIRECT
+  - DOMAIN-SUFFIX,jianshu.com,DIRECT
+  - DOMAIN-SUFFIX,knewone.com,DIRECT
+  - DOMAIN-SUFFIX,le.com,DIRECT
+  - DOMAIN-SUFFIX,lecloud.com,DIRECT
+  - DOMAIN-SUFFIX,lemicp.com,DIRECT
+  - DOMAIN-SUFFIX,licdn.com,DIRECT
+  - DOMAIN-SUFFIX,luoo.net,DIRECT
+  - DOMAIN-SUFFIX,meituan.com,DIRECT
+  - DOMAIN-SUFFIX,meituan.net,DIRECT
+  - DOMAIN-SUFFIX,mi.com,DIRECT
+  - DOMAIN-SUFFIX,miaopai.com,DIRECT
+  - DOMAIN-SUFFIX,microsoft.com,DIRECT
+  - DOMAIN-SUFFIX,microsoftonline.com,DIRECT
+  - DOMAIN-SUFFIX,miui.com,DIRECT
+  - DOMAIN-SUFFIX,miwifi.com,DIRECT
+  - DOMAIN-SUFFIX,mob.com,DIRECT
+  - DOMAIN-SUFFIX,netease.com,DIRECT
+  - DOMAIN-SUFFIX,office.com,DIRECT
+  - DOMAIN-SUFFIX,office365.com,DIRECT
+  - DOMAIN-KEYWORD,officecdn,DIRECT
+  - DOMAIN-SUFFIX,oschina.net,DIRECT
+  - DOMAIN-SUFFIX,ppsimg.com,DIRECT
+  - DOMAIN-SUFFIX,pstatp.com,DIRECT
+  - DOMAIN-SUFFIX,qcloud.com,DIRECT
+  - DOMAIN-SUFFIX,qdaily.com,DIRECT
+  - DOMAIN-SUFFIX,qdmm.com,DIRECT
+  - DOMAIN-SUFFIX,qhimg.com,DIRECT
+  - DOMAIN-SUFFIX,qhres.com,DIRECT
+  - DOMAIN-SUFFIX,qidian.com,DIRECT
+  - DOMAIN-SUFFIX,qihucdn.com,DIRECT
+  - DOMAIN-SUFFIX,qiniu.com,DIRECT
+  - DOMAIN-SUFFIX,qiniucdn.com,DIRECT
+  - DOMAIN-SUFFIX,qiyipic.com,DIRECT
+  - DOMAIN-SUFFIX,qq.com,DIRECT
+  - DOMAIN-SUFFIX,qqurl.com,DIRECT
+  - DOMAIN-SUFFIX,rarbg.to,DIRECT
+  - DOMAIN-SUFFIX,ruguoapp.com,DIRECT
+  - DOMAIN-SUFFIX,segmentfault.com,DIRECT
+  - DOMAIN-SUFFIX,sinaapp.com,DIRECT
+  - DOMAIN-SUFFIX,smzdm.com,DIRECT
+  - DOMAIN-SUFFIX,snapdrop.net,DIRECT
+  - DOMAIN-SUFFIX,sogou.com,DIRECT
+  - DOMAIN-SUFFIX,sogoucdn.com,DIRECT
+  - DOMAIN-SUFFIX,sohu.com,DIRECT
+  - DOMAIN-SUFFIX,soku.com,DIRECT
+  - DOMAIN-SUFFIX,speedtest.net,DIRECT
+  - DOMAIN-SUFFIX,sspai.com,DIRECT
+  - DOMAIN-SUFFIX,suning.com,DIRECT
+  - DOMAIN-SUFFIX,taobao.com,DIRECT
+  - DOMAIN-SUFFIX,tencent.com,DIRECT
+  - DOMAIN-SUFFIX,tenpay.com,DIRECT
+  - DOMAIN-SUFFIX,tianyancha.com,DIRECT
+  - DOMAIN-SUFFIX,tmall.com,DIRECT
+  - DOMAIN-SUFFIX,tudou.com,DIRECT
+  - DOMAIN-SUFFIX,umetrip.com,DIRECT
+  - DOMAIN-SUFFIX,upaiyun.com,DIRECT
+  - DOMAIN-SUFFIX,upyun.com,DIRECT
+  - DOMAIN-SUFFIX,veryzhun.com,DIRECT
+  - DOMAIN-SUFFIX,weather.com,DIRECT
+  - DOMAIN-SUFFIX,weibo.com,DIRECT
+  - DOMAIN-SUFFIX,xiami.com,DIRECT
+  - DOMAIN-SUFFIX,xiami.net,DIRECT
+  - DOMAIN-SUFFIX,xiaomicp.com,DIRECT
+  - DOMAIN-SUFFIX,ximalaya.com,DIRECT
+  - DOMAIN-SUFFIX,xmcdn.com,DIRECT
+  - DOMAIN-SUFFIX,xunlei.com,DIRECT
+  - DOMAIN-SUFFIX,yhd.com,DIRECT
+  - DOMAIN-SUFFIX,yihaodianimg.com,DIRECT
+  - DOMAIN-SUFFIX,yinxiang.com,DIRECT
+  - DOMAIN-SUFFIX,ykimg.com,DIRECT
+  - DOMAIN-SUFFIX,youdao.com,DIRECT
+  - DOMAIN-SUFFIX,youku.com,DIRECT
+  - DOMAIN-SUFFIX,zealer.com,DIRECT
+  - DOMAIN-SUFFIX,zhihu.com,DIRECT
+  - DOMAIN-SUFFIX,zhimg.com,DIRECT
+  - DOMAIN-SUFFIX,zimuzu.tv,DIRECT
+  - DOMAIN-SUFFIX,zoho.com,DIRECT
+
+  # ── 代理 ──────────────────────────────
+  - DOMAIN-KEYWORD,speedtest,PROXY
+  - DOMAIN-SUFFIX,services.googleapis.cn,PROXY
+  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,PROXY
+  - DOMAIN,safebrowsing.urlsec.qq.com,DIRECT
+  - DOMAIN,safebrowsing.googleapis.com,DIRECT
+  - DOMAIN-KEYWORD,amazon,PROXY
+  - DOMAIN-KEYWORD,google,PROXY
+  - DOMAIN-KEYWORD,gmail,PROXY
+  - DOMAIN-KEYWORD,youtube,PROXY
+  - DOMAIN-KEYWORD,facebook,PROXY
+  - DOMAIN-SUFFIX,fb.me,PROXY
+  - DOMAIN-SUFFIX,fbcdn.net,PROXY
+  - DOMAIN-KEYWORD,twitter,PROXY
+  - DOMAIN-KEYWORD,instagram,PROXY
+  - DOMAIN-KEYWORD,dropbox,PROXY
+  - DOMAIN-SUFFIX,twimg.com,PROXY
+  - DOMAIN-KEYWORD,blogspot,PROXY
+  - DOMAIN-SUFFIX,youtu.be,PROXY
+  - DOMAIN-KEYWORD,whatsapp,PROXY
+  - DOMAIN-SUFFIX,9to5mac.com,PROXY
+  - DOMAIN-SUFFIX,adobe.com,PROXY
+  - DOMAIN-SUFFIX,akamaized.net,PROXY
+  - DOMAIN-SUFFIX,android.com,PROXY
+  - DOMAIN-SUFFIX,appspot.com,PROXY
+  - DOMAIN-SUFFIX,archive.org,PROXY
+  - DOMAIN-SUFFIX,awsstatic.com,PROXY
+  - DOMAIN-SUFFIX,azureedge.net,PROXY
+  - DOMAIN-SUFFIX,azurewebsites.net,PROXY
+  - DOMAIN-SUFFIX,bing.com,PROXY
+  - DOMAIN-SUFFIX,bit.ly,PROXY
+  - DOMAIN-SUFFIX,bitbucket.org,PROXY
+  - DOMAIN-SUFFIX,blogger.com,PROXY
+  - DOMAIN-SUFFIX,blogspot.com,PROXY
+  - DOMAIN-SUFFIX,bloomberg.com,PROXY
+  - DOMAIN-SUFFIX,box.com,PROXY
+  - DOMAIN-SUFFIX,cloudflare.com,PROXY
+  - DOMAIN-SUFFIX,cloudfront.net,PROXY
+  - DOMAIN-SUFFIX,cnet.com,PROXY
+  - DOMAIN-SUFFIX,cocoapods.org,PROXY
+  - DOMAIN-SUFFIX,docker.com,PROXY
+  - DOMAIN-SUFFIX,dribbble.com,PROXY
+  - DOMAIN-SUFFIX,duckduckgo.com,PROXY
+  - DOMAIN-SUFFIX,evernote.com,PROXY
+  - DOMAIN-SUFFIX,fastly.net,PROXY
+  - DOMAIN-SUFFIX,feedly.com,PROXY
+  - DOMAIN-SUFFIX,flickr.com,PROXY
+  - DOMAIN-SUFFIX,g.co,PROXY
+  - DOMAIN-KEYWORD,github,PROXY
+  - DOMAIN-SUFFIX,golang.org,PROXY
+  - DOMAIN-SUFFIX,goo.gl,PROXY
+  - DOMAIN-SUFFIX,gravatar.com,PROXY
+  - DOMAIN-SUFFIX,gstatic.com,PROXY
+  - DOMAIN-SUFFIX,hotmail.com,PROXY
+  - DOMAIN-SUFFIX,imgur.com,PROXY
+  - DOMAIN-SUFFIX,instapaper.com,PROXY
+  - DOMAIN-SUFFIX,linkedin.com,PROXY
+  - DOMAIN-SUFFIX,live.com,PROXY
+  - DOMAIN-SUFFIX,medium.com,PROXY
+  - DOMAIN-SUFFIX,mega.nz,PROXY
+  - DOMAIN-SUFFIX,msedge.net,PROXY
+  - DOMAIN-SUFFIX,nytimes.com,PROXY
+  - DOMAIN-SUFFIX,onedrive.com,PROXY
+  - DOMAIN-SUFFIX,onenote.com,PROXY
+  - DOMAIN-SUFFIX,outlook.com,PROXY
+  - DOMAIN-SUFFIX,pinterest.com,PROXY
+  - DOMAIN-SUFFIX,pixiv.net,PROXY
+  - DOMAIN-SUFFIX,playstation.com,PROXY
+  - DOMAIN-SUFFIX,playstation.net,PROXY
+  - DOMAIN-SUFFIX,shadowsocks.org,PROXY
+  - DOMAIN-SUFFIX,skype.com,PROXY
+  - DOMAIN-SUFFIX,soundcloud.com,PROXY
+  - DOMAIN-SUFFIX,sourceforge.net,PROXY
+  - DOMAIN-SUFFIX,spotify.com,PROXY
+  - DOMAIN-SUFFIX,stackoverflow.com,PROXY
+  - DOMAIN-SUFFIX,steamcommunity.com,PROXY
+  - DOMAIN-SUFFIX,techcrunch.com,PROXY
+  - DOMAIN-SUFFIX,theverge.com,PROXY
+  - DOMAIN-SUFFIX,todoist.com,PROXY
+  - DOMAIN-SUFFIX,trello.com,PROXY
+  - DOMAIN-SUFFIX,tumblr.com,PROXY
+  - DOMAIN-SUFFIX,twitch.tv,PROXY
+  - DOMAIN-SUFFIX,v2ex.com,PROXY
+  - DOMAIN-SUFFIX,vimeo.com,PROXY
+  - DOMAIN-SUFFIX,vultr.com,PROXY
+  - DOMAIN-SUFFIX,wikimedia.org,PROXY
+  - DOMAIN-SUFFIX,wikipedia.org,PROXY
+  - DOMAIN-SUFFIX,windows.com,PROXY
+  - DOMAIN-SUFFIX,windows.net,PROXY
+  - DOMAIN-SUFFIX,wordpress.com,PROXY
+  - DOMAIN-SUFFIX,wsj.com,PROXY
+  - DOMAIN-SUFFIX,yahoo.com,PROXY
+  - DOMAIN-SUFFIX,ytimg.com,PROXY
+  - DOMAIN-SUFFIX,telegra.ph,PROXY
+  - DOMAIN-SUFFIX,telegram.org,PROXY
+
+  # ── Telegram IP ───────────────────────
+  - IP-CIDR,91.108.4.0/22,PROXY,no-resolve
+  - IP-CIDR,91.108.8.0/21,PROXY,no-resolve
+  - IP-CIDR,91.108.16.0/22,PROXY,no-resolve
+  - IP-CIDR,91.108.56.0/22,PROXY,no-resolve
+  - IP-CIDR,149.154.160.0/20,PROXY,no-resolve
+  - IP-CIDR6,2001:67c:4e8::/48,PROXY,no-resolve
+  - IP-CIDR6,2001:b28:f23d::/48,PROXY,no-resolve
+  - IP-CIDR6,2001:b28:f23f::/48,PROXY,no-resolve
+
+  # ── 本地 / 局域网 ─────────────────────
+  - DOMAIN,injections.adguard.org,DIRECT
+  - DOMAIN,local.adguard.org,DIRECT
+  - DOMAIN-SUFFIX,local,DIRECT
+  - IP-CIDR,127.0.0.0/8,DIRECT
+  - IP-CIDR,172.16.0.0/12,DIRECT
+  - IP-CIDR,192.168.0.0/16,DIRECT
+  - IP-CIDR,10.0.0.0/8,DIRECT
+  - IP-CIDR,17.0.0.0/8,DIRECT
+  - IP-CIDR,100.64.0.0/10,DIRECT
+  - IP-CIDR,224.0.0.0/4,DIRECT
+  - IP-CIDR6,fe80::/10,DIRECT
+
+  # ── 兜底 ──────────────────────────────
+  - DOMAIN-SUFFIX,cn,DIRECT
+  - DOMAIN-KEYWORD,-cn,DIRECT
+  - GEOIP,CN,DIRECT
+  - MATCH,PROXY

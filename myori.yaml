@@ -41,6 +41,22 @@ dns:
 # ║           手动代理节点                ║
 # ╚══════════════════════════════════════╝
 proxies:
+  # ── cloudflare ──────────────────────────────
+  - name: "cloudflare"
+    type: vless
+    server: cd5ee671.ti-ewg.pages.dev
+    port: 443
+    uuid: c25ae7e1-1841-4de8-8082-d2a9be361bcb
+    udp: true
+    tls: true
+    sni: cd5ee671.ti-ewg.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /
+      headers:
+        Host: cd5ee671.ti-ewg.pages.dev
+
 
   # ── 香港 ──────────────────────────────
   - { name: "香港 01 HKIX", type: vmess, server: select-hk.ddnskunlun.com, port: 9002, uuid: c814cdaa-3fd1-32a3-b1af-852a4fb5c634, alterId: 0, cipher: auto, udp: true }
@@ -151,6 +167,7 @@ proxy-groups:
     type: select
     proxies:
       - 自动选择
+      - cloudflare
       - 香港自动
       - 非香港自动
       - DIRECT
@@ -354,6 +371,7 @@ rules:
   - DOMAIN-KEYWORD,anthropic,AI
   - DOMAIN-KEYWORD,aistudio,AI
   - DOMAIN-KEYWORD,mtalk.google,AI
+  - DOMAIN-KEYWORD,opencode,PROXY
 
   # ── 直连例外 ──────────────────────────
   - DOMAIN-KEYWORD,api.cloudflare.com,DIRECT

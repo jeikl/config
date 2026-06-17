@@ -375,7 +375,7 @@ rules:
   - DOMAIN-KEYWORD,anthropic,AI
   - DOMAIN-KEYWORD,aistudio,AI
   - DOMAIN-KEYWORD,mtalk.google,AI
-  - DOMAIN-KEYWORD,opencode,PROXY
+  - DOMAIN-KEYWORD,opencode,DIRECT
 
   # ── 直连例外 ──────────────────────────
   - DOMAIN-KEYWORD,api.cloudflare.com,DIRECT

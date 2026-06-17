@@ -364,7 +364,8 @@ rules:
   # ── DNS 直连 ──────────────────────────
   - IP-CIDR,1.1.1.1/32,PROXY,no-resolve
   - IP-CIDR,8.8.8.8/32,PROXY,no-resolve
-
+  - DOMAIN-KEYWORD,zcode,DIRECT
+  - DOMAIN-KEYWORD,z.ai,DIRECT
   # ── AI 服务 ───────────────────────────
   - DOMAIN-KEYWORD,gemini,AI
   - DOMAIN-KEYWORD,googleapi,AI
@@ -536,7 +537,7 @@ rules:
   - DOMAIN-SUFFIX,sogoucdn.com,DIRECT
   - DOMAIN-SUFFIX,sohu.com,DIRECT
   - DOMAIN-SUFFIX,soku.com,DIRECT
-  - DOMAIN-SUFFIX,speedtest.net,DIRECT
+  - DOMAIN-SUFFIX,speedtest.net,PROXY
   - DOMAIN-SUFFIX,sspai.com,DIRECT
   - DOMAIN-SUFFIX,suning.com,DIRECT
   - DOMAIN-SUFFIX,taobao.com,DIRECT

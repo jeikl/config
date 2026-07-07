@@ -125,7 +125,7 @@ proxy-providers:
 
   良心云:
     type: http
-    url: "https://liangxin.xyz/api/v1/liangxin?OwO=1b5fdd97b1d9c9c861420811e7d4e295"
+    url: "https://liangxin.xyz/api/v1/liangxin?OwO=456e0417072210b657399d619b043749"
     interval: 86400
     path: ./providers/liangxin.yaml
     filter: "^(?!.*(剩余|到期|套餐|流量|官网|平台|v6))"   # 过滤掉信息节点
@@ -374,20 +374,13 @@ proxy-groups:
 # ║                规则                  ║
 # ╚══════════════════════════════════════╝
 rules:
-
   # ── DNS 直连 ──────────────────────────
   - IP-CIDR,1.1.1.1/32,PROXY,no-resolve
   - IP-CIDR,8.8.8.8/32,PROXY,no-resolve
   - DOMAIN-KEYWORD,zcode,PROXY
   - DOMAIN-KEYWORD,z.ai,PROXY
-  - DOMAIN-KEYWORD,edaying,DIRECT
-  - DOMAIN-KEYWORD,ailai,DIRECT
-  - IP-CIDR,47.107.124.44/32,DIRECT #匹配数据目标IP(直连)
-  - DOMAIN-KEYWORD,test.edaying.com,DIRECT
-  - DOMAIN-KEYWORD,xd.x6d.com,DIRECT
-  
-  
   # ── AI 服务 ───────────────────────────
+  - DOMAIN-KEYWORD,xiaomi,DIRECT
   - DOMAIN-KEYWORD,step,DIRECT
   - DOMAIN-KEYWORD,outlook,DIRECT
   - DOMAIN-KEYWORD,login.microsoft.com,DIRECT
@@ -400,7 +393,7 @@ rules:
   - DOMAIN-KEYWORD,claude,AI
   - DOMAIN-KEYWORD,anthropic,AI
   - DOMAIN-KEYWORD,opencode.ai/zen/go,DIRECT
-  - DOMAIN-KEYWORD,opencode.ai/zen,PROXY
+  - DOMAIN-KEYWORD,opencode.ai/zen,DIRECT
   - DOMAIN-KEYWORD,auth.opencode.ai,PROXY
   - DOMAIN-KEYWORD,opencode,DIRECT
   - DOMAIN-KEYWORD,agnes,PROXY

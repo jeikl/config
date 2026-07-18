@@ -158,7 +158,8 @@ proxy-providers:
 
   LA:
     type: http
-    url: "https://ghfast.top/https://raw.githubusercontent.com/jeikl/config/main/usla.yaml"
+    # 中国优化：jsDelivr 固定到正确 provider 格式提交，避免 CDN 缓存旧完整配置
+    url: "https://cdn.jsdelivr.net/gh/jeikl/config@139d1cb/usla.yaml"
     interval: 3600
     path: ./providers/usla.yaml
     health-check:

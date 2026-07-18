@@ -93,6 +93,18 @@ proxies:
 
 
 
+  # ── 美国 ──────────────────────────────
+  - name: "洛杉矶"
+    type: hysteria2
+    server: uscn2.junv.top
+    port: 11533
+    password: AFQRhAPimn
+    tls: true
+    sni: www.google.com
+    skip-cert-verify: true
+    alpn:
+      - h3
+
   # ── 其他 ──────────────────────────────
   - name: "老家hy"
     type: hysteria2
@@ -187,6 +199,8 @@ proxy-groups:
       # 手动节点（新加坡）
       - 新加坡 04 Singtel
       - 新加坡 05 Singtel
+      # 手动节点（美国）
+      - 洛杉矶
       # 其他
       - 老家hy
       # 订阅节点组
@@ -214,6 +228,7 @@ proxy-groups:
       - 爪云-JP-WS
       - 新加坡 04 Singtel
       - 新加坡 05 Singtel
+      - 洛杉矶
       - 香港转自购
 
 
@@ -232,6 +247,7 @@ proxy-groups:
       - 爪云-JP-WS
       - 新加坡 04 Singtel
       - 新加坡 05 Singtel
+      - 洛杉矶
       - 香港转自购
 
   # ┌─────────────────────────────────────
@@ -260,6 +276,7 @@ proxy-groups:
       - 爪云-JP-WS
       - 新加坡 04 Singtel
       - 新加坡 05 Singtel
+      - 洛杉矶
       - 良心云-非香港
       - 飞鸟云-非香港
       - 小火箭-非香港

@@ -93,18 +93,6 @@ proxies:
 
 
 
-  # ── 美国 ──────────────────────────────
-  - name: "洛杉矶"
-    type: hysteria2
-    server: uscn2.junv.top
-    port: 11533
-    password: AFQRhAPimn
-    tls: true
-    sni: www.google.com
-    skip-cert-verify: true
-    alpn:
-      - h3
-
   # ── 其他 ──────────────────────────────
   - name: "老家hy"
     type: hysteria2
@@ -168,9 +156,9 @@ proxy-providers:
       url: http://www.gstatic.com/generate_204
       interval: 30
 
-  USLA:
+  LA:
     type: http
-    url: "https://raw.githubusercontent.com/jeikl/config/main/usla.yaml"
+    url: "https://ghfast.top/https://raw.githubusercontent.com/jeikl/config/main/usla.yaml"
     interval: 3600
     path: ./providers/usla.yaml
     health-check:
@@ -210,7 +198,7 @@ proxy-groups:
       - 新加坡 04 Singtel
       - 新加坡 05 Singtel
       # 手动节点（美国）
-      - 洛杉矶
+      - LA
       # 其他
       - 老家hy
       # 订阅节点组
@@ -223,7 +211,6 @@ proxy-groups:
       - 小火箭
       - 小火箭-香港
       - 小火箭-非香港
-      - USLA
 
   - name: AI                   # AI 服务专用
     type: select
@@ -239,7 +226,7 @@ proxy-groups:
       - 爪云-JP-WS
       - 新加坡 04 Singtel
       - 新加坡 05 Singtel
-      - 洛杉矶
+      - LA
       - 香港转自购
 
 
@@ -258,7 +245,7 @@ proxy-groups:
       - 爪云-JP-WS
       - 新加坡 04 Singtel
       - 新加坡 05 Singtel
-      - 洛杉矶
+      - LA
       - 香港转自购
 
   # ┌─────────────────────────────────────
@@ -287,11 +274,10 @@ proxy-groups:
       - 爪云-JP-WS
       - 新加坡 04 Singtel
       - 新加坡 05 Singtel
-      - 洛杉矶
+      - LA
       - 良心云-非香港
       - 飞鸟云-非香港
       - 小火箭-非香港
-      - USLA
     url: http://www.gstatic.com/generate_204
     interval: 3
     timeout: 2500
@@ -381,9 +367,9 @@ proxy-groups:
     timeout: 2500
     tolerance: 80
 
-  - name: USLA
+  - name: LA
     type: select
-    use: [USLA]
+    use: [LA]
 
   # ┌─────────────────────────────────────
   # │  功能性组

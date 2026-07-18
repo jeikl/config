@@ -168,6 +168,16 @@ proxy-providers:
       url: http://www.gstatic.com/generate_204
       interval: 30
 
+  USLA:
+    type: http
+    url: "https://raw.githubusercontent.com/jeikl/config/main/usla.yaml"
+    interval: 3600
+    path: ./providers/usla.yaml
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 30
+
 
 # ╔══════════════════════════════════════╗
 # ║             代理组                   ║
@@ -213,6 +223,7 @@ proxy-groups:
       - 小火箭
       - 小火箭-香港
       - 小火箭-非香港
+      - USLA
 
   - name: AI                   # AI 服务专用
     type: select
@@ -280,6 +291,7 @@ proxy-groups:
       - 良心云-非香港
       - 飞鸟云-非香港
       - 小火箭-非香港
+      - USLA
     url: http://www.gstatic.com/generate_204
     interval: 3
     timeout: 2500
@@ -368,6 +380,10 @@ proxy-groups:
     interval: 3
     timeout: 2500
     tolerance: 80
+
+  - name: USLA
+    type: select
+    use: [USLA]
 
   # ┌─────────────────────────────────────
   # │  功能性组

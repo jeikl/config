@@ -1,0 +1,147 @@
+port: 7890
+allow-lan: true
+mode: rule
+log-level: info
+unified-delay: true
+dns:
+  enable: true 
+  listen: "0.0.0.0:1053"
+  ipv6: true
+  prefer-h3: false
+  respect-rules: true
+  use-system-hosts: false
+  cache-algorithm: "arc"
+  enhanced-mode: "fake-ip"
+  fake-ip-range: "198.18.0.1/16"
+  fake-ip-filter:
+    - "+.lan"
+    - "+.local"
+    - "+.msftconnecttest.com"
+    - "+.msftncsi.com"
+    - "localhost.ptlogin2.qq.com"
+    - "localhost.sec.qq.com"
+    - "+.in-addr.arpa"
+    - "+.ip6.arpa"
+    - "time.*.com"
+    - "time.*.gov"
+    - "pool.ntp.org"
+    - "localhost.work.weixin.qq.com"
+  default-nameserver: ["223.5.5.5", "119.29.29.29"]
+  nameserver:
+    - "https://1.1.1.1/dns-query"
+    - "https://8.8.8.8/dns-query"
+  proxy-server-nameserver:
+    - "https://223.5.5.5/dns-query"
+    - "https://doh.pub/dns-query"
+
+proxies:
+- name: vless-reality-vision-ser900471152131               
+  type: vless
+  server: 103.81.171.21                           
+  port: 25375                                
+  uuid: 974bec24-1b53-4075-bc91-c9bcf304dbf4   
+  network: tcp
+  udp: true
+  tls: true
+  flow: xtls-rprx-vision
+  servername: apple.com                 
+  reality-opts: 
+    public-key: jtUc4JtqgV6j3UrSQApoQZiVYiOHpoOxegE-VOyLUn0    
+    short-id: d08c8162                      
+  client-fingerprint: chrome                  
+
+- name: vmess-ws-ser900471152131                         
+  type: vmess
+  server: 103.81.171.21                        
+  port: 8080                                     
+  uuid: 974bec24-1b53-4075-bc91-c9bcf304dbf4       
+  alterId: 0
+  cipher: auto
+  udp: true
+  tls: false
+  network: ws
+  servername: www.bing.com                    
+  ws-opts:
+    path: "974bec24-1b53-4075-bc91-c9bcf304dbf4-vm"                             
+    headers:
+      Host: www.bing.com                     
+
+- name: hysteria2-ser900471152131                            
+  type: hysteria2                                      
+  server: 103.81.171.21                               
+  port: 17562
+  ports: 
+  password: 974bec24-1b53-4075-bc91-c9bcf304dbf4                          
+  alpn:
+    - h3
+  sni: www.bing.com                               
+  skip-cert-verify: true
+  fast-open: true
+
+- name: tuic5-ser900471152131                            
+  server: 103.81.171.21                      
+  port: 12494                                    
+  type: tuic
+  uuid: 974bec24-1b53-4075-bc91-c9bcf304dbf4       
+  password: 974bec24-1b53-4075-bc91-c9bcf304dbf4   
+  alpn: [h3]
+  disable-sni: true
+  reduce-rtt: true
+  udp-relay-mode: native
+  congestion-controller: bbr
+  sni: www.bing.com                                
+  skip-cert-verify: true
+
+- name: anytls-ser900471152131
+  type: anytls
+  server: 103.81.171.21
+  port: 35601
+  password: 974bec24-1b53-4075-bc91-c9bcf304dbf4
+  client-fingerprint: chrome
+  udp: true
+  idle-session-check-interval: 30
+  idle-session-timeout: 30
+  sni: www.bing.com
+  skip-cert-verify: true
+
+proxy-groups:
+- name: 负载均衡
+  type: load-balance
+  url: https://www.gstatic.com/generate_204
+  interval: 300
+  strategy: round-robin
+  proxies:
+    - vless-reality-vision-ser900471152131                              
+    - vmess-ws-ser900471152131
+    - hysteria2-ser900471152131
+    - tuic5-ser900471152131
+    - anytls-ser900471152131
+
+- name: 自动选择
+  type: url-test
+  url: https://www.gstatic.com/generate_204
+  interval: 300
+  tolerance: 50
+  proxies:
+    - vless-reality-vision-ser900471152131                              
+    - vmess-ws-ser900471152131
+    - hysteria2-ser900471152131
+    - tuic5-ser900471152131
+    - anytls-ser900471152131
+    
+- name: 🌍选择代理节点
+  type: select
+  proxies:
+    - 负载均衡                                         
+    - 自动选择
+    - DIRECT
+    - vless-reality-vision-ser900471152131                              
+    - vmess-ws-ser900471152131
+    - hysteria2-ser900471152131
+    - tuic5-ser900471152131
+    - anytls-ser900471152131
+rules:
+  - GEOIP,LAN,DIRECT
+  - GEOSITE,CN,DIRECT
+  - GEOIP,CN,DIRECT
+  - MATCH,🌍选择代理节点

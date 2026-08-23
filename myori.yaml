@@ -16,12 +16,11 @@ dns:
   proxy-server-nameserver:
     - 1.1.1.1
     - 8.8.8.8
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  fake-ip-filter: ['*.lan', localhost.ptlogin2.qq.com]
+  enhanced-mode: redir-host              # 切换为真实 IP 模式
   use-hosts: true
+  nameserver-policy:
+    '+.et.net': 100.100.100.101          # et.net 继续指定 100.100.100.101 解析
   nameserver:
-    - 10.0.0.2
     - 114.114.114.114
     - 223.5.5.5
   fallback:
@@ -399,6 +398,8 @@ rules:
   - IP-CIDR,8.8.8.8/32,PROXY,no-resolve
   - DOMAIN-KEYWORD,zcode,PROXY
   - DOMAIN-KEYWORD,z.ai,PROXY
+  - DOMAIN-KEYWORD,hk.junv.top,DIRECT
+  - DOMAIN-KEYWORD,uscn2.junv.top,DIRECT
   # ── AI 服务 ───────────────────────────
   - DOMAIN-KEYWORD,xiaomi,DIRECT
   - DOMAIN-KEYWORD,step,DIRECT
@@ -420,8 +421,8 @@ rules:
   - DOMAIN-KEYWORD,maxc,DIRECT
 
   # ── 直连例外 ──────────────────────────
-  - DOMAIN-KEYWORD,api.cloudflare.com,DIRECT
-  - DOMAIN-KEYWORD,erp.edaying.com,DIRECT
+
+  - DOMAIN-KEYWORD,edaying.com,DIRECT
 
   # ── 广告拦截 ──────────────────────────
   - DOMAIN-KEYWORD,admarvel,REJECT

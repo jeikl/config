@@ -11,6 +11,19 @@ proxies:
     sni: www.bing.com
     skip-cert-verify: true
 
+  - name: LA6-AnyTLS
+    type: anytls
+    server: us6.junv.top
+    port: 14024
+    password: 47e5e6c1-7228-402d-8df9-fa01b1010ba0
+    client-fingerprint: chrome
+    udp: true
+    idle-session-check-interval: 30
+    idle-session-timeout: 30
+    sni: www.bing.com
+    skip-cert-verify: true
+
+
   - name: LA-VLESS-Reality
     type: vless
     server: 179.253.249.49

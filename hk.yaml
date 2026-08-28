@@ -35,26 +35,26 @@ dns:
     - "https://doh.pub/dns-query"
 
 proxies:
-- name: vless-reality-vision-ser900471152131               
+- name: vless-reality-vision-ser210691770364               
   type: vless
-  server: 103.81.171.21                           
-  port: 25375                                
-  uuid: 974bec24-1b53-4075-bc91-c9bcf304dbf4   
+  server: hk.junv.top                           
+  port: 17100                                
+  uuid: 6e1fa926-5ef0-4a11-ac67-3d394d36247c   
   network: tcp
   udp: true
   tls: true
   flow: xtls-rprx-vision
   servername: apple.com                 
   reality-opts: 
-    public-key: jtUc4JtqgV6j3UrSQApoQZiVYiOHpoOxegE-VOyLUn0    
-    short-id: d08c8162                      
+    public-key: Loy2FtO5PutrMmM4K4qFyG0_KrZhQ5xgomecNrFFLCM    
+    short-id: 0d5c6e30                      
   client-fingerprint: chrome                  
 
-- name: vmess-ws-ser900471152131                         
+- name: vmess-ws-ser210691770364                         
   type: vmess
-  server: 103.81.171.21                        
-  port: 8080                                     
-  uuid: 974bec24-1b53-4075-bc91-c9bcf304dbf4       
+  server: hk.junv.top                        
+  port: 2052                                     
+  uuid: 6e1fa926-5ef0-4a11-ac67-3d394d36247c       
   alterId: 0
   cipher: auto
   udp: true
@@ -62,28 +62,28 @@ proxies:
   network: ws
   servername: www.bing.com                    
   ws-opts:
-    path: "974bec24-1b53-4075-bc91-c9bcf304dbf4-vm"                             
+    path: "6e1fa926-5ef0-4a11-ac67-3d394d36247c-vm"                             
     headers:
       Host: www.bing.com                     
 
-- name: hysteria2-ser900471152131                            
+- name: hysteria2-ser210691770364                            
   type: hysteria2                                      
-  server: 103.81.171.21                               
-  port: 17562
+  server: hk.junv.top                               
+  port: 43551
   ports: 
-  password: 974bec24-1b53-4075-bc91-c9bcf304dbf4                          
+  password: 6e1fa926-5ef0-4a11-ac67-3d394d36247c                          
   alpn:
     - h3
   sni: www.bing.com                               
   skip-cert-verify: true
   fast-open: true
 
-- name: tuic5-ser900471152131                            
-  server: 103.81.171.21                      
-  port: 12494                                    
+- name: tuic5-ser210691770364                            
+  server: hk.junv.top                      
+  port: 64897                                    
   type: tuic
-  uuid: 974bec24-1b53-4075-bc91-c9bcf304dbf4       
-  password: 974bec24-1b53-4075-bc91-c9bcf304dbf4   
+  uuid: 6e1fa926-5ef0-4a11-ac67-3d394d36247c       
+  password: 6e1fa926-5ef0-4a11-ac67-3d394d36247c   
   alpn: [h3]
   disable-sni: true
   reduce-rtt: true
@@ -92,11 +92,11 @@ proxies:
   sni: www.bing.com                                
   skip-cert-verify: true
 
-- name: anytls-ser900471152131
+- name: anytls-ser210691770364
   type: anytls
-  server: 103.81.171.21
-  port: 35601
-  password: 974bec24-1b53-4075-bc91-c9bcf304dbf4
+  server: hk.junv.top
+  port: 63288
+  password: 6e1fa926-5ef0-4a11-ac67-3d394d36247c
   client-fingerprint: chrome
   udp: true
   idle-session-check-interval: 30
@@ -111,11 +111,11 @@ proxy-groups:
   interval: 300
   strategy: round-robin
   proxies:
-    - vless-reality-vision-ser900471152131                              
-    - vmess-ws-ser900471152131
-    - hysteria2-ser900471152131
-    - tuic5-ser900471152131
-    - anytls-ser900471152131
+    - vless-reality-vision-ser210691770364                              
+    - vmess-ws-ser210691770364
+    - hysteria2-ser210691770364
+    - tuic5-ser210691770364
+    - anytls-ser210691770364
 
 - name: 自动选择
   type: url-test
@@ -123,11 +123,11 @@ proxy-groups:
   interval: 300
   tolerance: 50
   proxies:
-    - vless-reality-vision-ser900471152131                              
-    - vmess-ws-ser900471152131
-    - hysteria2-ser900471152131
-    - tuic5-ser900471152131
-    - anytls-ser900471152131
+    - vless-reality-vision-ser210691770364                              
+    - vmess-ws-ser210691770364
+    - hysteria2-ser210691770364
+    - tuic5-ser210691770364
+    - anytls-ser210691770364
     
 - name: 🌍选择代理节点
   type: select
@@ -135,11 +135,11 @@ proxy-groups:
     - 负载均衡                                         
     - 自动选择
     - DIRECT
-    - vless-reality-vision-ser900471152131                              
-    - vmess-ws-ser900471152131
-    - hysteria2-ser900471152131
-    - tuic5-ser900471152131
-    - anytls-ser900471152131
+    - vless-reality-vision-ser210691770364                              
+    - vmess-ws-ser210691770364
+    - hysteria2-ser210691770364
+    - tuic5-ser210691770364
+    - anytls-ser210691770364
 rules:
   - GEOIP,LAN,DIRECT
   - GEOSITE,CN,DIRECT

@@ -169,7 +169,6 @@ proxy-groups:
   - name: 非香港自动
     type: url-test
     proxies:
-      - 私人-洛杉矶
       - 良心云-非香港
     url: http://www.gstatic.com/generate_204
     interval: 3
@@ -238,13 +237,9 @@ proxy-groups:
     tolerance: 60
 
   - name: 私人-洛杉矶
-    type: url-test
+    type: select
     use: [私人]
     filter: "(?i)洛杉矶|la|us|美"
-    url: http://www.gstatic.com/generate_204
-    interval: 3
-    timeout: 2500
-    tolerance: 80
 
   # ┌─────────────────────────────────────
   # │  功能性组

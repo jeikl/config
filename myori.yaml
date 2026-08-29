@@ -124,6 +124,8 @@ proxy-groups:
       - 良心云
       - 良心云-香港
       - 良心云-非香港
+      - 私人-香港
+      - 私人-洛杉矶
 
 
 
@@ -156,6 +158,7 @@ proxy-groups:
     type: url-test
     proxies:
       - 良心云-香港
+      - 私人-香港
 
 
     url: http://www.gstatic.com/generate_204
@@ -166,7 +169,7 @@ proxy-groups:
   - name: 非香港自动
     type: url-test
     proxies:
-      - 私人
+      - 私人-洛杉矶
       - 良心云-非香港
     url: http://www.gstatic.com/generate_204
     interval: 3
@@ -224,6 +227,24 @@ proxy-groups:
   - name: 私人
     type: select
     use: [私人]
+
+  - name: 私人-香港
+    type: url-test
+    use: [私人]
+    filter: "(?i)港|hk|hongkong"
+    url: http://www.gstatic.com/generate_204
+    interval: 3
+    timeout: 1500
+    tolerance: 60
+
+  - name: 私人-洛杉矶
+    type: url-test
+    use: [私人]
+    filter: "(?i)洛杉矶|la|us|美"
+    url: http://www.gstatic.com/generate_204
+    interval: 3
+    timeout: 2500
+    tolerance: 80
 
   # ┌─────────────────────────────────────
   # │  功能性组

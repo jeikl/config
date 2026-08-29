@@ -54,21 +54,6 @@ proxies:
   - { name: "香港 01 HKIX", type: vmess, server: select-hk.ddnskunlun.com, port: 9002, uuid: c814cdaa-3fd1-32a3-b1af-852a4fb5c634, alterId: 0, cipher: auto, udp: true }
   - { name: "香港 02 HKIX", type: vmess, server: select-hk.ddnskunlun.com, port: 9003, uuid: c814cdaa-3fd1-32a3-b1af-852a4fb5c634, alterId: 0, cipher: auto, udp: true }
 
-  - name: "香港转自购"         # 通过中转组落地，用于访问谷歌系服务
-    alpn:
-      - h3
-      - h2
-      - http/1.1
-    obfs: salamander
-    obfs-password: ANhuang520
-    password: Qot92nL6AN
-    port: 54243
-    server: 38.49.42.68
-    skip-cert-verify: true
-    sni: www.mozilla.org
-    tls: true
-    type: hysteria2
-    dialer-proxy: 中转          # 先走中转组再出口
 
   # ── 日本 ──────────────────────────────
   - { name: "日本 02 SoftBank", type: vmess, server: select-jp.kunlunddns.com, port: 9031, uuid: c814cdaa-3fd1-32a3-b1af-852a4fb5c634, alterId: 0, cipher: auto, udp: true }
@@ -111,16 +96,6 @@ proxies:
 # ╚══════════════════════════════════════╝
 proxy-providers:
 
-  自购:
-    type: http
-    url: "http://38.49.42.68:2096/sub/jeik?format=clash"
-    interval: 86400
-    path: ./providers/zigou.yaml
-    filter: "^(?!.*(剩余|到期|套餐|流量|官网|平台|v6))"
-    health-check:
-      enable: true
-      url: http://www.gstatic.com/generate_204
-      interval: 30
 
   良心云:
     type: http
@@ -157,8 +132,7 @@ proxy-providers:
 
   LA:
     type: http
-    # 中国优化：jsDelivr 固定到正确 provider 格式提交，避免 CDN 缓存旧完整配置
-    url: "https://cdn.jsdelivr.net/gh/jeikl/config/usla.yaml"
+    url: "https://v6.gh-proxy.org/https://raw.githubusercontent.com/jeikl/config/refs/heads/main/usla.yaml"
     interval: 3600
     path: ./providers/usla.yaml
     health-check:
@@ -181,9 +155,6 @@ proxy-groups:
     proxies:
       - 自动选择
       - cloudflare
-      # 自购订阅源（直接单选自购服务器）
-      - 自购
-      - 香港转自购
       - 香港自动
       - 非香港自动
       - DIRECT
@@ -217,7 +188,6 @@ proxy-groups:
     proxies:
       - 非香港自动
       - 良心云
-      - 自购                     # 直接引入自购节点（确保你这台自购服务器不是香港IP即可）
       - 良心云-非香港
       - 飞鸟云-非香港
       - 小火箭-非香港
@@ -227,7 +197,7 @@ proxy-groups:
       - 新加坡 04 Singtel
       - 新加坡 05 Singtel
       - LA
-      - 香港转自购
+
 
 
 
@@ -236,7 +206,6 @@ proxy-groups:
     proxies:
       - 非香港自动
       - 良心云
-      - 自购                     # 直接引入自购节点（确保你这台自购服务器不是香港IP即可）
       - 良心云-非香港
       - 飞鸟云-非香港
       - 小火箭-非香港
@@ -246,7 +215,7 @@ proxy-groups:
       - 新加坡 04 Singtel
       - 新加坡 05 Singtel
       - LA
-      - 香港转自购
+
 
   # ┌─────────────────────────────────────
   # │  聚合自动组（香港 / 非香港）
@@ -268,7 +237,6 @@ proxy-groups:
   - name: 非香港自动
     type: url-test
     proxies:
-      - 自购
       - 日本 02 SoftBank
       - 日本 05 SoftBank
       - 爪云-JP-WS
@@ -297,9 +265,7 @@ proxy-groups:
   # │  现有机场手动全量组
   # └─────────────────────────────────────
 
-  - name: 自购
-    type: select
-    use: [自购]
+
 
   - name: 良心云
     type: select
@@ -380,7 +346,6 @@ proxy-groups:
     proxies:
       - 香港 01 HKIX
       - 香港 02 HKIX
-      - 自购                     # 自购单节点也作为备用跳板参与中转
       - 飞鸟云-香港
       - 小火箭-香港
     url: http://www.gstatic.com/generate_204

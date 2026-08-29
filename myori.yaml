@@ -61,18 +61,7 @@ proxies:
 
 
 
-  # ── 其他 ──────────────────────────────
-  - name: "老家hy"
-    type: hysteria2
-    server: pan.juns.top
-    port: 51376
-    password: TNncOpYbCn
-    tls: true
-    servername: ts2.tc.mm.bing.net
-    skip-cert-verify: true
-    up: 1000
-    down: 1000
-    alpn: [h3, h2, http/1.1]
+
 
 
 # ╔══════════════════════════════════════╗
@@ -131,8 +120,6 @@ proxy-groups:
 
       # 手动节点（美国）
       - 私人
-      # 其他
-      - 老家hy
       # 订阅节点组
       - 良心云
       - 良心云-香港

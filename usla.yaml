@@ -1,5 +1,5 @@
 proxies:
-  - name: LA-AnyTLS
+  - name: 洛杉矶-AnyTLS
     type: anytls
     server: 179.253.249.49
     port: 14024
@@ -11,7 +11,7 @@ proxies:
     sni: www.bing.com
     skip-cert-verify: true
 
-  - name: LA6-AnyTLS
+  - name: 洛杉矶6-AnyTLS
     type: anytls
     server: us6.junv.top
     port: 14024
@@ -23,7 +23,7 @@ proxies:
     sni: www.bing.com
     skip-cert-verify: true
 
-  - name: LA-VLESS-Reality
+  - name: 洛杉矶-VLESS-Reality
     type: vless
     server: 179.253.249.49
     port: 41392
@@ -38,7 +38,7 @@ proxies:
       short-id: 77f82e43
     client-fingerprint: chrome
 
-  - name: LA-VMess-WS
+  - name: 洛杉矶-VMess-WS
     type: vmess
     server: 179.253.249.49
     port: 2082
@@ -54,7 +54,7 @@ proxies:
       headers:
         Host: www.bing.com
 
-  - name: LA-Hysteria2
+  - name: 洛杉矶-Hysteria2
     type: hysteria2
     server: 179.253.249.49
     port: 40232
@@ -65,7 +65,7 @@ proxies:
     skip-cert-verify: true
     fast-open: true
 
-  - name: LA-TUIC5
+  - name: 洛杉矶-TUIC5
     type: tuic
     server: 179.253.249.49
     port: 33076
@@ -80,7 +80,7 @@ proxies:
     sni: www.bing.com
     skip-cert-verify: true
 
-  - name: vless-reality-hk
+  - name: 香港-VLESS-Reality
     type: vless
     server: hk.junv.top
     port: 17100
@@ -95,7 +95,7 @@ proxies:
       short-id: 0d5c6e30
     client-fingerprint: chrome
 
-  - name: vmess-ws-hk
+  - name: 香港-VMess-WS
     type: vmess
     server: hk.junv.top
     port: 2052
@@ -111,33 +111,7 @@ proxies:
       headers:
         Host: www.bing.com
 
-  - name: hysteria2-hk
-    type: hysteria2
-    server: hk.junv.top
-    port: 43551
-    password: 6e1fa926-5ef0-4a11-ac67-3d394d36247c
-    alpn:
-      - h3
-    sni: www.bing.com
-    skip-cert-verify: true
-    fast-open: true
-
-  - name: tuic5-hk
-    type: tuic
-    server: hk.junv.top
-    port: 64897
-    uuid: 6e1fa926-5ef0-4a11-ac67-3d394d36247c
-    password: 6e1fa926-5ef0-4a11-ac67-3d394d36247c
-    alpn:
-      - h3
-    disable-sni: true
-    reduce-rtt: true
-    udp-relay-mode: native
-    congestion-controller: bbr
-    sni: www.bing.com
-    skip-cert-verify: true
-
-  - name: anytls-hk
+  - name: 香港-AnyTLS
     type: anytls
     server: hk.junv.top
     port: 63288

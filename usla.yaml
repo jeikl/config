@@ -80,3 +80,73 @@ proxies:
     sni: www.bing.com
     skip-cert-verify: true
 
+
+- name: vless-reality-hk         
+  type: vless
+  server: hk.junv.top                           
+  port: 17100                                
+  uuid: 6e1fa926-5ef0-4a11-ac67-3d394d36247c   
+  network: tcp
+  udp: true
+  tls: true
+  flow: xtls-rprx-vision
+  servername: apple.com                 
+  reality-opts: 
+    public-key: Loy2FtO5PutrMmM4K4qFyG0_KrZhQ5xgomecNrFFLCM    
+    short-id: 0d5c6e30                      
+  client-fingerprint: chrome                  
+
+- name: vmess-ws-hk                        
+  type: vmess
+  server: hk.junv.top                        
+  port: 2052                                     
+  uuid: 6e1fa926-5ef0-4a11-ac67-3d394d36247c       
+  alterId: 0
+  cipher: auto
+  udp: true
+  tls: false
+  network: ws
+  servername: www.bing.com                    
+  ws-opts:
+    path: "6e1fa926-5ef0-4a11-ac67-3d394d36247c-vm"                             
+    headers:
+      Host: www.bing.com                     
+
+- name: hysteria2-hk                          
+  type: hysteria2                                      
+  server: hk.junv.top                               
+  port: 43551
+  ports: 
+  password: 6e1fa926-5ef0-4a11-ac67-3d394d36247c                          
+  alpn:
+    - h3
+  sni: www.bing.com                               
+  skip-cert-verify: true
+  fast-open: true
+
+- name: tuic5-hk                       
+  server: hk.junv.top                      
+  port: 64897                                    
+  type: tuic
+  uuid: 6e1fa926-5ef0-4a11-ac67-3d394d36247c       
+  password: 6e1fa926-5ef0-4a11-ac67-3d394d36247c   
+  alpn: [h3]
+  disable-sni: true
+  reduce-rtt: true
+  udp-relay-mode: native
+  congestion-controller: bbr
+  sni: www.bing.com                                
+  skip-cert-verify: true
+
+- name: anytls-hk  
+  type: anytls
+  server: hk.junv.top
+  port: 63288
+  password: 6e1fa926-5ef0-4a11-ac67-3d394d36247c
+  client-fingerprint: chrome
+  udp: true
+  idle-session-check-interval: 30
+  idle-session-timeout: 30
+  sni: www.bing.com
+  skip-cert-verify: true
+

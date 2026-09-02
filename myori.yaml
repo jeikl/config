@@ -94,6 +94,16 @@ proxy-providers:
       url: http://www.gstatic.com/generate_204
       interval: 300
 
+  parent-us:
+    type: http
+    url: "https://v6.gh-proxy.org/https://raw.githubusercontent.com/jeikl/config/refs/heads/main/yshan.yaml"
+    interval: 3600
+    path: ./providers/yshan.yaml
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 300
+
 
 # ╔══════════════════════════════════════╗
 # ║             代理组                   ║
@@ -118,12 +128,11 @@ proxy-groups:
 
       # 手动节点（新加坡）
 
-      # 手动节点（美国）
-      - 私人
       # 订阅节点组
       - 良心云
       - 良心云-香港
       - 良心云-非香港
+      - parent-us
       - 私人-香港
       - 私人-洛杉矶
 
@@ -136,7 +145,7 @@ proxy-groups:
       - 非香港自动
       - 良心云
       - 良心云-非香港
-      - 私人
+      - parent-us
 
 
 
@@ -147,7 +156,7 @@ proxy-groups:
       - 非香港自动
       - 良心云
       - 良心云-非香港
-      - 私人
+      - parent-us
 
 
   # ┌─────────────────────────────────────
@@ -223,10 +232,6 @@ proxy-groups:
 
 
 
-  - name: 私人
-    type: select
-    use: [私人]
-
   - name: 私人-香港
     type: url-test
     use: [私人]
@@ -240,6 +245,11 @@ proxy-groups:
     type: select
     use: [私人]
     filter: "(?i)洛杉矶|la|us|美"
+
+  - name: parent-us
+    type: select
+    use: [parent-us]
+    filter: "(?i)美|us|united.states"
 
   # ┌─────────────────────────────────────
   # │  功能性组

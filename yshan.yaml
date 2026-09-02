@@ -1,4 +1,16 @@
 proxies:
+- name: 美国-AnyTLS
+  type: anytls
+  server: 156.238.224.252
+  port: 25674
+  password: 4a02db06-cd14-433b-a05e-d723812be9c8
+  client-fingerprint: chrome
+  udp: true
+  idle-session-check-interval: 30
+  idle-session-timeout: 30
+  sni: www.bing.com
+  skip-cert-verify: true
+
 - name: 美国-VLESS-Reality               
   type: vless
   server: 156.238.224.252                           
@@ -54,16 +66,4 @@ proxies:
   udp-relay-mode: native
   congestion-controller: bbr
   sni: www.bing.com                                
-  skip-cert-verify: true
-
-- name: 美国-AnyTLS
-  type: anytls
-  server: 156.238.224.252
-  port: 25674
-  password: 4a02db06-cd14-433b-a05e-d723812be9c8
-  client-fingerprint: chrome
-  udp: true
-  idle-session-check-interval: 30
-  idle-session-timeout: 30
-  sni: www.bing.com
   skip-cert-verify: true

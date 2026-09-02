@@ -80,6 +80,18 @@ proxies:
     sni: www.bing.com
     skip-cert-verify: true
 
+  - name: 香港-AnyTLS
+    type: anytls
+    server: hk.junv.top
+    port: 63288
+    password: 6e1fa926-5ef0-4a11-ac67-3d394d36247c
+    client-fingerprint: chrome
+    udp: true
+    idle-session-check-interval: 30
+    idle-session-timeout: 30
+    sni: www.bing.com
+    skip-cert-verify: true
+
   - name: 香港-VLESS-Reality
     type: vless
     server: hk.junv.top
@@ -110,15 +122,3 @@ proxies:
       path: "6e1fa926-5ef0-4a11-ac67-3d394d36247c-vm"
       headers:
         Host: www.bing.com
-
-  - name: 香港-AnyTLS
-    type: anytls
-    server: hk.junv.top
-    port: 63288
-    password: 6e1fa926-5ef0-4a11-ac67-3d394d36247c
-    client-fingerprint: chrome
-    udp: true
-    idle-session-check-interval: 30
-    idle-session-timeout: 30
-    sni: www.bing.com
-    skip-cert-verify: true

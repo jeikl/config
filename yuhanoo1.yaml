@@ -42,7 +42,6 @@ proxies:
   idle-session-timeout: 30
   sni: www.bing.com
   skip-cert-verify: true
-
 - name: 美国-VLESS-Reality
   type: vless
   server: 156.238.224.252
@@ -97,8 +96,11 @@ proxies:
   congestion-controller: bbr
   sni: www.bing.com
   skip-cert-verify: true
-
 proxy-groups:
+- name: GLOBAL
+  type: select
+  proxies:
+  - PROXY
 - name: PROXY
   type: select
   proxies:

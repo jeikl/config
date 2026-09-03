@@ -50,17 +50,6 @@ proxies:
       headers:
         Host: cd5ee671.ti-ewg.pages.dev
 
-  # ── 香港 ──────────────────────────────
-
-
-
-  # ── 日本 ──────────────────────────────
-
-
-  # ── 新加坡 ────────────────────────────
-
-
-
 
 
 
@@ -118,25 +107,16 @@ proxy-groups:
     type: select
     proxies:
       - 自动选择
+      - DIRECT
       - cloudflare
       - 香港自动
       - 非香港自动
-      - DIRECT
-      # 手动节点（香港）
-      # 手动节点（日本）
-
-
-      # 手动节点（新加坡）
-
-      # 订阅节点组
       - 良心云
       - 良心云-香港
       - 良心云-非香港
       - parent-us
       - 私人-香港
       - 私人-洛杉矶
-
-
 
 
   - name: AI                   # AI 服务专用
@@ -154,6 +134,7 @@ proxy-groups:
     proxies:
       - 非香港自动
       - 良心云
+      - 良心云-香港
       - 良心云-非香港
       - parent-us
       - 私人-洛杉矶
@@ -222,11 +203,6 @@ proxy-groups:
     interval: 3
     timeout: 2500
     tolerance: 80
-
-
-
-
-
 
 
 

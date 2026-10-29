@@ -61,7 +61,7 @@ proxy-providers:
 
   良心云:
     type: http
-    url: "https://liangxin.xyz/api/v1/liangxin?OwO=42d30083c8b04663923942f0c374fc00"
+    url: "https://liangxin.xyz/api/v1/liangxin?OwO=6130d91098b65f63917f058d51bba717"
     interval: 86400
     path: ./providers/liangxin.yaml
     filter: "^(?!.*(剩余|到期|套餐|流量|官网|平台|v6))"   # 过滤掉信息节点

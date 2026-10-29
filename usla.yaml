@@ -1,7 +1,7 @@
 proxies:
   - name: 洛杉矶-AnyTLS
     type: anytls
-    server: 179.253.249.49
+    server: uscn2.junv.top
     port: 14024
     password: 47e5e6c1-7228-402d-8df9-fa01b1010ba0
     client-fingerprint: chrome
@@ -25,7 +25,7 @@ proxies:
 
   - name: 洛杉矶-VLESS-Reality
     type: vless
-    server: 179.253.249.49
+    server: uscn2.junv.top
     port: 41392
     uuid: 47e5e6c1-7228-402d-8df9-fa01b1010ba0
     network: tcp
@@ -40,7 +40,7 @@ proxies:
 
   - name: 洛杉矶-VMess-WS
     type: vmess
-    server: 179.253.249.49
+    server: uscn2.junv.top
     port: 2082
     uuid: 47e5e6c1-7228-402d-8df9-fa01b1010ba0
     alterId: 0
@@ -56,7 +56,7 @@ proxies:
 
   - name: 洛杉矶-Hysteria2
     type: hysteria2
-    server: 179.253.249.49
+    server: uscn2.junv.top
     port: 40232
     password: 47e5e6c1-7228-402d-8df9-fa01b1010ba0
     alpn:
@@ -67,7 +67,7 @@ proxies:
 
   - name: 洛杉矶-TUIC5
     type: tuic
-    server: 179.253.249.49
+    server: uscn2.junv.top
     port: 33076
     uuid: 47e5e6c1-7228-402d-8df9-fa01b1010ba0
     password: 47e5e6c1-7228-402d-8df9-fa01b1010ba0
